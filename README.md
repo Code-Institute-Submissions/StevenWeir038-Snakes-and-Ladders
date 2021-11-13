@@ -3,6 +3,11 @@
 
 
 ## Game Rules
+**Game Requirements**
+Number of players: 2-4
+
+Required: 1 dice (six sided), pawns (1 for each player), playing board
+
 **Pre-game**
 - Each player takes a different color pawn and throws the dice.
 
