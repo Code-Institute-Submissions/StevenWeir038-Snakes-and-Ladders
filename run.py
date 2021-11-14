@@ -5,7 +5,7 @@ Create dictionary to simulate snake and ladder movements.
 Ladder goes up, snake moves down.  Can be represented in the same
 dictionary as they perform similar function.  Just invert the values.
 """
-SNAKE_LADDER {
+SNAKE_LADDER = {
   98: 78,
   97: 76,
   95: 24,
@@ -110,10 +110,11 @@ def turn(player_num):
   position = 18
   roll_val = random.randint(1, 6)
   new_position = position + roll_val
-  # print(position)
-  # print(roll_val)
-  # print(new_position)
-
+  print(f"Player {player_num} rolled a {roll_val}.  Moves from square {position} to {new_position}.")
+  print(player_num)  # testing - remove
+  print(roll_val)  # testing - remove
+  print(position)  # testing - remove
+  print(new_position)  # testing - remove
 
 
 def main():
