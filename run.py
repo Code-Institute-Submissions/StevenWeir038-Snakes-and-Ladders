@@ -76,6 +76,18 @@ def validate_player_count(player_count):
   # return True if validation finds errors to ask user to reenter number of players to continue while loop
   return True
 
+
+def turn(player_num):
+  """
+  For each player turn: 
+  1. roll dice, 2. move pawn based on value rolled, 3. evaluate if pawn landed on
+  ladder foot or snake head and move to other end, 4. check if pawn lands on
+  square 100 to win, 5. Check of player rolled a six, if so give them another roll,
+  if not move to next player. 
+  """
+  
+
+
 def main():
   """
   Run all program functions
@@ -84,8 +96,9 @@ def main():
   game_instructions()
   # Game setup returns validated number for players input by user
   players = game_setup()
-  # print(players)  #testing - remove
+  # print(f"There are {players} players")  #testing - remove
   # print(type(players))  # testing - remove
+  turn(1) # still to do player iteration loop. Direct value for now to test turn().
 
 
 main()
