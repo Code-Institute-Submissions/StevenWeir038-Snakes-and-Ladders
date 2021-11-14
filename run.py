@@ -1,3 +1,5 @@
+import random
+
 """
 Module docstring goes here
 """
@@ -80,12 +82,13 @@ def validate_player_count(player_count):
 def turn(player_num):
   """
   For each player turn: 
-  1. roll dice, 2. move pawn based on value rolled, 3. evaluate if pawn landed on
+  1. simulate dice roll, 2. move pawn based on value rolled, 3. evaluate if pawn landed on
   ladder foot or snake head and move to other end, 4. check if pawn lands on
   square 100 to win, 5. Check of player rolled a six, if so give them another roll,
   if not move to next player. 
   """
-  
+  roll_val = random.randint(1, 6)
+  print(roll_val)
 
 
 def main():
@@ -101,4 +104,5 @@ def main():
   turn(1) # still to do player iteration loop. Direct value for now to test turn().
 
 
-main()
+# main()
+turn(1)
