@@ -32,4 +32,4 @@ The [game logic](docs/wireframes) diagram was created using [Lucidchart](https:/
 ## Media and Content
 REVIEW
 
-[Board image](https://www.callcentrehelper.com/snakes-and-ladders-call-centre-game-template-20235.htm "Board image") taken from callcentrehelper.com.
+[Board image](https://www.presentationmagazine.com/snakes-and-ladders-board-game-8031.htm "Board image") courtesy of Presentation Magazine.
