@@ -81,14 +81,18 @@ def validate_player_count(player_count):
 
 def turn(player_num):
   """
-  For each player turn: 
+  For each player turn, they start on square 0: 
   1. simulate dice roll, 2. move pawn based on value rolled, 3. evaluate if pawn landed on
   ladder foot or snake head and move to other end, 4. check if pawn lands on
   square 100 to win, 5. Check of player rolled a six, if so give them another roll,
   if not move to next player. 
   """
+  position = 18
   roll_val = random.randint(1, 6)
+  new_position = position + roll_val
+  print(position)
   print(roll_val)
+  print(new_position)
 
 
 def main():
@@ -104,5 +108,5 @@ def main():
   turn(1) # still to do player iteration loop. Direct value for now to test turn().
 
 
-# main()
+# main()  # uncomment after turn() is coded.
 turn(1)
