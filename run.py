@@ -1,8 +1,28 @@
 import random
 
 """
-Module docstring goes here
+Create dictionary to simulate snake and ladder movements.
+Ladder goes up, snake moves down.  Can be represented in the same
+dictionary as they perform similar function.  Just invert the values.
 """
+SNAKE_LADDER {
+  98: 78,
+  97: 76,
+  95: 24,
+  93: 68,
+  64: 60,
+  48: 30,
+  16: 6,
+  1: 38,
+  4: 14,
+  9: 31,
+  21: 42,
+  28: 84,
+  36: 44,
+  51: 67,
+  71: 91,
+  80: 100
+}
 
 
 def game_instructions():
@@ -90,9 +110,10 @@ def turn(player_num):
   position = 18
   roll_val = random.randint(1, 6)
   new_position = position + roll_val
-  print(position)
-  print(roll_val)
-  print(new_position)
+  # print(position)
+  # print(roll_val)
+  # print(new_position)
+
 
 
 def main():
