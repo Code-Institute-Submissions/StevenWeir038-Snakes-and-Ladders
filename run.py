@@ -64,6 +64,31 @@ def game_instructions():
   print(game_about)
 
 
+class Player:
+  """
+  Player class
+  """
+  def __init__(self, pawn_color, curr_square):
+    #instance properties
+    self.pawn_color = pawn_color
+    self.curr_square = curr_square
+  
+  #instance methods
+  def location(self):
+    """
+    return a dictionary representing this object's instance containing: 
+    the players pawn color as the KEY
+    the players current position as the VALUE
+    (plan is to update the VALUE ingame with dice roll or
+    landing on snake head/ladder foot to simulate player's current position)
+    """
+
+    #empty dictionary
+    player_info = {f"{self.pawn_color}: {0}"}
+
+    return player_info
+
+
 def game_setup():
   """
   Ask user for number of players between 2 - 4
@@ -73,13 +98,13 @@ def game_setup():
   while True:
 
     # Immediately convert string input from user to an integer
-    players = int(input("Enter number of players between 2 and 4:\n"))
+    player_count = int(input("Enter number of players between 2 and 4:\n"))
 
     if validate_player_count(players):
       print("Valid input. Let the game begin...")
       break
 
-  return players
+  return player_count
 
 
 def validate_player_count(player_count):
@@ -111,10 +136,12 @@ def turn(player_num):
   roll_val = random.randint(1, 6)
   new_position = position + roll_val
   print(f"Player {player_num} rolled a {roll_val}.  Moves from square {position} to {new_position}.")
-  print(player_num)  # testing - remove
-  print(roll_val)  # testing - remove
-  print(position)  # testing - remove
-  print(new_position)  # testing - remove
+  # print(player_num)  # testing - remove
+  # print(roll_val)  # testing - remove
+  # print(position)  # testing - remove
+  # print(new_position)  # testing - remove
+
+  # evaluate if pawn has landed on a special square.  If so migrate from key to value in SL dict
 
 
 def main():
