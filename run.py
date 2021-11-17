@@ -1,7 +1,7 @@
 import random
 import colorama
 from colorama import Fore, Back, Style
-colorama.init(autoreset=True) # so each new line defaults to white text
+colorama.init(autoreset=True)  # so each new line defaults to white text
 
 """
 Create dictionary to simulate snake and ladder movements.
@@ -82,8 +82,8 @@ class Player:
         return a dictionary representing this object's instance containing:
         the players pawn color as the KEY
         the players current position as the VALUE
-        (plan is to update the VALUE ingame with dice roll or
-        landing on snake head/ladder foot to simulate player's current position)
+        (plan is to update the VALUE ingame with dice roll or landing on a \
+        snake head/ladder foot to simulate player's current position)
         """
 
         # empty dictionary
@@ -96,7 +96,8 @@ def game_setup():
     """
     Ask user for number of players between 2 - 4
     Call function to validate user input
-    Randomly apply pawn color to each player
+    Apply pawn color to each player,
+    P1 = red, P2 = blue, P3 = yellow, P4 = green
     """
     while True:
 
@@ -120,23 +121,33 @@ def validate_player_count(player_count):
             raise ValueError
     except ValueError:
         print("Invalid input. Try again...\n")
-        # return False to game_setup() if validation finds no error in data to end the while loop
+        # return False to game_setup() if validation finds no error \
+        # in data to end the while loop
         return False
 
-    # return True if validation finds errors to ask user to reenter number of players to continue while loop
+    # return True if validation finds errors to ask user to reenter \
+    # number of players to continue while loop
     return True
 
+
+def roll_dice():
+    roll = random.randint(1, 6)
+    return roll
 
 def turn(player_num):
     """
     For each player turn, they start on square 0:
-    1. simulate dice roll, 2. move pawn based on value rolled, 3. evaluate if pawn landed on
-    ladder foot or snake head and move to other end, 4. check if pawn lands on
-    square 100 to win, 5. Check of player rolled a six, if so give them another roll,
-    if not move to next player.
+    1. Simulate dice roll. \
+    2. Move pawn based on value rolled. \
+    3. Evaluate if pawn landed on ladder foot or snake head, \
+       and move to other end.
+    4. Check if pawn lands on square 100 to win.
+    5. Check of player rolled a six, \
+       if so give them another roll, \
+       if not move to next player.
     """
     position = 18
-    roll_val = random.randint(1, 6)
+    roll_val = roll_dice()
     new_position = position + roll_val
     print(
         f"Player {player_num} rolled a {roll_val}. \
@@ -146,7 +157,8 @@ def turn(player_num):
     # print(position)  # testing - remove
     # print(new_position)  # testing - remove
 
-    # evaluate if pawn has landed on a special square.  If so migrate from key to value in SL dict
+    # evaluate if pawn has landed on a special square. \
+    # If so migrate from key to value in SL dict
 
 
 def main():
@@ -156,10 +168,11 @@ def main():
     # provides the user the game instructions
     game_instructions()
     # Game setup returns validated number for players input by user
-    players = game_setup()
+    player_count = game_setup()
     # print(f"There are {players} players")  #testing - remove
     # print(type(players))  # testing - remove
-    turn(1)  # still to do player loop. Direct value for now to test turn().
+    # still to do player loop. Direct value for now to test turn().
+    turn(player_count)
 
 
-main()  # uncomment after turn() is coded.
+main()
