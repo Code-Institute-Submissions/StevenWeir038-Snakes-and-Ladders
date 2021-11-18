@@ -32,6 +32,8 @@ The [game logic](docs/wireframes) diagram was created using [Lucidchart](https:/
 ## Media and Content
 REVIEW
 
+[Emojis](https://emojipedia.org/) sourced from emojipedia.
+
 [Board image](https://www.presentationmagazine.com/snakes-and-ladders-board-game-8031.htm "Board image") courtesy of Presentation Magazine.
 
 [SNAKE_LADDER dictionary ](docs/readme/own-gameboard.png "Own Gameboard") based of a game purchased from [Ambassador Games](http://www.ambassadorgames.com/craftsman-deluxe-game-house.htm).

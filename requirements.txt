@@ -1,1 +1,2 @@
 colorama==0.4.4
+# add pyfiglet to requirements.txt - reminder needed for command line
