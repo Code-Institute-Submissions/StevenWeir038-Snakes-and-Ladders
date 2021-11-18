@@ -1,4 +1,5 @@
 import random
+import pyfiglet
 import colorama
 from colorama import Fore, Back, Style
 colorama.init(autoreset=True)  # so each new line defaults to white text
@@ -134,6 +135,7 @@ def roll_dice():
     roll = random.randint(1, 6)
     return roll
 
+
 def turn(player_num):
     """
     For each player turn, they start on square 0:
@@ -165,14 +167,17 @@ def main():
     """
     Run all program functions
     """
+    # game title
+    title = pyfiglet.figlet_format("Snakes And Ladders", font="small")
+    print(title)
     # provides the user the game instructions
     game_instructions()
     # Game setup returns validated number for players input by user
-    player_count = game_setup()
+    # player_count = game_setup()
     # print(f"There are {players} players")  #testing - remove
     # print(type(players))  # testing - remove
     # still to do player loop. Direct value for now to test turn().
-    turn(player_count)
+    # turn(player_count)
 
 
 main()
