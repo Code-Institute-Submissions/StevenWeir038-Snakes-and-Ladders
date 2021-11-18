@@ -80,17 +80,14 @@ class Player:
     # instance methods
     def location(self):
         """
-        return a dictionary representing this object's instance containing:
-        the players pawn color as the KEY
-        the players current position as the VALUE
+        return a statement representing this object's:
         (plan is to update the VALUE ingame with dice roll or landing on a \
         snake head/ladder foot to simulate player's current position)
         """
+        player_location = {f"{self.pawn_color} pawn is on square \
+        {self.curr_square} "}
 
-        # empty dictionary
-        player_info = {f"{self.pawn_color}: {0}"}
-
-        return player_info
+        return player_location
 
 
 def game_setup():
