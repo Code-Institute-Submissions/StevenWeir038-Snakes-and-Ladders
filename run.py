@@ -63,7 +63,7 @@ def game_instructions():
     🎲 Watch out for the snakes!
 
     VICTORY CONDITIONS
-    ✏️  Be the first player to land on square 100.
+    🎲  Be the first player to land on square 100.
     """
     print(game_about)
 
@@ -103,10 +103,16 @@ def game_setup():
         player_count = int(input("Enter number of players between 2 and 4:\n"))
 
         if validate_player_count(player_count):
-            print("Valid input. Let's create our players...\n")
+            print("\nValid input. Creating players...")
+            # create list using Player class based on valid num of players
+            player_list = []
+            for p in range(1, player_count + 1):
+                print(f"\nSelect pawn color for player {p}\n")
+                # loop to create and append Player class to player list
+                player_list.append(Player(input(
+                    "Enter pawn color - red, green, blue or yellow:\n"), 0))
             break
-
-    return player_count
+    return player_list
 
 
 def validate_player_count(player_count):
@@ -169,9 +175,9 @@ def main():
     print(title)
     # provides the user the game instructions
     game_instructions()
-    # Game setup returns validated number for players input by user
-    players = game_setup()
-    # print(type(players))  # testing - remove
+    # game setup returns validated number for players input by user
+    players = game_setup()  # players = dict of players rtnd from game_setup()
+    print(players)
     # still to do player loop. Direct value for now to test turn().
     # turn(player_count)
 
