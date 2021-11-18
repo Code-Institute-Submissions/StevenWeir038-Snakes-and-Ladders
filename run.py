@@ -103,10 +103,10 @@ def game_setup():
         player_count = int(input("Enter number of players between 2 and 4:\n"))
 
         if validate_player_count(player_count):
-            print("Valid input. Let the game begin...")
+            print("Valid input. Let's create our players...\n")
             break
 
-        return player_count
+    return player_count
 
 
 def validate_player_count(player_count):
@@ -118,12 +118,12 @@ def validate_player_count(player_count):
         if player_count < 2 or player_count > 4:
             raise ValueError
     except ValueError:
-        print("Invalid input. Try again...\n")
+        print(f"You entered {player_count} player(s). Try again...")
         # return False to game_setup() if validation finds no error \
         # in data to end the while loop
         return False
 
-    # return True if validation finds errors to ask user to reenter \
+    # return True if validation finds errors to ask user to re enter \
     # number of players to continue while loop
     return True
 
@@ -170,8 +170,7 @@ def main():
     # provides the user the game instructions
     game_instructions()
     # Game setup returns validated number for players input by user
-    # player_count = game_setup()
-    # print(f"There are {players} players")  #testing - remove
+    players = game_setup()
     # print(type(players))  # testing - remove
     # still to do player loop. Direct value for now to test turn().
     # turn(player_count)
