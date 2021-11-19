@@ -28,6 +28,10 @@ The [game logic](docs/wireframes) diagram was created using [Lucidchart](https:/
 
 ![Mockup](docs/wireframes/flowchart.png "Game logic flowchart") 
 
+## Approach
+From the outset I sought to develop the application using an OOP paradigm.  This is used with real world aplications and supports my long term development as opposed to building something procedural.
+The application is simple but I am achieving a better understanding of the benefits of using classes etc as they lend themselves to the *Don't Repeat Yourself* princilple.
+
 ## Testing
 Go to [TESTING.md](TESTING.md) to view known bugs and fixes.
 
