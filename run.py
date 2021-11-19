@@ -8,15 +8,20 @@ colorama.init(autoreset=True)  # so each new line defaults to white text
 Create dictionary to simulate snake and ladder movements.
 Ladder goes up, snake moves down.  Can be represented in the same
 dictionary as they perform similar function.  Just invert the values.
+As I want to test snake and laddr rules separately, 
+it is better to separate snakes/ladders 
 """
-SNAKE_LADDER = {
+SNAKE_HEAD = {
   98: 78,
   97: 76,
   95: 24,
   93: 68,
   64: 60,
   48: 30,
-  16: 6,
+  16: 6
+  }
+
+LADDER_FOOT = {
   1: 38,
   4: 14,
   9: 31,
@@ -115,16 +120,16 @@ def game_setup():
             """
             for p in range(1, player_count + 1):
                 if p == 1:
-                    print("player one")
+                    # print("player one")  # testing
                     player_list.append("P1 red")        
                 elif p == 2:
-                    print("player two")
+                    # print("player two")  # testing
                     player_list.append("P2 green")
                 elif p == 3:
-                    print("player three")
+                    # print("player three")  # testing
                     player_list.append("P3 blue")
                 else:
-                    print("player four")
+                    # print("player four")  # testing
                     player_list.append("P4 yellow")
      
             print(player_list)
@@ -194,6 +199,12 @@ def turn(player_num):
     # If so migrate from key to value in SL dict
 
 
+def game(players):
+    """
+    Iterate players, call next player turn until win condition met
+    """
+
+
 def main():
     """
     Run all program functions
@@ -205,8 +216,8 @@ def main():
     game_instructions()
     # game setup returns validated number for players input by user
     players = game_setup()  # players = dict of players rtnd from game_setup()
-    print(players)
-    # still to do player loop. Direct value for now to test turn().
+    print(players)  # testing
+    snl_game(players)  # pass players_dict to the game
     # turn(player_count)
 
 
