@@ -97,7 +97,7 @@ def game_setup():
     Ask user for number of players between 2 - 4
     Call function to validate user input
     Apply pawn color to each player,
-    P1 = red, P2 = blue, P3 = yellow, P4 = green
+    P1 = red, P2 = green, P3 = blue, P4 = yellow
     """
     while True:
 
@@ -108,12 +108,25 @@ def game_setup():
             print("\nValid input. Creating players...")
             # create list of players - use pawn color
             player_list = []
+            """
+            loop to create a list of a unique 'pawn_color' for each item.
+            Playter one having a red pawn is more intuitive for user.
+
+            """
             for p in range(1, player_count + 1):
-                # loop to create and append item to player list
-                player_list.append(input(
-                    f"Enter pawn color for player {p}. \
-                    \nred, green, blue or yellow:\n"))
-            
+                if p == 1:
+                    print("player one")
+                    player_list.append("P1 red")        
+                elif p == 2:
+                    print("player two")
+                    player_list.append("P2 green")
+                elif p == 3:
+                    print("player three")
+                    player_list.append("P3 blue")
+                else:
+                    print("player four")
+                    player_list.append("P4 yellow")
+     
             print(player_list)
             """
             https://stackoverflow.com/a/17662224
@@ -186,8 +199,8 @@ def main():
     Run all program functions
     """
     # game title
-    title = pyfiglet.figlet_format("Snakes And Ladders", font="small")
-    print(f"{Fore.GREEN} + {title}")
+    title = pyfiglet.figlet_format("Snakes  & Ladders ...", font="small")
+    print(f"{Fore.GREEN}{title}")
     # provides the user the game instructions
     game_instructions()
     # game setup returns validated number for players input by user
