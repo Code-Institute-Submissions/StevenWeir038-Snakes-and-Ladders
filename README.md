@@ -28,16 +28,19 @@ The [game logic](docs/wireframes) diagram was created using [Lucidchart](https:/
 
 ![Mockup](docs/wireframes/flowchart.png "Game logic flowchart") 
 
+## Testing
+Go to [TESTING.md](TESTING.md) to view known bugs and fixes.
 
 ## Media and Content
 REVIEW
-
+### Credits
 Beyond the Code Institute LMS a few key sources helped cement my understanding of working with classes an using them alongside list/dictionary comprehensions.
 
 - [Abarneret](https://stackoverflow.com/a/17662224)
 - [Jobel](https://stackoverflow.com/a/41720350)
 - [James Gallagher](https://careerkarma.com/blog/python-convert-list-to-dictionary/)
 
+### Content
 [Emojis](https://emojipedia.org/) sourced from emojipedia.
 
 [Board image](https://www.presentationmagazine.com/snakes-and-ladders-board-game-8031.htm "Board image") courtesy of Presentation Magazine.
