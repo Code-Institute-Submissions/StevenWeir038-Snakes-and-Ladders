@@ -52,7 +52,7 @@ def game_instructions():
     🎲 If a player's pawn ends its move at the foot of a ladder, the pawn must
        move immediately to the square at the top of that ladder.
     🎲 If a player's pawn ends it move at the head of a snake, the pawn must
-        immediately move to the tail of that snake.
+       immediately move to the tail of that snake.
     🎲 Each time a player throws a 6, they are entitled to roll the dice and
        move again.
     🎲 (Additional rule) If a player's pawn lands on a square occupied by an
@@ -64,6 +64,8 @@ def game_instructions():
 
     VICTORY CONDITIONS
     🎲  Be the first player to land on square 100.
+
+    ==========================================================================
     """
     print(game_about)
 
@@ -72,10 +74,10 @@ class Player:
     """
     Player class
     """
-    def __init__(self, pawn_color, curr_square):
+    def __init__(self, pawn_color, curr_position=0):
         # instance properties
         self.pawn_color = pawn_color
-        self.curr_square = curr_square
+        self.curr_square = curr_position
 
     # instance methods
     def location(self):
@@ -104,15 +106,28 @@ def game_setup():
 
         if validate_player_count(player_count):
             print("\nValid input. Creating players...")
-            # create list using Player class based on valid num of players
+            # create list of players - use pawn color
             player_list = []
             for p in range(1, player_count + 1):
-                print(f"\nSelect pawn color for player {p}\n")
-                # loop to create and append Player class to player list
-                player_list.append(Player(input(
-                    "Enter pawn color - red, green, blue or yellow:\n"), 0))
+                # loop to create and append item to player list
+                player_list.append(input(
+                    f"Enter pawn color for player {p}. \
+                    \nred, green, blue or yellow:\n"))
+            
+            print(player_list)
+            """
+            https://stackoverflow.com/a/17662224
+            build dictionary by looping over the player_list.
+            The KEY takes the iteration value in the list, in this case
+            the players pawn color. The associated value for each key will
+            be the instantiated Player class object.
+            In game, each instances attributes/methods can be accessed
+            using it's key.  For example: player_list['red']
+            """
+            player_dict = {pawn_color: Player(
+                pawn_color=pawn_color) for pawn_color in player_list}
             break
-    return player_list
+    return player_dict
 
 
 def validate_player_count(player_count):
@@ -172,7 +187,7 @@ def main():
     """
     # game title
     title = pyfiglet.figlet_format("Snakes And Ladders", font="small")
-    print(title)
+    print(f"{Fore.GREEN} + {title}")
     # provides the user the game instructions
     game_instructions()
     # game setup returns validated number for players input by user
