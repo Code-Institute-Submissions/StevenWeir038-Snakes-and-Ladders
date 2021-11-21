@@ -172,7 +172,7 @@ def roll_dice():
     return roll
 
 
-def turn(player_num):
+def turn(key, current_position):
     """
     For each player turn, they start on square 0:
     1. Simulate dice roll. \
@@ -212,7 +212,8 @@ def snl_game(players):
             # access the object curr_position attribute using . notation
             curr_position = value.curr_square
             print(curr_position)  # testing - show current square
-
+            # now pass to function to process location based of turn/dice roll
+            new_position = turn(key, current_position)
 
 def main():
     """
