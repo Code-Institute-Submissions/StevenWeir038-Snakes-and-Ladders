@@ -8,29 +8,29 @@ colorama.init(autoreset=True)  # so each new line defaults to white text
 Create dictionary to simulate snake and ladder movements.
 Ladder goes up, snake moves down.  Can be represented in the same
 dictionary as they perform similar function.  Just invert the values.
-As I want to test snake and laddr rules separately, 
-it is better to separate snakes/ladders 
+As I want to test snake and laddr rules separately,
+it is better to separate snakes/ladders
 """
 SNAKE_HEAD = {
-  98: 78,
-  97: 76,
-  95: 24,
-  93: 68,
-  64: 60,
-  48: 30,
-  16: 6
-  }
+    98: 78,
+    97: 76,
+    95: 24,
+    93: 68,
+    64: 60,
+    48: 30,
+    16: 6
+}
 
 LADDER_FOOT = {
-  1: 38,
-  4: 14,
-  9: 31,
-  21: 42,
-  28: 84,
-  36: 44,
-  51: 67,
-  71: 91,
-  80: 100
+    1: 38,
+    4: 14,
+    9: 31,
+    21: 42,
+    28: 84,
+    36: 44,
+    51: 67,
+    71: 91,
+    80: 100
 }
 
 
@@ -52,19 +52,19 @@ def game_instructions():
 
     GAME RULES
     🎲 The first player throws the dice and moves their pawn according to the
-       number shown on the dice.
+    number shown on the dice.
     🎲 If a player's pawn lands on an empty square there is no effect.
     🎲 If a player's pawn ends its move at the foot of a ladder, the pawn must
-       move immediately to the square at the top of that ladder.
+    move immediately to the square at the top of that ladder.
     🎲 If a player's pawn ends it move at the head of a snake, the pawn must
-       immediately move to the tail of that snake.
+    immediately move to the tail of that snake.
     🎲 Each time a player throws a 6, they are entitled to roll the dice and
-       move again.
+    move again.
     🎲 (Additional rule) If a player's pawn lands on a square occupied by an
-       opponents pawn, that pawn is removed from the board and they must start
-       again.
+    opponents pawn, that pawn is removed from the board and they must start
+    again.
     🎲 (Additional Rule) An exact throw is required to reach square 100.
-       If the throw exceeds 100 the player must move backwards.
+    If the throw exceeds 100 the player must move backwards.
     🎲 Watch out for the snakes!
 
     VICTORY CONDITIONS
@@ -79,6 +79,7 @@ class Player:
     """
     Player class
     """
+
     def __init__(self, pawn_color, curr_position=0):
         # instance properties
         self.pawn_color = pawn_color
@@ -121,7 +122,7 @@ def game_setup():
             for p in range(1, player_count + 1):
                 if p == 1:
                     # print("player one")  # testing
-                    player_list.append("P1 red")        
+                    player_list.append("P1 red")
                 elif p == 2:
                     # print("player two")  # testing
                     player_list.append("P2 green")
@@ -131,7 +132,6 @@ def game_setup():
                 else:
                     # print("player four")  # testing
                     player_list.append("P4 yellow")
-     
             print(player_list)
             """
             https://stackoverflow.com/a/17662224
@@ -178,11 +178,11 @@ def turn(player_num):
     1. Simulate dice roll. \
     2. Move pawn based on value rolled. \
     3. Evaluate if pawn landed on ladder foot or snake head, \
-       and move to other end.
+    and move to other end.
     4. Check if pawn lands on square 100 to win.
     5. Check of player rolled a six, \
-       if so give them another roll, \
-       if not move to next player.
+    if so give them another roll, \
+    if not move to next player.
     """
     position = 18
     roll_val = roll_dice()
@@ -199,10 +199,19 @@ def turn(player_num):
     # If so migrate from key to value in SL dict
 
 
-def game(players):
+def snl_game(players):
     """
-    Iterate players, call next player turn until win condition met
+    Iterate players, loop through each until win condition met
     """
+    # infinite loop needed to keep game live until victory condition met
+    while True:
+
+        for key, value in players.items():
+            # establish current player's location on board
+            # key is the player, value is the Player object instance
+            # access the object curr_position attribute using . notation
+            curr_position = value.curr_square
+            print(curr_position)  # testing - show current square
 
 
 def main():
@@ -216,8 +225,8 @@ def main():
     game_instructions()
     # game setup returns validated number for players input by user
     players = game_setup()  # players = dict of players rtnd from game_setup()
-    print(players)  # testing
-    snl_game(players)  # pass players_dict to the game
+    print(players)  # testing - shows diff memory allocation for each instance
+    snl_game(players)  # pass 'players' dictionary to the game
     # turn(player_count)
 
 
