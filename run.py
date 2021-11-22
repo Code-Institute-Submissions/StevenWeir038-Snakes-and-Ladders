@@ -7,8 +7,8 @@ colorama.init(autoreset=True)  # so each new line defaults to white text
 Create dictionary to simulate snake and ladder movements.
 Ladder goes up, snake moves down.  Can be represented in the same
 dictionary as they perform similar function.  Just invert the values.
-As I want to test snake and laddr rules separately,
-it is better to separate snakes/ladders
+UPDATE - As I want to test snake and ladder rules separately, it is better to
+separate SNAKE_HEAD & LADDER_FOOT dictionaries.
 """
 SNAKE_HEAD = {
     98: 78,
@@ -171,36 +171,33 @@ def roll_dice():
     return roll
 
 
-def turn(key, value,  current_position):
+def turn(player_ID, curr_position):
     """
-    For each player turn, they start on square 0:
-    1. Simulate dice roll. \
-    2. Move pawn based on value rolled. \
-    3. Evaluate if pawn landed on ladder foot or snake head, \
+    For each player turn:
+    1. Simulate dice roll.
+    2. Move pawn based on value rolled.
+    3. Evaluate if pawn landed on ladder foot or snake head,
     and move to other end.
     4. Check if pawn lands on square 100 to win.
-    5. Check of player rolled a six, \
-    if so give them another roll, \
+    5. Check of player rolled a six,
+    if so give them another roll,
     if not move to next player.
     """
-    position = current_position
-    roll_val = roll_dice()
-    new_position = position + roll_val
+    roll_num = roll_dice()
+    new_position = curr_position + roll_num
     print(
-        f"Player {key} rolled a {roll_val} and \
-         moves from square {position} to square {new_position}.")
-    # update curr_position in Player obj instance with new_position
-    value.curr_square = new_position
-    print(value.curr_square)  # testing
-
+        f"Player instance {player_ID} - rolled a {roll_num} and moves from square {curr_position} to square {new_position}.")
     # evaluate if pawn has landed on a special square.
-    # If so migrate from key to value in Snake and/or Ladder dict, 
+    # If so migrate from key to value in Snake and/or Ladder dict,
     # and reassign value for
     # current player object instance curr_position attribute
+    # if player position matches key in SNAKE_HEAD, its value becomes the
+    # snake tail which equals the SNAKE_HEAD value
     if new_position in SNAKE_HEAD:
-        new_position = SNAKE_HEAD[new_position] #####################################
-        print(new_position)
-    # return value.curr_square
+        new_position = SNAKE_HEAD[new_position]
+    elif new_position in LADDER_FOOT:
+        new_position = LADDER_FOOT[new_position]
+    return new_position
 
 
 def snl_game(players):
@@ -210,17 +207,19 @@ def snl_game(players):
     # infinite loop needed to keep game live until victory condition met
     while True:
 
-        for key, value in players.items():
+        for player_ID, player_instance in players.items():
             # establish current player's location on board
             # key is the player iterable, value is the Player object instance
-            # access the object curr_position attribute using . notation
-            curr_position = value.curr_square
-            print(curr_position)  # testing - show current square
-            # now pass to function to process location based of turn
-            # dice roll/board rules
-            new_position = turn(key, value, curr_position)
-            # print(new_position)  # testing
-            # return new_position
+            # assign the object attribute to 'curr_position' using .notation
+            curr_position = player_instance.curr_square
+            print(f"Player instance {player_ID} - current location is {curr_position}.")  # testing
+            # now pass curr_position variable to turn() function to process
+            # dev approach - only modify player_instance within snl() function
+            # the players new location based off their next dice roll
+            new_position = turn(player_ID, curr_position)
+            # update player instance attribute with returned value from turn()
+            player_instance.curr_square = new_position  # testing
+            print(f"Player instance {player_ID} - new location is {player_instance.curr_square}.\n")  # testing
 
 
 def main():
@@ -228,7 +227,7 @@ def main():
     Run all program functions
     """
     # game title
-    title = "Snakes and Ladders"
+    title = "        "
     print(f"{Fore.GREEN}{title}")
     # provides the user the game instructions
     game_instructions()
