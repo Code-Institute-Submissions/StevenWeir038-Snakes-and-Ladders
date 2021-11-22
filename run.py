@@ -1,5 +1,4 @@
 import random
-import pyfiglet
 import colorama
 from colorama import Fore, Back, Style
 colorama.init(autoreset=True)  # so each new line defaults to white text
@@ -172,7 +171,7 @@ def roll_dice():
     return roll
 
 
-def turn(key, current_position):
+def turn(key, value,  current_position):
     """
     For each player turn, they start on square 0:
     1. Simulate dice roll. \
@@ -184,19 +183,24 @@ def turn(key, current_position):
     if so give them another roll, \
     if not move to next player.
     """
-    position = 18
+    position = current_position
     roll_val = roll_dice()
     new_position = position + roll_val
     print(
-        f"Player {player_num} rolled a {roll_val}. \
-        Moves from square {position} to {new_position}.")
-    # print(player_num)  # testing - remove
-    # print(roll_val)  # testing - remove
-    # print(position)  # testing - remove
-    # print(new_position)  # testing - remove
+        f"Player {key} rolled a {roll_val} and \
+         moves from square {position} to square {new_position}.")
+    # update curr_position in Player obj instance with new_position
+    value.curr_square = new_position
+    print(value.curr_square)  # testing
 
-    # evaluate if pawn has landed on a special square. \
-    # If so migrate from key to value in SL dict
+    # evaluate if pawn has landed on a special square.
+    # If so migrate from key to value in Snake and/or Ladder dict, 
+    # and reassign value for
+    # current player object instance curr_position attribute
+    if new_position in SNAKE_HEAD:
+        new_position = SNAKE_HEAD[new_position] #####################################
+        print(new_position)
+    # return value.curr_square
 
 
 def snl_game(players):
@@ -208,19 +212,23 @@ def snl_game(players):
 
         for key, value in players.items():
             # establish current player's location on board
-            # key is the player, value is the Player object instance
+            # key is the player iterable, value is the Player object instance
             # access the object curr_position attribute using . notation
             curr_position = value.curr_square
             print(curr_position)  # testing - show current square
-            # now pass to function to process location based of turn/dice roll
-            new_position = turn(key, current_position)
+            # now pass to function to process location based of turn
+            # dice roll/board rules
+            new_position = turn(key, value, curr_position)
+            # print(new_position)  # testing
+            # return new_position
+
 
 def main():
     """
     Run all program functions
     """
     # game title
-    title = pyfiglet.figlet_format("Snakes  & Ladders ...", font="small")
+    title = "Snakes and Ladders"
     print(f"{Fore.GREEN}{title}")
     # provides the user the game instructions
     game_instructions()
