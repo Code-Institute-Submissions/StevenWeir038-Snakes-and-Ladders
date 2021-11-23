@@ -59,12 +59,6 @@ def game_instructions():
     immediately move to the tail of that snake.
     🎲 Each time a player throws a 6, they are entitled to roll the dice and
     move again.
-    🎲 (Additional rule) If a player's pawn lands on a square occupied by an
-    opponents pawn, that pawn is removed from the board and they must start
-    again.
-    🎲 (Additional Rule) An exact throw is required to reach square 100.
-    If the throw exceeds 100 the player must move backwards.
-    🎲 Watch out for the snakes!
 
     VICTORY CONDITIONS
     🎲  Be the first player to land on square 100.
@@ -120,16 +114,16 @@ def game_setup():
             """
             for p in range(1, player_count + 1):
                 if p == 1:
-                    # print("player one")  # testing
+                    print("player one")  # testing
                     player_list.append("P1 red")
                 elif p == 2:
-                    # print("player two")  # testing
+                    print("player two")  # testing
                     player_list.append("P2 green")
                 elif p == 3:
-                    # print("player three")  # testing
+                    print("player three")  # testing
                     player_list.append("P3 blue")
                 else:
-                    # print("player four")  # testing
+                    print("player four")  # testing
                     player_list.append("P4 yellow")
             print(player_list)
             """
@@ -139,7 +133,7 @@ def game_setup():
             the players pawn color. The associated value for each key will
             be the instantiated Player class object.
             In game, each instances attributes/methods can be accessed
-            using it's key.  For example: player_list['red']
+            using it's key.  For example: player_list['P1 red']
             """
             player_dict = {pawn_color: Player(
                 pawn_color=pawn_color) for pawn_color in player_list}
@@ -205,7 +199,8 @@ def snl_game(players):
     Iterate players, loop through each until win condition met
     """
     # infinite loop needed to keep game live until victory condition met
-    while True:
+    # while True:
+    for i in range(1, 11):  # testing for 10 turns
 
         for player_ID, player_instance in players.items():
             # establish current player's location on board
@@ -227,7 +222,7 @@ def main():
     Run all program functions
     """
     # game title
-    title = "        "
+    title = "SNAKES ANDS LADDERS"
     print(f"{Fore.GREEN}{title}")
     # provides the user the game instructions
     game_instructions()
