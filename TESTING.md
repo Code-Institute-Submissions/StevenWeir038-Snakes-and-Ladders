@@ -106,7 +106,7 @@ for i in range(1, 11):  # testing for 10 turns
 
 
 ### Testing for player landing on SNAKE_HEAD or LADDER_FOOT
-If ladder and snake functionaliy is working correctly, movement on board is greater than a six as per each dice roll.  This is evidenced with f strings setup.
+If ladder and snake functionality is working correctly, movement on board is greater than a six as per each dice roll.  This is evidenced with f strings setup.
 ``` python
     if new_position in SNAKE_HEAD:
         new_position = SNAKE_HEAD[new_position]
@@ -125,7 +125,8 @@ LADDER_FOOT proof from terminal
 
 ![movement-ladder-foot-proof](docs/readme/movement-ladder-foot-proof.png "movement-ladder-foot-proof")
 
-As you can see, the snake and ladder functionality overrides the basic move as the code lines are after `new_position = curr_position + roll_num`.
+As you can see, the snake and ladder functionality overrides the basic move as the code lines are after `new_position = curr_position + roll_num`.  The trick being employed here revolves around the *in*.  If the current player's position value equals the *in* value, then the current position value becomes the value of the key in the 
+
 
 
 
