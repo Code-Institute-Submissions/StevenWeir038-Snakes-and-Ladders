@@ -8,6 +8,93 @@ This was consulted every after writing several lines of code and was especially 
 
 ![problems-code-issues](docs/readme/problems-code-issues.png "problems-code-issues")
 
+## Game setup
+### Casting
+Care was taken when accepting inputs from the user.  As these default to a *string* format they needed to be converted to an *integer* as they were to be used in a loop to create the validated number of players.
+
+``` python
+# Immediately convert string input from user to an integer
+player_count = int(input("Enter number of players between 2 and 4:\n"))
+```
+
+``` python
+for p in range(1, player_count + 1):
+    if p == 1:
+        print("player one")  # testing
+        player_list.append("P1 red")
+    elif p == 2:
+```
+
+### Validating player counts
+Print statements with f strings were used throughout to give human readible feedback on the terminal.  This is demonstrated when the user enters a value outside the range of players needed for the game.
+
+``` python
+def validate_player_count(player_count):
+    """
+    Check number of players supplied from game_setup() function
+    is an integer >= 2 and <= 4
+    """
+    try:
+        if player_count < 2 or player_count > 4:
+            raise ValueError
+    except ValueError:
+        print(f"You entered {player_count} player(s). Try again...")
+```
+
+![game-setup-1-terminal](docs/readme/game-setup-1.png "game-setup-1-terminal")
+
+
+### Verifying an object was created for the assigned number of players
+My currently understanding of Python is that it works off list, dictionary and class structures.  As such, my challenge for this project was to:
+- build a list of players based on a validated number of players entered by the user
+- populate that list with predetermined player/pawn color values. (This could easily have been an inputted name)
+- using dictionary comprehension, build a dictionary based of the above list.  Each key is the same as each list value. As I wanted to follow an OOP paradigm the corresponding values were to be *instances* of a *Player* class.
+- each instance can be accessed by their respective key (which serves as the iterable).  Multiple methods and attributes can be added for improved versatility/future development.  For an MVP, only the pawn_color and curr_position are present.
+
+The Player class
+``` python
+class Player:
+    """
+    Player class
+    """
+
+    def __init__(self, pawn_color, curr_position=0):
+        # instance properties
+        self.pawn_color = pawn_color
+        self.curr_square = curr_position
+
+    # instance methods
+    def location(self):
+        """
+        return a statement representing this object's:
+        (plan is to update the VALUE ingame with dice roll or landing on a \
+        snake head/ladder foot to simulate player's current position)
+        """
+        player_location = {f"{self.pawn_color} pawn is on square \
+        {self.curr_square} "}
+
+        return player_location
+```
+
+Each object has it's unique place in memory.
+
+![verify-object-creation-terminal](docs/readme/verify-object-instance-of-a-class-creation.png "verify-object-creation-terminal")
+
+
+## Game
+### Setting up a forever loop between players
+Setting up an infinite loop is as simple as typing `while True:` though this isn't overly useful for debugging as you have to select *ctrl + c* simultaneously.  As a computer is fast you can miss some important output on the terminal that is relevant to the debugging process.  A solution is to comment out the infinite command using *ctrl + /* and replace with a loop that repeats several times only.
+
+``` python
+def snl_game(players):
+"""
+Iterate players, loop through each until win condition met
+"""
+# infinite loop needed to keep game live until victory condition met
+# while True:
+for i in range(1, 11):  # testing for 10 turns
+```
+
 
 
 
