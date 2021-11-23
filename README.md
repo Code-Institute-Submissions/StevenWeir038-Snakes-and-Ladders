@@ -17,8 +17,6 @@
 - If a player's pawn ends its move at the foot of a ladder, the pawn must move immediately to the square at the top of that ladder.
 - If a player's pawn ends it move at the head of a snake, the pawn must immediately move to the tail of that snake.
 - Each time a player throws a 6, they are entitled to roll the dice and move again.
-- (Additional rule) If a player's pawn lands on a square occupied by an opponents pawn, that pawn is removed from the board and they must start again. 
-- (Additional Rule) An exact throw is required to reach square 100.  If the throw exceeds 100 the player must move backwards. Watch out for the snakes!
 
 **Victory Condition**
 - Be the first player to reach square *100*. 
@@ -28,25 +26,39 @@ The [game logic](docs/wireframes) diagram was created using [Lucidchart](https:/
 
 ![Mockup](docs/wireframes/flowchart.png "Game logic flowchart") 
 
+## Future Adaptations
+Two additional game rules can be applied for extra complexity.  
+- (Additional rule) If a player's pawn lands on a square occupied by an opponents pawn, that pawn is removed from the board and they must start again. 
+- (Additional Rule) An exact throw is required to reach square 100.  If the throw exceeds 100 the player must move backwards. Watch out for the snakes!
+
 ## Approach
 From the outset I sought to develop the application using an OOP paradigm.  This is used with real world aplications and supports my long term development as opposed to building something procedural.
-The application is simple but I am achieving a better understanding of the benefits of using classes etc as they lend themselves to the *Don't Repeat Yourself* princilple.
+The application is simple but I am achieving a better understanding of the benefits of using classes etc as they lend themselves to the *Don't Repeat Yourself* principle.
 
 ## Testing
 Go to [TESTING.md](TESTING.md) to view known bugs and fixes.
 
+## Technologies Used
+Python version 3.x
+Additional libraries used: Colorama.
+Web deployment with Heroku.
+
+## Deployment
+
+
 ## Media and Content
 REVIEW
 ### Credits
-Beyond the Code Institute LMS a few key sources helped cement my understanding of working with classes an using them alongside list/dictionary comprehensions.
+Beyond the Code Institute LMS a few key sources cemented my understanding of how to combine working with loops, dictionaries and classes. In particular, accessing their attributes and using them within loops, lists and dictionary comprehensions.
 
 - [Abarneret](https://stackoverflow.com/a/17662224)
 - [Jobel](https://stackoverflow.com/a/41720350)
 - [James Gallagher](https://careerkarma.com/blog/python-convert-list-to-dictionary/)
+- [schneebuzz](https://stackoverflow.com/a/59999615)
 
 ### Content
-[Emojis](https://emojipedia.org/) sourced from emojipedia.
+Dice, snake and ladder [emojis](https://emojipedia.org/) sourced from emojipedia.
 
-[Board image](https://www.presentationmagazine.com/snakes-and-ladders-board-game-8031.htm "Board image") courtesy of Presentation Magazine.
+[Board image](https://www.istockphoto.com/vector/snakes-and-ladders-black-and-white-gm1066160462-285104267 "Board image") courtesy of iStock.
 
-[SNAKE_LADDER dictionary ](docs/readme/own-gameboard.png "Own Gameboard") based of a game purchased from [Ambassador Games](http://www.ambassadorgames.com/craftsman-deluxe-game-house.htm).
+[SNAKE_HEAD and LADDER_FOOT dictionaries ](docs/readme/own-gameboard.png "Own Gameboard") based of a game purchased from [Ambassador Games](http://www.ambassadorgames.com/craftsman-deluxe-game-house.htm).
