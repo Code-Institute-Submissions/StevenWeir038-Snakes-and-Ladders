@@ -1,10 +1,13 @@
 # Testing
+**A student's inner voice, providing feedback of current approach/understanding to his mentor to develop improvements for future assessors.**
 
 Using the [flowchart](docs/wireframes/flowchart.png "Game logic flowchart") as a guide, an incremental approach was used to build the application.
 
 ## IDE tools
 The problems tab beside the terminal in gitpod provided warnings for code issues.  There are a few categories. Those of primary concern were highlighted red and needed to be resolved.
 This was consulted every after writing several lines of code and was especially useful for resolving syntax errors and checking for unused variables.
+
+*Terminal output*
 
 ![problems-code-issues](docs/readme/problems-code-issues.png "problems-code-issues")
 
@@ -40,6 +43,8 @@ def validate_player_count(player_count):
     except ValueError:
         print(f"You entered {player_count} player(s). Try again...")
 ```
+
+*Terminal output*
 
 ![game-setup-1-terminal](docs/readme/game-setup-1.png "game-setup-1-terminal")
 
@@ -77,6 +82,8 @@ class Player:
 
 Each object has it's unique place in memory (proving its instance).
 
+*Terminal output*
+
 ![verify-object-creation-terminal](docs/readme/verify-object-instance-of-a-class-creation.png "verify-object-creation-terminal")
 
 ## Game
@@ -101,6 +108,7 @@ Iterate players, loop through each until win condition met
 # while True:
 for i in range(1, 11):  # testing for 10 turns
 ```
+*Terminal output*
 
 ![verify-forever-player-loop-terminal](docs/readme/verify-forever-player-loop.png "verify-forever-player-loop-terminal")
 
@@ -117,11 +125,11 @@ If ladder and snake functionality is working correctly, movement on board is gre
     return new_position
 ```
 
-SNAKE_HEAD proof from terminal
+*SNAKE_HEAD proof from terminal output*
 
 ![movement-snake-head-proof](docs/readme/movement-snake-head-proof.png "movement-snake-head-proof")
 
-LADDER_FOOT proof from terminal
+*LADDER_FOOT proof from terminal output*
 
 ![movement-ladder-foot-proof](docs/readme/movement-ladder-foot-proof.png "movement-ladder-foot-proof")
 
@@ -145,10 +153,77 @@ if winner:
     exit()
 ```
 
+*Terminal output*
+
 ![winner](docs/readme/winner.png "winner")
 
 
 ### Testing for a player rolling a six
-If a player hasn't satisfied the win condition, the application should the check if they are eligible for another turn by rolling a six as stipulated in the game rules. 
+If a player hasn't satisfied the win condition, the application should then check if they are eligible for another turn by rolling a six as stipulated in the game rules.
+One way for the game to know this is to add another attribute to the player class instance called `extra_roll` defaulted to `False` which tells the game each turn has only one roll of the dice unless told otherwise.
+Passing the `player_instance` into the `roll_dice` function enables us to change the value of this extra attribute between `True` or `False` depending on the value rolled.  
+As each player instance has its own place in memory, this new attribute can be used elsewhere without having to change the integer value output returned from roll_dice() to the turn() function. 
+We just need to pass the player_instance from snl_game() to turn() to then make it accessible to roll_dice().
+
+The updated roll_dice() function
+``` python
+def roll_dice(player_instance):
+    roll = random.randint(1, 6)
+    # ternary expression to evaluate True or False
+    another_turn = True if roll == 6 else False
+    # assign bool value of another_turn variable to player_instance attribute
+    player_instance.extra_roll = another_turn
+    print(f"Testing - player_instance.extra_roll value = {player_instance.extra_roll}")
+    return roll
+```
+
+#### Stay the course
+After checking for a winner in `snl_game()`, the following was added to enable the same player to have another turn.
+
+``` python
+extra_roll = player_instance.extra_roll
+if extra_roll = True
+    ...
+```
+
+Testing shows this actually cannot work without a GoTo type command which is bad structure.  An inner loop shouldn't be responsible for how an outer loop behaves. 
+One attempt to solve this problem was to incorporate the value of the player_instance extra_roll attribute into the outer loop.  Doing so prevented the program from running correctly when the extra_roll value evaluated each player_instance extra_roll attribute to False.  In the example below only `P3 blue` repeated.
+
+![extra-roll-not-working](docs/readme/extra-roll-not-working.png "extra-roll-not-working")
+
+After this setback, I settled on nesting another loop.  Each turn must iterate at least once independent of the extra_roll value.  The innermost loop was different in that it ran only when extra_roll evaluated to True.
+
+CHECK IN WITH TIM - IS THIS IS THE MOST VIABLE APPROACH? - D.R.Y *et al*.
+
+``` python
+for player_id, player_instance in players.items():
+    # key is the player iterable, value is the Player object instance
+    # establish current player's location on board and
+    # assign the object attribute to 'curr_position' using .notation
+    curr_position = player_instance.curr_square
+    print(f"Player '{player_id}' current location is square '{curr_position}'.")  # testing
+    # now pass curr_position variable to turn() function to process
+    # the players new location based off their next dice roll
+    new_position = turn(player_id, player_instance, curr_position)
+    print(f"player '{player_id}' rolled a six value is '{player_instance.extra_roll}'.")
+    # update player instance attribute with returned value from turn()
+    player_instance.curr_square = new_position  # testing
+    print(f"Player '{player_id}' new location is square '{player_instance.curr_square}'.\n")  # testing
+
+    # check if win condition met
+    winner = check_win(player_id, player_instance)
+    if winner:
+        exit()
+    else:
+        # check if player rolled a six.  Default is False,
+        extra_roll = player_instance.extra_roll
+        if extra_roll is True:
+```
+
+*Terminal output showing an iteration of a loop repeats*
+# https://stackoverflow.com/a/7293992
+
+![repeat-iteration](docs/readme/repeat-iteration.png "repeat-iteration")
+
 
 [Return to README.md](README.md)

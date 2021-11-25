@@ -33,10 +33,10 @@ Two additional game rules can be applied for extra complexity.
 
 ## Approach
 From the outset I sought to develop the application using an OOP paradigm.  This is used with real world aplications and supports my long term development as opposed to building something procedural.
-The application is simple but I am achieving a better understanding of the benefits of using classes etc as they lend themselves to the *Don't Repeat Yourself* principle.
+The application is simple (for an experienced developer) but I wish to achieve a better understanding of the benefits of using OOP/classes as they lend themselves to the *Don't Repeat Yourself* principle.
 
 ## Testing
-Go to [TESTING.md](TESTING.md) to view known bugs and fixes.
+Go to [TESTING.md](TESTING.md) to view known bugs and fixes. Consider it my inner dialogue.
 
 ## Technologies Used
 Python version 3.x
@@ -55,6 +55,9 @@ Beyond the Code Institute LMS a few key sources cemented my understanding of how
 - [Jobel](https://stackoverflow.com/a/41720350)
 - [James Gallagher](https://careerkarma.com/blog/python-convert-list-to-dictionary/)
 - [schneebuzz](https://stackoverflow.com/a/59999615)
+
+To repeat the same iteration of a loop depending on a condition
+- [David Heffernan](https://stackoverflow.com/a/7293992)
 
 ### Content
 Dice, snake and ladder [emojis](https://emojipedia.org/) sourced from emojipedia.

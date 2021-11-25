@@ -55,8 +55,8 @@ def game_instructions():
     🎲 If a player's pawn lands on an empty square there is no effect.
     🎲 If a player's pawn ends its move at the foot of a ladder, the pawn must
     move immediately to the square at the top of that ladder.
-    🎲 If a player's pawn ends it move at the head of a snake, the pawn must
-    immediately move to the tail of that snake.
+    🎲 If a player's pawn ends its move at the head of a snake, the pawn must
+    immediately move to the square at the tail of that snake.
     🎲 Each time a player throws a 6, they are entitled to roll the dice and
     move again.
 
@@ -77,6 +77,7 @@ class Player:
         # instance properties
         self.pawn_color = pawn_color
         self.curr_square = curr_position
+        self.extra_roll = False
 
     # instance methods
     def location(self):
@@ -158,39 +159,42 @@ def validate_player_count(player_count):
     return True
 
 
-def roll_dice():
+def roll_dice(player_instance):
     roll = random.randint(1, 6)
+    # ternary expression to evaluate True or False
+    another_turn = True if roll == 6 else False
+    # assign bool value of another_turn variable to player_instance attribute
+    player_instance.extra_roll = another_turn
     return roll
 
 
-def turn(player_id, curr_position):
+def turn(player_id, player_instance, curr_position):
     """
     For each player turn:
-    1. Simulate dice roll.
+    1. Simulate dice roll - move to roll_dice()
     2. Move pawn based on value rolled.
     3. Evaluate if pawn landed on ladder foot or snake head,
     and move to other end.
-    4. Check if pawn lands on square 100 to win.
-    5. Check of player rolled a six,
-    if so give them another roll,
-    if not move to next player.
+    4. Check if pawn lands on square 100 to win - move to snl_game()
+    5. Check of player rolled a six - move to snl_game()
+    if so give them another roll - move to snl_game()
+    6. By default, move to next player.
     """
-    roll_num = roll_dice()
+    roll_num = roll_dice(player_instance)
     new_position = curr_position + roll_num
     print(
-        f"Player instance '{player_id}' - rolled a '{roll_num}' and moves from square '{curr_position}' to square '{new_position}'.")
+        f"Player '{player_id}' rolled a '{roll_num}' and moves from square '{curr_position}' to square '{new_position}'.")
     # evaluate if pawn has landed on a special square.
-    # If so migrate from key to value in Snake and/or Ladder dict,
-    # and reassign value for
-    # current player object instance curr_position attribute
+    # If so player moves from key to value in Snake/Ladder dict,
+    # reassign value for current player object instance curr_position attribute
     # if player position matches key in SNAKE_HEAD, its value becomes the
     # snake tail which equals the SNAKE_HEAD value
     if new_position in SNAKE_HEAD:
         new_position = SNAKE_HEAD[new_position]
-        print(f"'{player_id}' landed on a SNAKE_HEAD and moves to '{new_position}'.")
+        print(f"Player '{player_id}' landed on a SNAKE_HEAD and moves to square '{new_position}'.")
     elif new_position in LADDER_FOOT:
         new_position = LADDER_FOOT[new_position]
-        print(f"'{player_id}' landed on a LADDER_FOOT and moves to '{new_position}'.")
+        print(f"Player '{player_id}' landed on a LADDER_FOOT and moves to square '{new_position}'.")
     return new_position
 
 
@@ -206,29 +210,40 @@ def snl_game(players):
     """
     # infinite loop needed to keep game live until victory condition met
     while True:
-    # for i in range(1, 51):  # testing for 50 turns
+    # for i in range(50):  # testing for 50 turns
 
         for player_id, player_instance in players.items():
-            # establish current player's location on board
             # key is the player iterable, value is the Player object instance
+            # establish current player's location on board and
             # assign the object attribute to 'curr_position' using .notation
             curr_position = player_instance.curr_square
-            print(f"Player instance '{player_id}' - current location is '{curr_position}'.")  # testing
+            print(f"Player '{player_id}' current location is square '{curr_position}'.")  # testing
             # now pass curr_position variable to turn() function to process
-            # dev approach - only modify player_instance within snl() function
             # the players new location based off their next dice roll
-            new_position = turn(player_id, curr_position)
+            new_position = turn(player_id, player_instance, curr_position)
+            print(f"player '{player_id}' rolled a six value is '{player_instance.extra_roll}'.")
             # update player instance attribute with returned value from turn()
             player_instance.curr_square = new_position  # testing
-            print(f"Player instance '{player_id}' - new location is '{player_instance.curr_square}'.\n")  # testing
+            print(f"Player '{player_id}' new location is square '{player_instance.curr_square}'.\n")  # testing
 
             # check if win condition met
-            # print(player_id)  # testing
-            # print(player_instance)  # testing
-            # print(f"{player_instance.curr_square}\n")  # testing
             winner = check_win(player_id, player_instance)
             if winner:
                 exit()
+            else:
+                # check if player rolled a six.  Default is False,
+                extra_roll = player_instance.extra_roll
+                if extra_roll is True:
+                    curr_position = player_instance.curr_square
+                    print(f"Player '{player_id}' current location is square '{curr_position}'.")  # testing
+                    new_position = turn(player_id, player_instance, curr_position)
+                    print(f"player '{player_id}' rolled a six value is '{player_instance.extra_roll}'.")
+                    player_instance.curr_square = new_position  # testing
+                    print(f"Player '{player_id}' new location is square '{player_instance.curr_square}'.\n")  # testing
+                    # check if win condition met
+                    winner = check_win(player_id, player_instance)
+                    if winner:
+                        exit()
 
 
 def main():
@@ -242,9 +257,8 @@ def main():
     game_instructions()
     # game setup returns validated number for players input by user
     players = game_setup()  # players = dict of players rtnd from game_setup()
-    print(players)  # testing - shows diff memory allocation for each instance
+    print(f"{players}\n")  # testing - shows diff memory allocation for each instance
     snl_game(players)  # pass 'players' dictionary to the game
-    # turn(player_count)
 
 
 main()
