@@ -44,7 +44,7 @@ def validate_player_count(player_count):
 ![game-setup-1-terminal](docs/readme/game-setup-1.png "game-setup-1-terminal")
 
 ### Verifying an object was created for the assigned number of players
-My currently understanding of Python is that it works off list, dictionary and class structures.  As such, my challenge for this project was to:
+My current understanding of Python is that it is built of list, dictionary and class structures.  As such, my challenge for this project was to:
 - build a list of players based on a validated number of players entered by the user
 - populate that list with predetermined player/pawn color values. (This could easily have been an inputted name)
 - using dictionary comprehension, build a dictionary based of the above list.  Each key is the same as each list value. As I wanted to follow an OOP paradigm the corresponding values were to be *instances* of a *Player* class.
@@ -106,7 +106,7 @@ for i in range(1, 11):  # testing for 10 turns
 
 
 ### Testing for player landing on SNAKE_HEAD or LADDER_FOOT
-If ladder and snake functionality is working correctly, movement on board is greater than a six as per each dice roll.  This is evidenced with f strings setup.
+If ladder and snake functionality is working correctly, movement on board is greater than a six as per each dice roll.  This is evidenced with f strings and their return to terminal.
 ``` python
     if new_position in SNAKE_HEAD:
         new_position = SNAKE_HEAD[new_position]
@@ -125,10 +125,30 @@ LADDER_FOOT proof from terminal
 
 ![movement-ladder-foot-proof](docs/readme/movement-ladder-foot-proof.png "movement-ladder-foot-proof")
 
-As you can see, the snake and ladder functionality overrides the basic move as the code lines are after `new_position = curr_position + roll_num`.  The trick being employed here revolves around the *in*.  If the current player's position value equals the *in* value, then the current position value becomes the value of the key in the 
+As you can see, the snake and ladder functionality overrides the basic move as the code lines are after `new_position = curr_position + roll_num`.  The trick being employed here revolves around *in*.  If the current player's position value equals the *in* *'key'* value, then the current position value becomes the *value* of the key in SNAKE_HEAD or LADDER_FOOT dictionary.
+
+### Testing for first player reaching square 100
+With the above game mechanics working, we now need to end the game when the first player sucessfully reaches square 100.
+This is done by passing the player object to the check_win() function.  If this function returns `true` (which is stored in `winner` variable in snl_game function, then the game ends.  
+
+``` python
+def check_win(player_ID, player_instance):
+    if player_instance.curr_square >= 100:
+        print(f"Player '{player_ID}' wins!\n")
+        return True
+```
 
 
+``` python
+winner = check_win(player_ID, player_instance)
+if winner:
+    exit()
+```
+
+![winner](docs/readme/winner.png "winner")
 
 
+### Testing for a player rolling a six
+If a player hasn't satisfied the win condition, the application should the check if they are eligible for another turn by rolling a six as stipulated in the game rules. 
 
 [Return to README.md](README.md)
