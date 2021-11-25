@@ -231,6 +231,7 @@ def snl_game(players):
             if winner:
                 exit()
             else:
+                # repeat same iteration - https://stackoverflow.com/a/7293992
                 # check if player rolled a six.  Default is False,
                 extra_roll = player_instance.extra_roll
                 if extra_roll is True:
