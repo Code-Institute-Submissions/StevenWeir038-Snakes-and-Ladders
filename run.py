@@ -107,11 +107,9 @@ def game_setup():
             print("\nValid input. Creating players...")
             # create list of players - use pawn color
             player_list = []
-            """
-            loop to create a list of a unique 'pawn_color' for each item.
-            Playter one having a red pawn is more intuitive for user.
 
-            """
+            # loop to create a list of a unique 'pawn_color' for each player.
+
             for p in range(1, player_count + 1):
                 if p == 1:
                     print("player one")  # testing
@@ -165,7 +163,7 @@ def roll_dice():
     return roll
 
 
-def turn(player_ID, curr_position):
+def turn(player_id, curr_position):
     """
     For each player turn:
     1. Simulate dice roll.
@@ -180,7 +178,7 @@ def turn(player_ID, curr_position):
     roll_num = roll_dice()
     new_position = curr_position + roll_num
     print(
-        f"Player instance '{player_ID}' - rolled a '{roll_num}' and moves from square '{curr_position}' to square '{new_position}'.")
+        f"Player instance '{player_id}' - rolled a '{roll_num}' and moves from square '{curr_position}' to square '{new_position}'.")
     # evaluate if pawn has landed on a special square.
     # If so migrate from key to value in Snake and/or Ladder dict,
     # and reassign value for
@@ -189,16 +187,16 @@ def turn(player_ID, curr_position):
     # snake tail which equals the SNAKE_HEAD value
     if new_position in SNAKE_HEAD:
         new_position = SNAKE_HEAD[new_position]
-        print(f"'{player_ID}' landed on a SNAKE_HEAD and moves to '{new_position}'.")
+        print(f"'{player_id}' landed on a SNAKE_HEAD and moves to '{new_position}'.")
     elif new_position in LADDER_FOOT:
         new_position = LADDER_FOOT[new_position]
-        print(f"'{player_ID}' landed on a LADDER_FOOT and moves to '{new_position}'.")
+        print(f"'{player_id}' landed on a LADDER_FOOT and moves to '{new_position}'.")
     return new_position
 
 
-def check_win(player_ID, player_instance):
+def check_win(player_id, player_instance):
     if player_instance.curr_square >= 100:
-        print(f"Player '{player_ID}' wins!\n")
+        print(f"Player '{player_id}' wins!\n")
         return True
 
 
@@ -210,27 +208,28 @@ def snl_game(players):
     while True:
     # for i in range(1, 51):  # testing for 50 turns
 
-        for player_ID, player_instance in players.items():
+        for player_id, player_instance in players.items():
             # establish current player's location on board
             # key is the player iterable, value is the Player object instance
             # assign the object attribute to 'curr_position' using .notation
             curr_position = player_instance.curr_square
-            print(f"Player instance '{player_ID}' - current location is '{curr_position}'.")  # testing
+            print(f"Player instance '{player_id}' - current location is '{curr_position}'.")  # testing
             # now pass curr_position variable to turn() function to process
             # dev approach - only modify player_instance within snl() function
             # the players new location based off their next dice roll
-            new_position = turn(player_ID, curr_position)
+            new_position = turn(player_id, curr_position)
             # update player instance attribute with returned value from turn()
             player_instance.curr_square = new_position  # testing
-            print(f"Player instance '{player_ID}' - new location is '{player_instance.curr_square}'.\n")  # testing
+            print(f"Player instance '{player_id}' - new location is '{player_instance.curr_square}'.\n")  # testing
 
             # check if win condition met
-            # print(player_ID)  # testing
+            # print(player_id)  # testing
             # print(player_instance)  # testing
             # print(f"{player_instance.curr_square}\n")  # testing
-            winner = check_win(player_ID, player_instance)
+            winner = check_win(player_id, player_instance)
             if winner:
                 exit()
+
 
 def main():
     """
