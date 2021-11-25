@@ -218,12 +218,19 @@ for player_id, player_instance in players.items():
         # check if player rolled a six.  Default is False,
         extra_roll = player_instance.extra_roll
         if extra_roll is True:
+            ...
 ```
 
 *Terminal output showing an iteration of a loop repeats*
-# https://stackoverflow.com/a/7293992
 
 ![repeat-iteration](docs/readme/repeat-iteration.png "repeat-iteration")
+
+### Next steps
+We now have a text based simulation of the game.  It is useful to a developer or data scientist though it isn't an interactive game for a user.
+To achieve this we need to provide:
+- user prompts to roll the dice for each player
+- a representation of the board with human interpretive feedback
+- a way to differentiate each turn so as not to overwhelm the user
 
 
 [Return to README.md](README.md)
