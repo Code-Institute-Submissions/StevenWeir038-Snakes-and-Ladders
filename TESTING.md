@@ -28,6 +28,47 @@ for p in range(1, player_count + 1):
     elif p == 2:
 ```
 
+An issue was found when the user doesn't enter a number and just keys *return*.  No value is passed to the application.
+This bypasses the validate_player_count() function so doesn't allow for the input to be validated.
+
+*Terminal output*
+
+![no-player-input-error](docs/readme/no-player-input-error.png "no-player-input-error")
+
+This was resolved by placing the `input()` inside a `try` statement and using truth value testing.
+
+``` python
+try:
+    # code to run regardless, it may throw an exception...
+    player_count = int(input(
+        "Enter number of players between 2 and 4:\n"))
+
+    if not input:
+        raise ValueError('no value submitted')
+        ...
+
+except ValueError as e:
+# except - if an exception thrown, clear terminal and restart program
+    # print(e)  # testing
+    clear()    # clear terminal
+    main()  # restart program
+```
+
+The associated `except` clears the terminal then restarts the program.
+Note I also had to import from the `os` module to build the clear_terminal function.
+
+``` python
+from os import system, name
+
+def clear_terminal():
+    """
+    clear the terminal.
+    """
+    _ = system("cls") if name == "nt" else system("clear")
+```
+
+All the user now sees when entering no input is the cursor briefly moving down one line then back to its original position.
+
 ### Validating player counts
 Print statements with f strings were used throughout to give human readible feedback on the terminal.  This is demonstrated when the user enters a value outside the range of players needed for the game.
 
@@ -191,7 +232,7 @@ One attempt to solve this problem was to incorporate the value of the player_ins
 
 ![extra-roll-not-working](docs/readme/extra-roll-not-working.png "extra-roll-not-working")
 
-After this setback, I settled on nesting another loop.  Each turn must iterate at least once independent of the extra_roll value.  The innermost loop was different in that it ran only when extra_roll evaluated to True.
+After this setback, I settled on nesting another loop.  Each turn must iterate at least once independent of the extra_roll value.  The innermost loop was different in that it ran only when extra_roll evaluated to True.  NOTE THIS ONLY ALLOWS FOR ONE EXTRA ROLL.
 
 CHECK IN WITH TIM - IS THIS IS THE MOST VIABLE APPROACH? - D.R.Y *et al*.
 

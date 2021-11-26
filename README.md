@@ -70,8 +70,14 @@ Beyond the Code Institute LMS a few key sources cemented my understanding of how
 - [James Gallagher](https://careerkarma.com/blog/python-convert-list-to-dictionary/)
 - [schneebuzz](https://stackoverflow.com/a/59999615)
 
-To repeat the same iteration of a loop depending on a condition
+To repeat the same iteration of a loop depending on a condition.
 - [David Heffernan](https://stackoverflow.com/a/7293992)
+
+Error handling for empty and non integer values at the same time.
+- [Joshua Burns](https://stackoverflow.com/a/4994509)
+
+To clear the terminal window
+- Tim Nelson via his Slack channel
 
 ### Content
 Dice, snake and ladder [emojis](https://emojipedia.org/) sourced from emojipedia.
