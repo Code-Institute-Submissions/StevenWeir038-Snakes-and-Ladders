@@ -260,7 +260,7 @@ def snl_game(players):
                 # repeat same iteration - https://stackoverflow.com/a/7293992
                 # check if player rolled a six.  Default is False,
                 extra_roll = player_inst.extra_roll
-                if extra_roll is True:
+                while extra_roll is True:
                     curr_position = player_inst.curr_square
                     print(f"""Player '{player_id}' current location is square '{curr_position}'.""")  # testing
                     new_position = turn(player_id, player_inst, curr_position)

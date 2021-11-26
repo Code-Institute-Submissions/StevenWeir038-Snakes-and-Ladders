@@ -93,8 +93,8 @@ def validate_player_count(player_count):
 My current understanding of Python is that it is built of list, dictionary and class structures.  As such, my challenge for this project was to:
 - build a list of players based on a validated number of players entered by the user
 - populate that list with predetermined player/pawn color values. (This could easily have been an inputted name)
-- using dictionary comprehension, build a dictionary based of the above list.  Each key is the same as each list value. As I wanted to follow an OOP paradigm the corresponding values were to be *instances* of a *Player* class.
-- each instance can be accessed by their respective key (which serves as the iterable).  Multiple methods and attributes can be added for improved versatility/future development.  For an MVP, only the pawn_color and curr_position are present.
+- using dictionary comprehension, build a dictionary based of the above list.  Each key is the same as each list value. As I wanted to follow an OOP paradigm the corresponding values were to be *insts* of a *Player* class.
+- each inst can be accessed by their respective key (which serves as the iterable).  Multiple methods and attributes can be added for improved versatility/future development.  For an MVP, only the pawn_color and curr_position are present.
 
 The **Player** class
 ``` python
@@ -104,11 +104,11 @@ class Player:
     """
 
     def __init__(self, pawn_color, curr_position=0):
-        # instance properties
+        # inst properties
         self.pawn_color = pawn_color
         self.curr_square = curr_position
 
-    # instance methods
+    # inst methods
     def location(self):
         """
         return a statement representing this object's:
@@ -121,11 +121,11 @@ class Player:
         return player_location
 ```
 
-Each object has it's unique place in memory (proving its instance).
+Each object has it's unique place in memory (proving its inst).
 
 *Terminal output*
 
-![verify-object-creation-terminal](docs/readme/verify-object-instance-of-a-class-creation.png "verify-object-creation-terminal")
+![verify-object-creation-terminal](docs/readme/verify-object-inst-of-a-class-creation.png "verify-object-creation-terminal")
 
 ## Game
 ### Considering data passing between functions
@@ -181,15 +181,15 @@ With the above game mechanics working, we now need to end the game when the firs
 This is done by passing the player object to the check_win() function.  If this function returns `true` (which is stored in `winner` variable in snl_game function, then the game ends.  
 
 ``` python
-def check_win(player_ID, player_instance):
-    if player_instance.curr_square >= 100:
+def check_win(player_ID, player_inst):
+    if player_inst.curr_square >= 100:
         print(f"Player '{player_ID}' wins!\n")
         return True
 ```
 
 
 ``` python
-winner = check_win(player_ID, player_instance)
+winner = check_win(player_ID, player_inst)
 if winner:
     exit()
 ```
@@ -201,20 +201,20 @@ if winner:
 
 ### Testing for a player rolling a six
 If a player hasn't satisfied the win condition, the application should then check if they are eligible for another turn by rolling a six as stipulated in the game rules.
-One way for the game to know this is to add another attribute to the player class instance called `extra_roll` defaulted to `False` which tells the game each turn has only one roll of the dice unless told otherwise.
-Passing the `player_instance` into the `roll_dice` function enables us to change the value of this extra attribute between `True` or `False` depending on the value rolled.  
-As each player instance has its own place in memory, this new attribute can be used elsewhere without having to change the integer value output returned from roll_dice() to the turn() function. 
-We just need to pass the player_instance from snl_game() to turn() to then make it accessible to roll_dice().
+One way for the game to know this is to add another attribute to the player class inst called `extra_roll` defaulted to `False` which tells the game each turn has only one roll of the dice unless told otherwise.
+Passing the `player_inst` into the `roll_dice` function enables us to change the value of this extra attribute between `True` or `False` depending on the value rolled.  
+As each player inst has its own place in memory, this new attribute can be used elsewhere without having to change the integer value output returned from roll_dice() to the turn() function. 
+We just need to pass the player_inst from snl_game() to turn() to then make it accessible to roll_dice().
 
 The updated roll_dice() function
 ``` python
-def roll_dice(player_instance):
+def roll_dice(player_inst):
     roll = random.randint(1, 6)
     # ternary expression to evaluate True or False
     another_turn = True if roll == 6 else False
-    # assign bool value of another_turn variable to player_instance attribute
-    player_instance.extra_roll = another_turn
-    print(f"Testing - player_instance.extra_roll value = {player_instance.extra_roll}")
+    # assign bool value of another_turn variable to player_inst attribute
+    player_inst.extra_roll = another_turn
+    print(f"Testing - player_inst.extra_roll value = {player_inst.extra_roll}")
     return roll
 ```
 
@@ -222,44 +222,51 @@ def roll_dice(player_instance):
 After checking for a winner in `snl_game()`, the following was added to enable the same player to have another turn.
 
 ``` python
-extra_roll = player_instance.extra_roll
+extra_roll = player_inst.extra_roll
 if extra_roll = True
     ...
 ```
 
 Testing shows this actually cannot work without a GoTo type command which is bad structure.  An inner loop shouldn't be responsible for how an outer loop behaves. 
-One attempt to solve this problem was to incorporate the value of the player_instance extra_roll attribute into the outer loop.  Doing so prevented the program from running correctly when the extra_roll value evaluated each player_instance extra_roll attribute to False.  In the example below only `P3 blue` repeated.
+One attempt to solve this problem was to incorporate the value of the player_inst extra_roll attribute into the outer loop.  Doing so prevented the program from running correctly when the extra_roll value evaluated each player_inst extra_roll attribute to False.  In the example below only `P3 blue` repeated.
 
 ![extra-roll-not-working](docs/readme/extra-roll-not-working.png "extra-roll-not-working")
 
-After this setback, I settled on nesting another loop.  Each turn must iterate at least once independent of the extra_roll value.  The innermost loop was different in that it ran only when extra_roll evaluated to True.  NOTE THIS ONLY ALLOWS FOR ONE EXTRA ROLL.
+After this setback, I settled on nesting another loop.  Each turn must iterate at least once independent of the extra_roll value.  The innermost loop was different in that it ran only when extra_roll evaluated to True.
 
 CHECK IN WITH TIM - IS THIS IS THE MOST VIABLE APPROACH? - D.R.Y *et al*.
 
 ``` python
-for player_id, player_instance in players.items():
-    # key is the player iterable, value is the Player object instance
+for player_id, player_inst in players.items():
+    # key is the player iterable, value is the Player object inst
     # establish current player's location on board and
     # assign the object attribute to 'curr_position' using .notation
-    curr_position = player_instance.curr_square
+    curr_position = player_inst.curr_square
     print(f"Player '{player_id}' current location is square '{curr_position}'.")  # testing
     # now pass curr_position variable to turn() function to process
     # the players new location based off their next dice roll
-    new_position = turn(player_id, player_instance, curr_position)
-    print(f"player '{player_id}' rolled a six value is '{player_instance.extra_roll}'.")
-    # update player instance attribute with returned value from turn()
-    player_instance.curr_square = new_position  # testing
-    print(f"Player '{player_id}' new location is square '{player_instance.curr_square}'.\n")  # testing
+    new_position = turn(player_id, player_inst, curr_position)
+    print(f"player '{player_id}' rolled a six value is '{player_inst.extra_roll}'.")
+    # update player inst attribute with returned value from turn()
+    player_inst.curr_square = new_position  # testing
+    print(f"Player '{player_id}' new location is square '{player_inst.curr_square}'.\n")  # testing
 
     # check if win condition met
-    winner = check_win(player_id, player_instance)
+    winner = check_win(player_id, player_inst)
     if winner:
         exit()
     else:
         # check if player rolled a six.  Default is False,
-        extra_roll = player_instance.extra_roll
+        extra_roll = player_inst.extra_roll
         if extra_roll is True:
             ...
+```
+
+Another major bug with an easy fix was the program only allowing more than one extra dice roll per turn.
+This was overcome by replacing `if` with `while`.  Rather than pass over once the inner loop once, an infinite loop allows a repeat assuming the `player_inst.extra_roll` attribute evaluated to `True`.
+
+```python
+while extra_roll is True:
 ```
 
 *Terminal output showing an iteration of a loop repeats*
