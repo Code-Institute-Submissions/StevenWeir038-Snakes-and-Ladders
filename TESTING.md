@@ -232,5 +232,6 @@ To achieve this we need to provide:
 - a representation of the board with human interpretive feedback
 - a way to differentiate each turn so as not to overwhelm the user
 
+The best place to insert code for our board output is after all current text output has been displayed to the terminal.  That way we know all rules of the game have been executed.  This serves as a clean point to build an output for our users.
 
 [Return to README.md](README.md)
