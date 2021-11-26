@@ -1,4 +1,5 @@
 import random
+from os import system, name
 import time
 import colorama
 from colorama import Fore, Back, Style
@@ -34,11 +35,20 @@ LADDER_FOOT = {
 }
 
 
+def clear_terminal():
+    """
+    clear the terminal.
+    Credit Tim Nelson.
+    """
+    _ = system("cls") if name == "nt" else system("clear")
+
+
 def game_instructions():
     """
     Print game requirements, rules and victory condition to console
     for player to view
     """
+
     # Use multiline comments as cleaner than using multiple print statements
     # and/or using Implicit concatenation to keep strings < 80 chars long
     # https://stackoverflow.com/a/1874679
@@ -103,43 +113,55 @@ def game_setup():
     while True:
 
         # Immediately convert string input from user to an integer
-        player_count = int(input(
-            "Enter number of players between 2 and 4:\n"))
+        # errorhandle both for an empty string and non int value
+        # https://stackoverflow.com/a/4994509
+        try:
+            # code to run regardless, it may throw an exception...
+            player_count = int(input(
+                "Enter number of players between 2 and 4:\n"))
 
-        if validate_player_count(player_count):
-            print("\nValid input. Creating players...\n")
-            time.sleep(1)
-            # create list of players - use pawn color
-            player_list = []
+            if not input:
+                raise ValueError('no value submitted')
 
-            # loop to create a list of a unique 'pawn_color' for each player.
+            if validate_player_count(player_count):
+                print("\nValid input. Creating players...\n")
+                time.sleep(1)
+                # create list of players - use pawn color
+                player_list = []
 
-            for p in range(1, player_count + 1):
-                if p == 1:
-                    # print("player one")  # testing
-                    player_list.append("P1 red")
-                elif p == 2:
-                    # print("player two")  # testing
-                    player_list.append("P2 green")
-                elif p == 3:
-                    # print("player three")  # testing
-                    player_list.append("P3 blue")
-                else:
-                    # print("player four")  # testing
-                    player_list.append("P4 yellow")
-            # print(player_list)
-            """
-            https://stackoverflow.com/a/17662224
-            build dictionary by looping over the player_list.
-            The KEY takes the iteration value in the list, in this case
-            the players pawn color. The associated value for each key will
-            be the instantiated Player class object.
-            In game, each instances attributes/methods can be accessed
-            using it's key.  For example: player_list['P1 red']
-            """
-            player_dict = {pawn_color: Player(
-                pawn_color=pawn_color) for pawn_color in player_list}
-            break
+                # loop - create a list of a unique for each player.
+
+                for p in range(1, player_count + 1):
+                    if p == 1:
+                        # print("player one")  # testing
+                        player_list.append("P1 red")
+                    elif p == 2:
+                        # print("player two")  # testing
+                        player_list.append("P2 green")
+                    elif p == 3:
+                        # print("player three")  # testing
+                        player_list.append("P3 blue")
+                    else:
+                        # print("player four")  # testing
+                        player_list.append("P4 yellow")
+                # print(player_list)
+                """
+                https://stackoverflow.com/a/17662224
+                build dictionary by looping over the player_list.
+                The KEY takes the iteration value in the list, in this case
+                the players pawn color. The associated value for each key will
+                be the instantiated Player class object.
+                In game, each instances attributes/methods can be accessed
+                using it's key.  For example: player_list['P1 red']
+                """
+                player_dict = {pawn_color: Player(
+                    pawn_color=pawn_color) for pawn_color in player_list}
+                break
+        except ValueError as e:
+        # except - if an exception thrown, clear terminal and restart program
+            # print(e)  # testing
+            clear_terminal()  # clear terminal
+            main()  # restart program
     return player_dict
 
 
@@ -245,6 +267,7 @@ def snl_game(players):
                     print(f"""player '{player_id}' rolled a six value is '{player_inst.extra_roll}'.""")
                     player_inst.curr_square = new_position  # testing
                     print(f"""Player '{player_id}' new location is square '{player_inst.curr_square}'.\n""")  # testing
+                    
                     # check if win condition met
                     winner = check_win(player_id, player_inst)
                     if winner:
