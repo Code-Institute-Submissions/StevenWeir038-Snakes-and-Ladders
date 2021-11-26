@@ -44,6 +44,20 @@ Additional libraries used: Colorama.
 Web deployment with Heroku.
 
 ## Deployment
+The site was deployed to *GitHub* pages. The steps to deploy are as follows:
+- In the GitHub repository, navigate to the *Settings* tab.
+- From the source section drop-down menu, select the Main Branch.
+- Once the Main branch has been selected, the page will be automatically refreshed with a detailed ribbon display to indicate the successful deployment.
+
+The live link can be found here - https://snakes-and-ladders-sw.herokuapp.com/
+
+## Local Deployment
+In order to make a local copy of this repository, you can clone the project by typing the follow into your IDE terminal:
+- `git clone https://github.com/StevenWeir038/Snakes-and-Ladders.git`
+
+Alternatively, if using Gitpod, you can click below to create your own workspace using this repository.
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/StevenWeir038/Snakes-and-Ladders)
 
 
 ## Media and Content
