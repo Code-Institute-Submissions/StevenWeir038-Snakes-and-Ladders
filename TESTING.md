@@ -1,5 +1,5 @@
 # Testing
-**A student's inner voice, providing feedback of current approach/understanding to his mentor to develop improvements for future assessors.**
+**A student's inner voice, providing feedback of current approach/understanding to his mentor to develop improvements for future assessment.**
 
 Using the [flowchart](docs/wireframes/flowchart.png "Game logic flowchart") as a guide, an incremental approach was used to build the application.
 
@@ -13,7 +13,7 @@ This was consulted every after writing several lines of code and was especially 
 
 ## Game setup
 ### Casting
-Care was taken when accepting inputs from the user.  As these default to a *string* format they needed to be converted to an *integer* as they were to be used in a loop to create the validated number of players.
+Care was taken when accepting inputs from the user.  As these defaulted to a *string* format they required converting to an *integer* format as they were to be used in a loop to create the validated number of players.
 
 ``` python
 # Immediately convert string input from user to an integer
@@ -29,7 +29,7 @@ for p in range(1, player_count + 1):
 ```
 
 An issue was found when the user doesn't enter a number and just keys *return*.  No value is passed to the application.
-This bypasses the validate_player_count() function so doesn't allow for the input to be validated.
+The application crashes as it bypasses the `validate_player_count()` function therefore preventing input from being validated.
 
 *Terminal output*
 
@@ -44,9 +44,8 @@ try:
         "Enter number of players between 2 and 4:\n"))
 
     if not input:
-        raise ValueError('no value submitted')
+        print(f"You entered {player_count} player(s). Try again...\n")
         ...
-
 except ValueError as e:
 # except - if an exception thrown, clear terminal and restart program
     # print(e)  # testing
@@ -55,7 +54,7 @@ except ValueError as e:
 ```
 
 The associated `except` clears the terminal then restarts the program.
-Note I also had to import from the `os` module to build the clear_terminal function.
+Note the `import` from the `os` module to build the clear_terminal function.
 
 ``` python
 from os import system, name
@@ -67,10 +66,10 @@ def clear_terminal():
     _ = system("cls") if name == "nt" else system("clear")
 ```
 
-All the user now sees when entering no input is the cursor briefly moving down one line then back to its original position.
+All the user now sees when submiting no input is an instruction to enter a value that isn't text.  It's a confidence building experience as they don't see an application crash caused by an error.
 
 ### Validating player counts
-Print statements with f strings were used throughout to give human readible feedback on the terminal.  This is demonstrated when the user enters a value outside the range of players needed for the game.
+Print statements using f strings provide human readible feedback from the terminal.  This is demonstrated when the user enters a value outside the *range* of players needed for the game.
 
 ``` python
 def validate_player_count(player_count):
@@ -90,13 +89,13 @@ def validate_player_count(player_count):
 ![game-setup-1-terminal](docs/readme/game-setup-1.png "game-setup-1-terminal")
 
 ### Verifying an object was created for the assigned number of players
-My current understanding of Python is that it is built of list, dictionary and class structures.  As such, my challenge for this project was to:
+My current understanding of Python is that it is built from list, dictionary and class structures.  As such, my challenge for this project was to:
 - build a list of players based on a validated number of players entered by the user
 - populate that list with predetermined player/pawn color values. (This could easily have been an inputted name)
-- using dictionary comprehension, build a dictionary based of the above list.  Each key is the same as each list value. As I wanted to follow an OOP paradigm the corresponding values were to be *insts* of a *Player* class.
-- each inst can be accessed by their respective key (which serves as the iterable).  Multiple methods and attributes can be added for improved versatility/future development.  For an MVP, only the pawn_color and curr_position are present.
+- using dictionary comprehension, build a dictionary based of the above list.  Each key is the same as each list value. As I wanted to follow an OOP paradigm the corresponding *values* were to be *instances* of the *Player* class.
+- each instance can be accessed by their respective key *iterable*. Multiple methods and attributes can be added to the class instance for improved versatility/future development.  Initially only the `pawn_color` and `curr_position` attributes are present.  These were added to by need, even within the first version on game development.
 
-The **Player** class
+### The **Player** class
 ``` python
 class Player:
     """
@@ -107,6 +106,7 @@ class Player:
         # inst properties
         self.pawn_color = pawn_color
         self.curr_square = curr_position
+        self.extra_roll = True  # added withing the 1st dev cycle
 
     # inst methods
     def location(self):
@@ -121,11 +121,11 @@ class Player:
         return player_location
 ```
 
-Each object has it's unique place in memory (proving its inst).
+Each object has it's unique place in memory (proving its instance).
 
 *Terminal output*
 
-![verify-object-creation-terminal](docs/readme/verify-object-inst-of-a-class-creation.png "verify-object-creation-terminal")
+![verify-object-creation-terminal](docs/readme/verify-object-instance-of-a-class-creation.png "verify-object-creation-terminal")
 
 ## Game
 ### Considering data passing between functions
@@ -138,7 +138,11 @@ snl_game(players)  # pass 'players' dictionary to the game
 
 
 ### Setting up a forever loop between players
-Setting up an infinite loop is as simple as typing `while True:` though this isn't overly useful for debugging as you have to select *ctrl + c* simultaneously to stop.  As a computer is fast you can miss some important output on the terminal that is relevant to the debugging process.  A solution is to comment out the infinite command using *ctrl + /* and replace with a loop that repeats several times only.
+To set up an infinite loop use `while True:`.
+
+Note, this isn't overly useful for debugging as you have to select *ctrl + c* simultaneously to stop.  As a computer is fast you can miss some important output on the terminal that is relevant to the debugging process.  
+
+A solution is to comment out the infinite command using *ctrl + /* and replace with a loop that repeats several times only.
 
 ``` python
 def snl_game(players):
@@ -154,8 +158,9 @@ for i in range(1, 11):  # testing for 10 turns
 ![verify-forever-player-loop-terminal](docs/readme/verify-forever-player-loop.png "verify-forever-player-loop-terminal")
 
 
-### Testing for player landing on SNAKE_HEAD or LADDER_FOOT
-If ladder and snake functionality is working correctly, movement on board is greater than a six as per each dice roll.  This is evidenced with f strings and their return to terminal.
+### Testing for a player landing on a SNAKE_HEAD or a LADDER_FOOT
+If ladder and snake functionality is working correctly, then movements on the board are greater than a six as per each dice roll.  This is evidenced using terminal output.
+
 ``` python
     if new_position in SNAKE_HEAD:
         new_position = SNAKE_HEAD[new_position]
@@ -178,20 +183,16 @@ As you can see, the snake and ladder functionality overrides the basic move as t
 
 ### Testing for first player reaching square 100
 With the above game mechanics working, we now need to end the game when the first player sucessfully reaches square 100.
-This is done by passing the player object to the check_win() function.  If this function returns `true` (which is stored in `winner` variable in snl_game function, then the game ends.  
+This is done by passing the current player object to the `check_win()` function in a inner loop for each player iteration.  If the win condition is met, the application terminates after declaring a winner. 
+
+Note there is no need to return `False` from `check_win` to keep the game running.
 
 ``` python
 def check_win(player_ID, player_inst):
     if player_inst.curr_square >= 100:
         print(f"Player '{player_ID}' wins!\n")
-        return True
-```
-
-
-``` python
-winner = check_win(player_ID, player_inst)
-if winner:
-    exit()
+        exit()
+    return False
 ```
 
 *Terminal output*
@@ -201,9 +202,19 @@ if winner:
 
 ### Testing for a player rolling a six
 If a player hasn't satisfied the win condition, the application should then check if they are eligible for another turn by rolling a six as stipulated in the game rules.
-One way for the game to know this is to add another attribute to the player class inst called `extra_roll` defaulted to `False` which tells the game each turn has only one roll of the dice unless told otherwise.
-Passing the `player_inst` into the `roll_dice` function enables us to change the value of this extra attribute between `True` or `False` depending on the value rolled.  
-As each player inst has its own place in memory, this new attribute can be used elsewhere without having to change the integer value output returned from roll_dice() to the turn() function. 
+
+One way for the game to know this is to have another attribute in each Player class instance called `extra_roll`. 
+
+A `False` value, as evaluated in `roll_dice()`, tells the game each player's turn has only one roll of the dice unless told otherwise. 
+
+(NB. Default for the current `player_inst.extra_roll` is set to `True` to get initial loop iteration working, `False` should terminate the `while` loop therefore move to the outer loop to another player.)
+
+FORGET SIR STEVE. NOW SIR.GRRR STEVE. **WORTHWHILE CHECKING IN WITH TIM ON THIS ONE**. Pondering on THIS while loop solution NOT WORKING AFTER SEVERAL HOURS TRYING...
+WHY IS THE OUTER player loop now broken???
+
+Passing the current `player_inst` into the `roll_dice` function enables the program to set its `extra_roll` attribute to `True` or `False` depending on the value returned by the ternary expression.
+
+As each player instance has its own place in memory, this new attribute can be used elsewhere without having to change the integer value output returned from roll_dice() to the turn() function. 
 We just need to pass the player_inst from snl_game() to turn() to then make it accessible to roll_dice().
 
 The updated roll_dice() function
@@ -218,7 +229,7 @@ def roll_dice(player_inst):
     return roll
 ```
 
-#### Stay the course
+#### Stay the course/ Getting messy
 After checking for a winner in `snl_game()`, the following was added to enable the same player to have another turn.
 
 ``` python
@@ -227,59 +238,32 @@ if extra_roll = True
     ...
 ```
 
-Testing shows this actually cannot work without a GoTo type command which is bad structure.  An inner loop shouldn't be responsible for how an outer loop behaves. 
-One attempt to solve this problem was to incorporate the value of the player_inst extra_roll attribute into the outer loop.  Doing so prevented the program from running correctly when the extra_roll value evaluated each player_inst extra_roll attribute to False.  In the example below only `P3 blue` repeated.
+Testing shows this actually cannot work without a GoTo type command, it is bad structure.  An inner loop shouldn't be responsible for how an outer loop behaves. 
+One attempt to solve this problem was to incorporate the value of the `player_inst.extra_roll` attribute into the outer loop.  Doing so prevented the program from running correctly when the extra_roll value evaluated each player_inst extra_roll attribute to False.  In the example below only `P3 blue` repeated.
 
 ![extra-roll-not-working](docs/readme/extra-roll-not-working.png "extra-roll-not-working")
 
-After this setback, I settled on nesting another loop.  Each turn must iterate at least once independent of the extra_roll value.  The innermost loop was different in that it ran only when extra_roll evaluated to True.
-
-CHECK IN WITH TIM - IS THIS IS THE MOST VIABLE APPROACH? - D.R.Y *et al*.
-
-``` python
-for player_id, player_inst in players.items():
-    # key is the player iterable, value is the Player object inst
-    # establish current player's location on board and
-    # assign the object attribute to 'curr_position' using .notation
-    curr_position = player_inst.curr_square
-    print(f"Player '{player_id}' current location is square '{curr_position}'.")  # testing
-    # now pass curr_position variable to turn() function to process
-    # the players new location based off their next dice roll
-    new_position = turn(player_id, player_inst, curr_position)
-    print(f"player '{player_id}' rolled a six value is '{player_inst.extra_roll}'.")
-    # update player inst attribute with returned value from turn()
-    player_inst.curr_square = new_position  # testing
-    print(f"Player '{player_id}' new location is square '{player_inst.curr_square}'.\n")  # testing
-
-    # check if win condition met
-    winner = check_win(player_id, player_inst)
-    if winner:
-        exit()
-    else:
-        # check if player rolled a six.  Default is False,
-        extra_roll = player_inst.extra_roll
-        if extra_roll is True:
-            ...
-```
-
-Another major bug with an easy fix was the program only allowing more than one extra dice roll per turn.
-This was overcome by replacing `if` with `while`.  Rather than pass over once the inner loop once, an infinite loop allows a repeat assuming the `player_inst.extra_roll` attribute evaluated to `True`.
+The program needs allow more than one extra dice roll per turn.
+# This was overcome by replacing `if` with `while`.  Rather than pass over once the inner loop once, # an infinite loop allows a repeat assuming the `player_inst.extra_roll` attribute evaluated to`True`.
 
 ```python
-while extra_roll is True:
+
 ```
+
+STILL DOESN'T SOLVE IT.  IF PREV COLOR REPEATS EVEN IF NEW VALUE FALSE.
 
 *Terminal output showing an iteration of a loop repeats*
 
 ![repeat-iteration](docs/readme/repeat-iteration.png "repeat-iteration")
 
 ### Next steps
-We now have a text based simulation of the game.  It is useful to a developer or data scientist though it isn't an interactive game for a user.
-To achieve this we need to provide:
+We now have a *text based* simulation of the game.  It may be useful to a developer/ 
+data scientist though it isn't an interactive game for a casual user seeking a fun distraction.
+To place a user in the center of the action we need to provide:
 - user prompts to roll the dice for each player
 - a representation of the board with human interpretive feedback
 - a way to differentiate each turn so as not to overwhelm the user
 
-The best place to insert code for our board output is after all current text output has been displayed to the terminal.  That way we know all rules of the game have been executed.  This serves as a clean point to build an output for our users.
+The best place to insert code for our board output is within the *snl_game() function* where all turn based rules of the game have been executed.  This serves as a clean point to build a visual `board` output for the user inputs.
 
 [Return to README.md](README.md)

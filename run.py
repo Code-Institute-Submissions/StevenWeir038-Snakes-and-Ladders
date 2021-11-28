@@ -88,12 +88,12 @@ class Player:
         # instance properties
         self.pawn_color = pawn_color
         self.curr_square = curr_position
-        self.extra_roll = False
+        self.extra_roll = True
 
     # instance methods
     def location(self):
         """
-        return a statement representing this object's:
+        return a statement representing this object's current position:
         (plan is to update the VALUE ingame with dice roll or landing on a \
         snake head/ladder foot to simulate player's current position)
         """
@@ -119,9 +119,9 @@ def game_setup():
             # code to run regardless, it may throw an exception...
             player_count = int(input(
                 "Enter number of players between 2 and 4:\n"))
-
+            
             if not input:
-                raise ValueError('no value submitted')
+                raise ValueError
 
             if validate_player_count(player_count):
                 print("\nValid input. Creating players...\n")
@@ -133,18 +133,18 @@ def game_setup():
 
                 for p in range(1, player_count + 1):
                     if p == 1:
-                        # print("player one")  # testing
+                        print("player one")  # testing
                         player_list.append("P1 red")
                     elif p == 2:
-                        # print("player two")  # testing
+                        print("player two")  # testing
                         player_list.append("P2 green")
                     elif p == 3:
-                        # print("player three")  # testing
+                        print("player three")  # testing
                         player_list.append("P3 blue")
                     else:
-                        # print("player four")  # testing
+                        print("player four")  # testing
                         player_list.append("P4 yellow")
-                # print(player_list)
+                print(player_list)  # testing
                 """
                 https://stackoverflow.com/a/17662224
                 build dictionary by looping over the player_list.
@@ -157,11 +157,15 @@ def game_setup():
                 player_dict = {pawn_color: Player(
                     pawn_color=pawn_color) for pawn_color in player_list}
                 break
+    
         except ValueError as e:
         # except - if an exception thrown, clear terminal and restart program
             # print(e)  # testing
+            print('No value or text value submitted')
+            time.sleep(2)
             clear_terminal()  # clear terminal
             main()  # restart program
+    print(player_dict)        
     return player_dict
 
 
@@ -174,7 +178,10 @@ def validate_player_count(player_count):
         if player_count < 2 or player_count > 4:
             raise ValueError
     except ValueError:
-        print(f"You entered {player_count} player(s). Try again...")
+        print(f"You entered {player_count} player(s). Try again...\n")
+        time.sleep(2)
+        clear_terminal()  # clear terminal
+        main()  # restart program
         # return False to game_setup() if validation finds no error \
         # in data to end the while loop
         return False
@@ -190,6 +197,7 @@ def roll_dice(player_inst):
     another_turn = True if roll == 6 else False
     # assign bool value of another_turn variable to player_inst attribute
     player_inst.extra_roll = another_turn
+    # print(f"Testing - player_inst.extra_roll value = {player_inst.extra_roll}")  # testing
     return roll
 
 
@@ -225,9 +233,13 @@ def turn(player_id, player_inst, curr_position):
 
 
 def check_win(player_id, player_inst):
+    '''
+    check if player has reached or passed 100
+    if they have exit the program
+    '''
     if player_inst.curr_square >= 100:
         print(f"Player '{player_id}' wins!\n")
-        return True
+        exit()
 
 
 def snl_game(players):
@@ -240,38 +252,33 @@ def snl_game(players):
 
         for player_id, player_inst in players.items():
             # key is the player iterable, value is the Player object instance
-            # establish current player's location on board and
-            # assign the object attribute to 'curr_position' using .notation
-            curr_position = player_inst.curr_square
-            print(f"""Player '{player_id}' current location is square '{curr_position}'.""")  # testing
-            # now pass curr_position variable to turn() function to process
-            # the players new location based off their next dice roll
-            new_position = turn(player_id, player_inst, curr_position)
-            print(f"""player '{player_id}' rolled a six value is '{player_inst.extra_roll}'.""")
-            # update player instance attribute with returned value from turn()
-            player_inst.curr_square = new_position  # testing
-            print(f"""Player '{player_id}' new location is square '{player_inst.curr_square}'.\n""")  # testing
+            
+            # check if player rolled a six, repeat same iteration
+            # https://stackoverflow.com/a/7293992
+            # Default is True to get loop started for 1st iteration only
+            
+            extra_roll = player_inst.extra_roll
+            print(extra_roll)
+            while extra_roll is True:
+                print(f"""Player '{player_id}' turn""")
+                print(F"""Confirming six_rolled = '{player_inst.extra_roll}' for current player '{player_id}' on previous roll.""")
+                # establish current player's location on board and
+                # assign the object attribute to 'curr_position' using .notation
+                curr_position = player_inst.curr_square
+                print(f"""Player '{player_id}' current location is square '{curr_position}'.""")  # testing
+                # now pass curr_position variable to turn() function to process
+                # the players new location based off their next dice roll
+                new_position = turn(player_id, player_inst, curr_position)
+                print(f"""player '{player_id}' rolled a six value is '{player_inst.extra_roll}'.""")
+                # update player instance attribute with returned value from turn()
+                player_inst.curr_square = new_position  # testing
+                print(f"""Player '{player_id}' new location is square '{player_inst.curr_square}'.\n""")  # testing
 
-            # check if win condition met
-            winner = check_win(player_id, player_inst)
-            if winner:
-                exit()
-            else:
-                # repeat same iteration - https://stackoverflow.com/a/7293992
-                # check if player rolled a six.  Default is False,
-                extra_roll = player_inst.extra_roll
-                while extra_roll is True:
-                    curr_position = player_inst.curr_square
-                    print(f"""Player '{player_id}' current location is square '{curr_position}'.""")  # testing
-                    new_position = turn(player_id, player_inst, curr_position)
-                    print(f"""player '{player_id}' rolled a six value is '{player_inst.extra_roll}'.""")
-                    player_inst.curr_square = new_position  # testing
-                    print(f"""Player '{player_id}' new location is square '{player_inst.curr_square}'.\n""")  # testing
-                    
-                    # check if win condition met
-                    winner = check_win(player_id, player_inst)
-                    if winner:
-                        exit()
+                # check if win condition met 
+                winner = check_win(player_id, player_inst)
+
+                # display board
+                #board() # think args to pass into board()
 
 
 def main():
@@ -279,7 +286,7 @@ def main():
     Run all program functions
     """
     # game title
-    title = "SNAKES ANDS LADDERS"
+    title = "SNAKES AND LADDERS"
     print(f"{Fore.GREEN}{title}")
     # provides the user the game instructions
     game_instructions()
@@ -290,3 +297,4 @@ def main():
 
 
 main()
+# board()  # testing building a board
