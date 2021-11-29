@@ -35,7 +35,6 @@ LADDER_FOOT = {
 }
 
 
-
 def clear_terminal():
     """
     clear the terminal.
@@ -145,7 +144,6 @@ def game_setup():
             # code to run regardless, it may throw an exception...
             player_count = int(input(
                 "Enter number of players between 2 and 4:\n"))
-            
             if not input:
                 raise ValueError
 
@@ -183,15 +181,15 @@ def game_setup():
                 player_dict = {pawn_color: Player(
                     pawn_color=pawn_color) for pawn_color in player_list}
                 break
-    
+
         except ValueError as e:
-        # except - if an exception thrown, clear terminal and restart program
+            # except - if an exception thrown, clear terminal and restart program
             # print(e)  # testing
             print('No value or text value submitted')
             time.sleep(2)
             clear_terminal()  # clear terminal
             main()  # restart program
-    print(player_dict)        
+    print(player_dict)
     return player_dict
 
 
@@ -215,7 +213,6 @@ def validate_player_count(player_count):
     # return True if validation finds errors to ask user to re enter \
     # number of players to continue while loop
     return True
-
 
 
 def roll_dice(player_inst):
@@ -242,9 +239,7 @@ def turn(player_id, player_inst, curr_position):
     """
     roll_num = roll_dice(player_inst)
     new_position = curr_position + roll_num
-    print(
-        f"""Player '{player_id}' rolled a '{roll_num}' and moves from square '{curr_position}' to square '{new_position}'.""")
-    
+    print(f"""Player '{player_id}' rolled a '{roll_num}' and moves from square '{curr_position}' to square '{new_position}'.""")
     # evaluate if pawn has landed on a special square.
     # If so player moves from key to value in Snake/Ladder dict,
     # reassign value for current player object instance curr_position attribute
@@ -279,11 +274,10 @@ def snl_game(players):
 
         for player_id, player_inst in players.items():
             # key is the player iterable, value is the Player object instance
-            
             # check if player rolled a six, repeat same iteration
             # https://stackoverflow.com/a/7293992
             # Default is True to get loop started for 1st iteration only
-            
+
             extra_roll = player_inst.extra_roll
             print(extra_roll)
             while extra_roll is True:
@@ -301,11 +295,11 @@ def snl_game(players):
                 player_inst.curr_square = new_position  # testing
                 print(f"""Player '{player_id}' new location is square '{player_inst.curr_square}'.\n""")  # testing
 
-                # check if win condition met 
+                # check if win condition met
                 winner = check_win(player_id, player_inst)
 
                 # display board, only print after all attributes set
-                board() # think args to pass into board()
+                board()  # think args to pass into board()
 
 
 def main():
@@ -323,5 +317,5 @@ def main():
     snl_game(players)  # pass 'players' dictionary to the game
 
 
-main()
-# board()  # testing building a game_board
+# main()
+board()  # testing building a game_board
