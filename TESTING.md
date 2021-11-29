@@ -246,10 +246,6 @@ One attempt to solve this problem was to incorporate the value of the `player_in
 The program needs allow more than one extra dice roll per turn.
 # This was overcome by replacing `if` with `while`.  Rather than pass over once the inner loop once, # an infinite loop allows a repeat assuming the `player_inst.extra_roll` attribute evaluated to`True`.
 
-```python
-
-```
-
 STILL DOESN'T SOLVE IT.  IF PREV COLOR REPEATS EVEN IF NEW VALUE FALSE.
 
 *Terminal output showing an iteration of a loop repeats*
