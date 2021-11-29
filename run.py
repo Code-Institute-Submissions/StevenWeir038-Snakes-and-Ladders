@@ -317,5 +317,5 @@ def main():
     snl_game(players)  # pass 'players' dictionary to the game
 
 
-# main()
-board()  # testing building a game_board
+main()
+# board()  # testing building a game_board
