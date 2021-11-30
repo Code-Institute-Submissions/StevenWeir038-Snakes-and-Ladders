@@ -6,34 +6,29 @@
 **Game Requirements**
 
 - Number of players: 2-4
-- Required: 1 dice (six sided), pawns (1 for each player), playing board
 
 **Pre-game**
-- Each player takes a different color pawn and throws the dice.
+- Each player has a different color pawn and gets one throw per turn.
 
 **Game**
 - The first player throws the dice and moves their pawn according to the number shown on the dice.
 - If a player's pawn lands on an empty square there is no effect.
 - If a player's pawn ends its move at the foot of a ladder, the pawn must move immediately to the square at the top of that ladder.
 - If a player's pawn ends it move at the head of a snake, the pawn must immediately move to the tail of that snake.
-- Each time a player throws a 6, they are entitled to roll the dice and move again.
 
 **Victory Condition**
 - Be the first player to reach square *100*. 
 
 ## Game Mapping
-The [game logic](docs/wireframes) diagram was created using [Lucidchart](https://www.lucidchart.com/pages/).
+The game logic diagram was created using [Lucidchart](https://www.lucidchart.com/pages/).
 
 ![Mockup](docs/wireframes/flowchart.png "Game logic flowchart") 
 
 ## Future Adaptations
-Two additional game rules can be applied for extra complexity.  
+Three additional game rules can be applied for extra complexity.
+- (Additional rule) Each time a player throws a 6, they are entitled to roll the dice and move again.
 - (Additional rule) If a player's pawn lands on a square occupied by an opponents pawn, that pawn is removed from the board and they must start again. 
 - (Additional Rule) An exact throw is required to reach square 100.  If the throw exceeds 100 the player must move backwards. Watch out for the snakes!
-
-## Approach
-From the outset I sought to develop the application using an OOP paradigm.  This is used with real world aplications and supports my long term development as opposed to building something procedural.
-The application is simple (for an experienced developer) but I wish to achieve a better understanding of the benefits of using OOP/classes as they lend themselves to the *Don't Repeat Yourself* principle.
 
 ## Testing
 Go to [TESTING.md](TESTING.md) to view known bugs and fixes. Consider it my inner dialogue.
@@ -44,8 +39,9 @@ Additional libraries used: Colorama.
 Web deployment with Heroku.
 
 ## Deployment
-The site was deployed to *GitHub* pages. The steps to deploy are as follows:
-- In the GitHub repository, navigate to the *Settings* tab.
+The site was deployed to *Heroku*.
+The steps to deploy are as follows:
+- In the GitHub repository, navigate to the *Settings* tab. CHANGE THESE, STEP BY STEP.
 - From the source section drop-down menu, select the Main Branch.
 - Once the Main branch has been selected, the page will be automatically refreshed with a detailed ribbon display to indicate the successful deployment.
 

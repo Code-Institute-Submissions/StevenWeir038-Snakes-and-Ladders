@@ -67,6 +67,8 @@ def board():
     board.append(['81', '82', '83', '84', '85', '86', '87', '88', '89', '90'])
     board.append(['91', '92', '🐍', '94', '🐍', '96', '🐍', '🐍', '99', '🏁'])
 
+    print(board)
+
 
 def game_instructions():
     """
@@ -97,7 +99,7 @@ def game_instructions():
     move again.
 
     VICTORY CONDITIONS
-    🎲  Be the first player to land on square 100.
+    🎲  Be the first player to reach square 100.
 
     ==========================================================================
     """
@@ -113,7 +115,6 @@ class Player:
         # instance properties
         self.pawn_color = pawn_color
         self.curr_square = curr_position
-        self.extra_roll = True
 
     # instance methods
     def location(self):
@@ -183,7 +184,7 @@ def game_setup():
                 break
 
         except ValueError as e:
-            # except - if an exception thrown, clear terminal and restart program
+            # except - if an exception thrown, clear terminal and restart
             # print(e)  # testing
             print('No value or text value submitted')
             time.sleep(2)
@@ -221,7 +222,6 @@ def roll_dice(player_inst):
     another_turn = True if roll == 6 else False
     # assign bool value of another_turn variable to player_inst attribute
     player_inst.extra_roll = another_turn
-    # print(f"Testing - player_inst.extra_roll value = {player_inst.extra_roll}")  # testing
     return roll
 
 
@@ -239,7 +239,7 @@ def turn(player_id, player_inst, curr_position):
     """
     roll_num = roll_dice(player_inst)
     new_position = curr_position + roll_num
-    print(f"""Player '{player_id}' rolled a '{roll_num}' and moves from square '{curr_position}' to square '{new_position}'.""")
+    print(f"Player '{player_id}' rolled a '{roll_num}' and moves from square '{curr_position}' to square '{new_position}'.")
     # evaluate if pawn has landed on a special square.
     # If so player moves from key to value in Snake/Ladder dict,
     # reassign value for current player object instance curr_position attribute
@@ -247,10 +247,10 @@ def turn(player_id, player_inst, curr_position):
     # snake tail which equals the SNAKE_HEAD value
     if new_position in SNAKE_HEAD:
         new_position = SNAKE_HEAD[new_position]
-        print(f"""Player '{player_id}' landed on a SNAKE_HEAD and moves to square '{new_position}'.""")
+        print(f"Player '{player_id}' landed on a SNAKE_HEAD and moves to square '{new_position}'.")
     elif new_position in LADDER_FOOT:
         new_position = LADDER_FOOT[new_position]
-        print(f"""Player '{player_id}' landed on a LADDER_FOOT and moves to square '{new_position}'.""")
+        print(f"Player '{player_id}' landed on a LADDER_FOOT and moves to square '{new_position}'.")
     return new_position
 
 
@@ -269,8 +269,8 @@ def snl_game(players):
     Iterate players, loop through each until win condition met
     """
     # infinite loop needed to keep game live until victory condition met
-    # for i in range(50):  # testing for 50 turns
-    while True:
+    for i in range(50):  # testing for 50 turns
+    # while True:
 
         for player_id, player_inst in players.items():
             # key is the player iterable, value is the Player object instance
@@ -278,28 +278,24 @@ def snl_game(players):
             # https://stackoverflow.com/a/7293992
             # Default is True to get loop started for 1st iteration only
 
-            extra_roll = player_inst.extra_roll
-            print(extra_roll)
-            while extra_roll is True:
-                print(f"""Player '{player_id}' turn""")
-                print(F"""Confirming six_rolled = '{player_inst.extra_roll}' for current player '{player_id}' on previous roll.""")
-                # establish current player's location on board and
-                # assign the object attribute to 'curr_position' using .notation
-                curr_position = player_inst.curr_square
-                print(f"""Player '{player_id}' current location is square '{curr_position}'.""")  # testing
-                # now pass curr_position variable to turn() function to process
-                # the players new location based off their next dice roll
-                new_position = turn(player_id, player_inst, curr_position)
-                print(f"""player '{player_id}' rolled a six value is '{player_inst.extra_roll}'.""")
-                # update player instance attribute with returned value from turn()
-                player_inst.curr_square = new_position  # testing
-                print(f"""Player '{player_id}' new location is square '{player_inst.curr_square}'.\n""")  # testing
+            print(f"Player '{player_id}' turn")
+            print(f"Confirming six_rolled '{player_inst.extra_roll}' for current player '{player_id}' on previous roll.")
+            # establish current player's location on board and
+            # assign the object attr to 'curr_position' using .notation
+            curr_position = player_inst.curr_square
+            print(f"Player '{player_id}' current location is square '{curr_position}'.")  # testing
+            # now pass curr_position variable to turn() function to process
+            # the players new location based off their next dice roll
+            new_position = turn(player_id, player_inst, curr_position)
+            print(f"player '{player_id}' rolled a six value is '{player_inst.extra_roll}'.")
+            # update player instance attr with returned value from turn()
+            player_inst.curr_square = new_position  # testing
+            print(f"Player '{player_id}' new location is square '{player_inst.curr_square}'.\n")  # testing
 
-                # check if win condition met
-                winner = check_win(player_id, player_inst)
-
-                # display board, only print after all attributes set
-                board()  # think args to pass into board()
+            # check if win condition met
+            winner = check_win(player_id, player_inst)
+            # display board, only print after all attributes set
+            # board()  # think args to pass into board()
 
 
 def main():

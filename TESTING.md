@@ -1,5 +1,4 @@
 # Testing
-**A student's inner voice, providing feedback of current approach/understanding to his mentor to develop improvements for future assessment.**
 
 Using the [flowchart](docs/wireframes/flowchart.png "Game logic flowchart") as a guide, an incremental approach was used to build the application.
 
@@ -106,7 +105,6 @@ class Player:
         # inst properties
         self.pawn_color = pawn_color
         self.curr_square = curr_position
-        self.extra_roll = True  # added withing the 1st dev cycle
 
     # inst methods
     def location(self):
@@ -137,10 +135,11 @@ snl_game(players)  # pass 'players' dictionary to the game
 ```
 
 
-### Setting up a forever loop between players
-To set up an infinite loop use `while True:`.
+### Setting up an infinite loop between players
+As this is a game of chance we do not know how many turns are needed for a player to win.
+This requires an infinite loop which is set up using `while True:`.
 
-Note, this isn't overly useful for debugging as you have to select *ctrl + c* simultaneously to stop.  As a computer is fast you can miss some important output on the terminal that is relevant to the debugging process.  
+NB. This isn't overly useful for debugging as you have to select *ctrl + c* simultaneously to stop.  As a computer is fast you can miss some important output on the terminal that is relevant to the debugging process.  
 
 A solution is to comment out the infinite command using *ctrl + /* and replace with a loop that repeats several times only.
 
@@ -198,59 +197,6 @@ def check_win(player_ID, player_inst):
 *Terminal output*
 
 ![winner](docs/readme/winner.png "winner")
-
-
-### Testing for a player rolling a six
-If a player hasn't satisfied the win condition, the application should then check if they are eligible for another turn by rolling a six as stipulated in the game rules.
-
-One way for the game to know this is to have another attribute in each Player class instance called `extra_roll`. 
-
-A `False` value, as evaluated in `roll_dice()`, tells the game each player's turn has only one roll of the dice unless told otherwise. 
-
-(NB. Default for the current `player_inst.extra_roll` is set to `True` to get initial loop iteration working, `False` should terminate the `while` loop therefore move to the outer loop to another player.)
-
-FORGET SIR STEVE. NOW SIR.GRRR STEVE. **WORTHWHILE CHECKING IN WITH TIM ON THIS ONE**. Pondering on THIS while loop solution NOT WORKING AFTER SEVERAL HOURS TRYING...
-WHY IS THE OUTER player loop now broken???
-
-Passing the current `player_inst` into the `roll_dice` function enables the program to set its `extra_roll` attribute to `True` or `False` depending on the value returned by the ternary expression.
-
-As each player instance has its own place in memory, this new attribute can be used elsewhere without having to change the integer value output returned from roll_dice() to the turn() function. 
-We just need to pass the player_inst from snl_game() to turn() to then make it accessible to roll_dice().
-
-The updated roll_dice() function
-``` python
-def roll_dice(player_inst):
-    roll = random.randint(1, 6)
-    # ternary expression to evaluate True or False
-    another_turn = True if roll == 6 else False
-    # assign bool value of another_turn variable to player_inst attribute
-    player_inst.extra_roll = another_turn
-    print(f"Testing - player_inst.extra_roll value = {player_inst.extra_roll}")
-    return roll
-```
-
-#### Stay the course/ Getting messy
-After checking for a winner in `snl_game()`, the following was added to enable the same player to have another turn.
-
-``` python
-extra_roll = player_inst.extra_roll
-if extra_roll = True
-    ...
-```
-
-Testing shows this actually cannot work without a GoTo type command, it is bad structure.  An inner loop shouldn't be responsible for how an outer loop behaves. 
-One attempt to solve this problem was to incorporate the value of the `player_inst.extra_roll` attribute into the outer loop.  Doing so prevented the program from running correctly when the extra_roll value evaluated each player_inst extra_roll attribute to False.  In the example below only `P3 blue` repeated.
-
-![extra-roll-not-working](docs/readme/extra-roll-not-working.png "extra-roll-not-working")
-
-The program needs allow more than one extra dice roll per turn.
-# This was overcome by replacing `if` with `while`.  Rather than pass over once the inner loop once, # an infinite loop allows a repeat assuming the `player_inst.extra_roll` attribute evaluated to`True`.
-
-STILL DOESN'T SOLVE IT.  IF PREV COLOR REPEATS EVEN IF NEW VALUE FALSE.
-
-*Terminal output showing an iteration of a loop repeats*
-
-![repeat-iteration](docs/readme/repeat-iteration.png "repeat-iteration")
 
 ### Next steps
 We now have a *text based* simulation of the game.  It may be useful to a developer/ 
