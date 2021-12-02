@@ -211,6 +211,7 @@ I opted to create the game without the **six roll** functionality due to a hard 
 A `while` loop was used as there is a chance that a six could be rolled consecutively.
 The main issue was breaking out of the loop based upon the rolled_six attribute's value.
 My current knowledge suggests a `while True` expresion always evaluates to true.
+
 Review a useful article by [John Sturtz](https://realpython.com/python-while-loop/).
 
 ``` python
@@ -223,14 +224,22 @@ def roll_dice(player_inst):
     return roll
 ```
 
-### Next steps
-We now have a *text based* simulation of the game.  It may be useful to a developer/ 
-data scientist though it isn't an interactive game for a casual user seeking a fun distraction.
-To place a user in the center of the action we need to provide:
-- user prompts to roll the dice for each player
-- a representation of the board with human interpretive feedback
-- a way to differentiate each turn so as not to overwhelm the user
+## Next steps
+We now have a *text based simulation* of the game.  It could be useful to a developer or data scientist. The application however is intented to be **user centric**.
 
-The best place to insert code for our board output is within the *snl_game() function* where all turn based rules of the game have been executed.  This serves as a clean point to build a visual `board` output for the user inputs.
+To help achieve this I developed a more refined wireframe.
+
+![flowchart-1](docs/wireframes/flowchart-1.png "Game logic flowchart") 
+
+It further conceptualised how the application should execute. It informed the developer:
+
+- where the program should flow until *termination* 
+- where to *display* information to the user
+- offer the user a means to make *decisions* and branch the program
+- error handle in places the user made an *input* to prevent a crash
+- build functions to *process* the users choices
+
+Note how this ties in with the legend in the diagram below.
+The color palette and shapes make particular development tasks more obvious.
 
 [Return to README.md](README.md)
