@@ -40,7 +40,7 @@ def clear_terminal():
     clear the terminal.
     Credit Tim Nelson.
     """
-    _ = system("cls") if name == "nt" else system("clear")
+    os.system("cls" if os.name == "nt" else "clear")
 
 
 def board():
