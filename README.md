@@ -19,8 +19,10 @@
 **Victory Condition**
 - Be the first player to reach square *100*. 
 
-## Game Mapping
-The game logic diagram was created using [Lucidchart](https://www.lucidchart.com/pages/).
+## Wireframes
+The game's logic was mapped out before coding began using a free version of [Lucidchart](https://www.lucidchart.com/pages/).
+
+This web based platform is intuitive to use due to it's drag, drop and snap capabilities.
 
 ![Mockup](docs/wireframes/flowchart.png "Game logic flowchart") 
 
@@ -31,7 +33,7 @@ Three additional game rules can be applied for extra complexity.
 - (Additional Rule) An exact throw is required to reach square 100.  If the throw exceeds 100 the player must move backwards. Watch out for the snakes!
 
 ## Testing
-Go to [TESTING.md](TESTING.md) to view known bugs and fixes. Consider it my inner dialogue.
+Go to [TESTING.md](TESTING.md) to view known bugs and fixes.
 
 ## Technologies Used
 Python version 3.x
