@@ -279,7 +279,7 @@ def snl_game(players):
             # Default is True to get loop started for 1st iteration only
 
             print(f"Player '{player_id}' turn")
-            print(f"Confirming six_rolled '{player_inst.extra_roll}' for current player '{player_id}' on previous roll.")
+            # print(f"Confirming six_rolled '{player_inst.extra_roll}' for current player '{player_id}' on previous roll.")
             # establish current player's location on board and
             # assign the object attr to 'curr_position' using .notation
             curr_position = player_inst.curr_square
@@ -287,7 +287,7 @@ def snl_game(players):
             # now pass curr_position variable to turn() function to process
             # the players new location based off their next dice roll
             new_position = turn(player_id, player_inst, curr_position)
-            print(f"player '{player_id}' rolled a six value is '{player_inst.extra_roll}'.")
+            # print(f"player '{player_id}' rolled a six value is '{player_inst.extra_roll}'.")
             # update player instance attr with returned value from turn()
             player_inst.curr_square = new_position  # testing
             print(f"Player '{player_id}' new location is square '{player_inst.curr_square}'.\n")  # testing
