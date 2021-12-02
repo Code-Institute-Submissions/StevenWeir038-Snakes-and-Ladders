@@ -62,7 +62,7 @@ def clear_terminal():
     """
     clear the terminal.
     """
-    _ = system("cls") if name == "nt" else system("clear")
+    os.system("cls") if name == "nt" else system("clear")
 ```
 
 All the user now sees when submiting no input is an instruction to enter a value that isn't text.  It's a confidence building experience as they don't see an application crash caused by an error.
@@ -134,7 +134,6 @@ players = game_setup()  # players = dict of players rtnd from game_setup()
 snl_game(players)  # pass 'players' dictionary to the game
 ```
 
-
 ### Setting up an infinite loop between players
 As this is a game of chance we do not know how many turns are needed for a player to win.
 This requires an infinite loop which is set up using `while True:`.
@@ -197,6 +196,32 @@ def check_win(player_ID, player_inst):
 *Terminal output*
 
 ![winner](docs/readme/winner.png "winner")
+
+### Simulating a dice roll and rolling a six for another turn
+Simulating a roll fits neatly into its own `roll_dice()` function.
+
+To get this to work the random module was imported into `run.py`. The `randint` method from this was used to return a random number from 1 to 6 to represent each side of a standard dice. This was saved into the `roll` variable.
+
+To check if a player rolled a six, I envisaged another attribute in the Player class called `self.rolled_six = True`.
+The value of the instance attribute could be changed truthy/falsy using a ternary expression taken from the saved variable.
+
+**Unresolved Bug**
+I opted to create the game without the **six roll** functionality due to a hard deadline. The code snippet has been retained in this file for future use to summarise the issue and previous attempts to resolve.
+
+A `while` loop was used as there is a chance that a six could be rolled consecutively.
+The main issue was breaking out of the loop based upon the rolled_six attribute's value.
+My current knowledge suggests a `while True` expresion always evaluates to true.
+Review a useful article by [John Sturtz](https://realpython.com/python-while-loop/).
+
+``` python
+def roll_dice(player_inst):
+    roll = random.randint(1, 6)
+    # ternary expression to evaluate True or False
+    another_turn = True if roll == 6 else False
+    # assign bool value of another_turn variable to player_inst attribute
+    player_inst.extra_roll = another_turn
+    return roll
+```
 
 ### Next steps
 We now have a *text based* simulation of the game.  It may be useful to a developer/ 
