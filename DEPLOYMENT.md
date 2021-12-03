@@ -42,11 +42,12 @@ Select *Reveal Config Vars*.
 
 ![Reveal-config-vars](docs/readme/heroku-deployment/heroku-personal-reveal-config-vars.png "Reveal config vars")
 
-In the *Config Vars* section of the *Settings* page, expose the necessary port by setting the value of KEY to `PORT` and the value to `8000`.  
+In the *Config Vars* section of the *Settings* page, expose the necessary port by setting the value of KEY to `PORT` and the value to `8000` then select `add`.  
 
 ![Config vars](docs/readme/heroku-deployment/heroku-config-vars.png "Config vars")
 
 To install/support dependancies select *Add buildpack*.
+
 The order of the buildpacks is important, select `Python` first then `Node.js` second. If they are not in this order, you can click and drag them in the buildpacks section to rearrange.
 
 Make sure to save your changes once each pack is selected.
@@ -54,18 +55,29 @@ Make sure to save your changes once each pack is selected.
 ![Buildpack-2](docs/readme/heroku-deployment/heroku-buildpack-2.png "Buildpack-2")
 ![Buildpack-1](docs/readme/heroku-deployment/heroku-buildpack-1.png "Buildpack-1")
 
-
-
 To deploy, scroll to the top menu and select *Deploy*.
 
 In the *Deployment method* section of the *Deploy* page look for the *GitHub* icon and select *Connect to GitHub*.
 
 ![Deployment-method](docs/readme/heroku-deployment/heroku-deployment-method-github.png "Deployment method")
 
-In the *Connect to GitHub* section of the *Deploy* page type a unique repository name.  For example the name is `snakes-and-ladders-sw` as set in the Create app page.
+In the *Connect to GitHub* section of the *Deploy* page type a unique repository name.  I.e, `snakes-and-ladders-sw` as set in the Create app page.
 
 Select *Search*.  If the repository is found select *Connect*.
 
 ![Deployment-method](docs/readme/heroku-deployment/heroku-deployment-method-github-name.png "Deployment method")
 
 ![Confirm-deployment](docs/readme/heroku-deployment/heroku-deployment-github-confirm.png "Confirm deployment")
+
+Ensure the `main` branch is selected and *Enable Automatic Deploys*.
+Each push to GitHub now updates the live deployment.
+
+![Auto-deploys](docs/readme/heroku-deployment/heroku-deployment-auto-deploys.png "Auto deploys")
+
+To interact with the live deployed site select *Open app*.
+
+![Open-app](docs/readme/heroku-deployment/heroku-open-app.png "Open app")
+
+The frontend now is linked to the Gitpod IDE and will update with each push to GitHub.
+
+![Frontend-working-confirm](docs/readme/heroku-deployment/heroku-deployment-frontend-working-confirm.png "Frontend working confirm")
