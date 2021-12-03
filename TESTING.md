@@ -287,8 +287,6 @@ Early development was useful.  Similar code constructs to capture errors can be 
         pre_game()  # restart program
 ```
 
-
-
 #### Error handling
 
 *Terminal output*
@@ -297,6 +295,13 @@ If an inputted value is not an *integer* value of *1*,*2* or *3*,  the program r
 The *red* text color conveys a warning message to the user prior to reset.
 
 ![testing-incorrect-value-welcome](docs/readme/testing-incorrect-value-welcome.png "testing-incorrect-value-welcome")
+
+Checking that branching works for our options within the IDE.
+
+![pre-game-branching-test](docs/readme/pre-game-branching-test.png "pre-game-branching-test")
+
+
+
 
 
 [Return to README.md](README.md)
