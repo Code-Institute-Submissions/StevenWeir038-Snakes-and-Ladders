@@ -35,33 +35,6 @@ LADDER_FOOT = {
 }
 
 
-def board():
-    '''
-    Build a 10 * 10 board and
-    display a board for the user after each dice roll
-    '''
-    # create board - is just a list of 10 nested lists.
-    board = []
-    # for i in range(0, 10):
-    # the quick way
-    # board.append(["⬜"]*10)
-    # give each square a number
-    # limitation in method. cannot display like proper board below
-    # as working within nested list structures
-    board.append(['📏', '02', '03', '📏', '05', '06', '07', '08', '📏', '10'])
-    board.append(['11', '12', '13', '14', '15', '🐍', '17', '18', '19', '20'])
-    board.append(['📏', '22', '23', '24', '25', '26', '27', '📏', '29', '30'])
-    board.append(['31', '32', '33', '34', '35', '📏', '37', '38', '39', '40'])
-    board.append(['41', '42', '43', '44', '45', '46', '47', '🐍', '49', '50'])
-    board.append(['📏', '52', '53', '54', '55', '56', '57', '58', '59', '60'])
-    board.append(['61', '62', '63', '🐍', '65', '66', '67', '68', '69', '70'])
-    board.append(['📏', '72', '73', '74', '75', '76', '77', '78', '79', '📏'])
-    board.append(['81', '82', '83', '84', '85', '86', '87', '88', '89', '90'])
-    board.append(['91', '92', '🐍', '94', '🐍', '96', '🐍', '🐍', '99', '🏁'])
-
-    print(board)
-
-
 class Player:
     """
     Player class
@@ -250,17 +223,72 @@ def snl_game(players):
             # board()  # think args to pass into board()
 
 
+def view_board():
+    '''
+    Build a 10 * 10 board and
+    display a board for the user after each dice roll
+    '''
+    # create board - is just a list of 10 nested lists.
+    board = []
+    # for i in range(0, 10):
+    # the quick way
+    # board.append(["⬜"]*10)
+    # give each square a number
+    # limitation in method. cannot display like proper board below
+    # as working within nested list structures
+    board.append(['📏', '02', '03', '📏', '05', '06', '07', '08', '📏', '10'])
+    board.append(['11', '12', '13', '14', '15', '🐍', '17', '18', '19', '20'])
+    board.append(['📏', '22', '23', '24', '25', '26', '27', '📏', '29', '30'])
+    board.append(['31', '32', '33', '34', '35', '📏', '37', '38', '39', '40'])
+    board.append(['41', '42', '43', '44', '45', '46', '47', '🐍', '49', '50'])
+    board.append(['📏', '52', '53', '54', '55', '56', '57', '58', '59', '60'])
+    board.append(['61', '62', '63', '🐍', '65', '66', '67', '68', '69', '70'])
+    board.append(['📏', '72', '73', '74', '75', '76', '77', '78', '79', '📏'])
+    board.append(['81', '82', '83', '84', '85', '86', '87', '88', '89', '90'])
+    board.append(['91', '92', '🐍', '94', '🐍', '96', '🐍', '🐍', '99', '🏁'])
+
+    print(board)
+
 
 def view_rules():
-    print("View Rules TEST")
+    # print("View Rules TEST")  # testing
+    # Use multiline comments as cleaner than using multiple print statements
+    # and/or using Implicit concatenation to keep strings < 80 chars long
+    # https://stackoverflow.com/a/1874679
+    
+    # print(f"{Fore.GREEN}VIEW RULES")
+    
+    game_about = """
+    ==========================================================================
+
+    🎲 Number of players: 2-4
+    🎲 Required: 1 six sided dice
+    🎲 Pawns (1 color for each player) - P1 red, P2 green, P3 blue, P4 yellow
+    🎲 Playing board
+
+    🎲 Each player throws the dice and moves their pawn according to the
+    number shown on the dice.
+    🎲 If a player's pawn lands on an empty square there is no effect.
+    🎲 If a player's pawn ends its move at the foot of a ladder, the pawn must
+    move immediately to the square at the top of that ladder.
+
+    🎲 If a player's pawn ends its move at the head of a snake, the pawn must
+    immediately move to the square at the tail of that snake.
+
+    VICTORY CONDITION
+    🎲  Be the first player to reach square 100.
+
+    ==========================================================================
+    """
+    print(game_about)
 
 
 def view_board():
-    print("View Board TEST")
+    print("View Board TEST")  # testing
 
 
 def game_setup():
-    print("Game Setup TEST")
+    print("Game Setup TEST")  # testing
 
 
 def incorrect_value():
@@ -271,7 +299,6 @@ def incorrect_value():
     sleep()
     clear_terminal()  # clear terminal
     pre_game()  # restart program
-
 
 def welcome_screen():
     """
@@ -315,39 +342,6 @@ def welcome_screen():
         sleep()
         clear_terminal()  # clear terminal
         pre_game()  # restart program
-
-
-
-
-
-    # Use multiline comments as cleaner than using multiple print statements
-    # and/or using Implicit concatenation to keep strings < 80 chars long
-    # https://stackoverflow.com/a/1874679
-    game_about = """
-    GAME REQUIREMENTS
-    🎲 Number of players: 2-4
-    🎲 Required: 1 dice (six sided), pawns (1 for each player), playing board
-
-    PRE-GAME
-    🎲 Each player takes a different color pawn and throws the dice.
-
-    GAME RULES
-    🎲 The first player throws the dice and moves their pawn according to the
-    number shown on the dice.
-    🎲 If a player's pawn lands on an empty square there is no effect.
-    🎲 If a player's pawn ends its move at the foot of a ladder, the pawn must
-    move immediately to the square at the top of that ladder.
-    🎲 If a player's pawn ends its move at the head of a snake, the pawn must
-    immediately move to the square at the tail of that snake.
-    🎲 Each time a player throws a 6, they are entitled to roll the dice and
-    move again.
-
-    VICTORY CONDITIONS
-    🎲  Be the first player to reach square 100.
-
-    ==========================================================================
-    """
-    # print(game_about)
 
 
 def clear_terminal():
