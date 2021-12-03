@@ -277,8 +277,65 @@ def welcome_screen():
 
     print(f"{Back.BLACK}Select an option: \n")
     print(f"{Fore.RED}{Back.WHITE} 1 {Fore.WHITE}{Back.BLACK} View Rules    \n")
-    print(f"{Fore.GREEN}{Back.WHITE} 2 {Fore.WHITE}{Back.BLACK} Our Board     \n")
+    print(f"{Fore.GREEN}{Back.WHITE} 2 {Fore.WHITE}{Back.BLACK} The Board     \n")
     print(f"{Fore.BLUE}{Back.WHITE} 3 {Fore.WHITE}{Back.BLACK} Play Game     \n")
+
+    '''
+    Branch program using if/elif/else structures
+    Capture errors
+    Direct user's choice to new function.
+    '''
+    try:
+        # code to run regardless, it may throw an exception...
+        pre_game_choice = int(input(f"Select from options {Fore.RED}1{Fore.WHITE}, {Fore.GREEN}2 {Fore.WHITE}or {Fore.BLUE}3{Fore.WHITE}.\n"))
+        if not input:
+            raise ValueError
+
+    except ValueError as e:
+        # except - if an exception thrown, clear terminal and restart
+        time.sleep(2)
+        clear_terminal()  # clear terminal
+        pre_game()  # restart program
+
+
+
+
+        # try:
+        #     # code to run regardless, it may throw an exception...
+        #     player_count = int(input(
+        #         "Enter number of players between 2 and 4:\n"))
+        #     if not input:
+        #         raise ValueError
+
+        #     if validate_player_count(player_count):
+        #         print("\nValid input. Creating players...\n")
+        #         time.sleep(1)
+        #         # create list of players - use pawn color
+        #         player_list = []
+
+        #         # loop - create a list of a unique for each player.
+
+        #         for p in range(1, player_count + 1):
+        #             if p == 1:
+        #                 # print("player one")  # testing
+        #                 player_list.append("P1 red")
+        #             elif p == 2:
+        #                 # print("player two")  # testing
+        #                 player_list.append("P2 green")
+        #             elif p == 3:
+        #                 # print("player three")  # testing
+        #                 player_list.append("P3 blue")
+        #             else:
+        #                 # print("player four")  # testing
+        #                 player_list.append("P4 yellow")
+        #         # print(player_list)  # testing
+
+
+
+
+
+
+
 
 
 
