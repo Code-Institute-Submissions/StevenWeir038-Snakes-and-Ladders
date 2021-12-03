@@ -81,3 +81,5 @@ To interact with the live deployed site select *Open app*.
 The frontend now is linked to the Gitpod IDE and will update with each push to GitHub.
 
 ![Frontend-working-confirm](docs/readme/heroku-deployment/heroku-deployment-frontend-working-confirm.png "Frontend working confirm")
+
+[Return to README.md](README.md)
