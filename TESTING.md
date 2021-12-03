@@ -293,8 +293,8 @@ Early development was useful.  Similar code constructs to capture errors can be 
 
 *Terminal output*
 
-If an inputted value is anything but the *integer* value *1*,*2* *3*,  the program resets after displaying feedback for two seconds.
-The *red* text color conveys a warning message to the user.
+If an inputted value is not an *integer* value of *1*,*2* or *3*,  the program resets after displaying feedback for two seconds.
+The *red* text color conveys a warning message to the user prior to reset.
 
 ![testing-incorrect-value-welcome](docs/readme/testing-incorrect-value-welcome.png "testing-incorrect-value-welcome")
 

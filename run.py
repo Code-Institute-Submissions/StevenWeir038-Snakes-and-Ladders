@@ -35,21 +35,6 @@ LADDER_FOOT = {
 }
 
 
-def clear_terminal():
-    """
-    clear the terminal.
-    Credit Tim Nelson.
-    """
-    os.system("cls" if os.name == "nt" else "clear")
-
-
-def sleep():
-    '''
-    Display returned input for 2 seconds to be human readible
-    '''
-    time.sleep(20)
-
-
 def board():
     '''
     Build a 10 * 10 board and
@@ -267,15 +252,16 @@ def snl_game(players):
 
 
 
+
+
 def incorrect_value():
     '''
-    If value enter is outside of a numerical range
+    If value entered isn't a number from 1 to 3 throw an error
     '''
     print(f'{Fore.RED}{Back.BLACK}Oops! Incorrect value submitted. Restarting application')
     sleep()
     clear_terminal()  # clear terminal
     pre_game()  # restart program
-
 
 
 def welcome_screen():
@@ -300,7 +286,7 @@ def welcome_screen():
     '''
     try:
         # code to run regardless, it may throw an exception...
-        pre_game_choice = int(input(f"Select from options {Fore.RED}1{Fore.WHITE}, {Fore.GREEN}2 {Fore.WHITE}or {Fore.BLUE}3{Fore.WHITE}.\n"))
+        pre_game_choice = int(input(f"{Back.BLACK}Select from options {Fore.RED}{Back.BLACK}1{Fore.WHITE}, {Fore.GREEN}2 {Fore.WHITE}{Back.BLACK}or {Fore.BLUE}3{Fore.WHITE}.\n"))
         if not input:
             raise ValueError
         elif pre_game_choice == 1:
@@ -354,6 +340,20 @@ def welcome_screen():
     """
     # print(game_about)
 
+
+def clear_terminal():
+    """
+    clear the terminal.
+    Credit Tim Nelson & [poke](https://stackoverflow.com/a/2084628)
+    """
+    os.system("cls" if os.name == "nt" else "clear")
+
+
+def sleep():
+    '''
+    Display returned input for 2 seconds to be human readible
+    '''
+    time.sleep(5)
 
 
 def pre_game():
