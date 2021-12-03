@@ -17,9 +17,20 @@ Alternatively, if using Gitpod, you can click below to create your own workspace
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/StevenWeir038/Snakes-and-Ladders)
 
 ## Heroku
-It is recommended to deploy as soon as practicible. This enables us to see what the end user is interacting with through regular testing.
+It is recommended to deploy as soon as practicible to faciliate regular testing.
 
 This project uses [*Heroku*](https://www.heroku.com/about), a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.
 
-Deployment using the platform can feel complex for a first time user so do as follows after account setup:
+Deployment to the platform can feel complex for a first time user so do as follows after account setup:
 
+Within your personal area select *New* in the top right corner and select *Create new app* from the drop down menu.
+
+![Create-new-app](docs/readme/heroku-deployment/heroku-create-new-app.png "Create new app")
+
+Give your app a name, set where you reside and then select *Create app*. For example:
+
+![Create-new-app-name](docs/readme/heroku-deployment/heroku-create-new-app-name.png "Create new app name")
+
+In the menu of your newly created project select *Settings*.
+
+![Personal-menu](docs/readme/heroku-deployment/heroku-personal-menu.png "Personal menu")
