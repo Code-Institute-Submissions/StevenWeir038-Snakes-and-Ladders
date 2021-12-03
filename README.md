@@ -20,6 +20,9 @@ Three additional game rules can be applied for extra complexity.
 - (Additional rule) If a player's pawn lands on a square occupied by an opponents pawn, that pawn is removed from the board and they must start again. 
 - (Additional Rule) An exact throw is required to reach square 100.  If the throw exceeds 100 the player must move backwards. Watch out for the snakes!
 
+## Deployment
+[Go to DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions to deploy the application to Heroku.
+
 ## Testing
 Go to [TESTING.md](TESTING.md) to view known bugs and fixes.
 
@@ -31,6 +34,8 @@ Web deployment with Heroku.
 ## Media and Content
 REVIEW
 ### Credits
+Thank you to my mentor [Tim Nelson](https://tim.2bn.dev/) for his candor.  Fantastic as always.
+
 Beyond the Code Institute LMS a few key sources cemented my understanding of how to combine working with loops, dictionaries and classes. In particular, accessing their attributes and using them within loops, lists and dictionary comprehensions.
 
 - [Abarneret](https://stackoverflow.com/a/17662224)
@@ -48,7 +53,7 @@ To clear the terminal window
 - Tim Nelson via his Slack channel
 
 ### Content
-Dice, snake and ladder [emojis](https://emojipedia.org/) sourced from emojipedia.
+[Emojis](https://emojipedia.org/) from emojipedia.
 
 [Board image](https://www.istockphoto.com/vector/snakes-and-ladders-black-and-white-gm1066160462-285104267 "Board image") courtesy of iStock.
 
