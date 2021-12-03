@@ -3,7 +3,7 @@
 
 Welcome to **Snakes and Ladders**, a classic boardgame enjoyed by children and adults throughout the world.
 
-It's a game of simple logic and chance making it well suited to being a first application to develop when learning Python. 
+It's a game of simple logic and chance, therefore is well suited to being a first application to develop when learning Python. 
 
 I do hope you enjoy this take on the original.
 
@@ -16,20 +16,29 @@ This web based platform is intuitive to use due to it's drag, drop and snap capa
 
 ## Future Adaptations
 Three additional game rules can be applied for extra complexity.
-- (Additional rule) Each time a player throws a 6, they are entitled to roll the dice and move again.
-- (Additional rule) If a player's pawn lands on a square occupied by an opponents pawn, that pawn is removed from the board and they must start again. 
-- (Additional Rule) An exact throw is required to reach square 100.  If the throw exceeds 100 the player must move backwards. Watch out for the snakes!
+
+1. Each time a player throws a 6, they are entitled to roll the dice and move again.
+2. If a player's pawn lands on a square occupied by an opponents pawn, that pawn is removed from the board and they must start again. 
+3. An exact throw is required to reach square 100.  If the throw exceeds 100 the player must move backwards. Watch out for the snakes!
 
 ## Deployment
-[Go to DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions to deploy the application to Heroku.
+[Go to DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions to deploy application to Heroku.
 
 ## Testing
 Go to [TESTING.md](TESTING.md) to view known bugs and fixes.
 
 ## Technologies Used
-Python version 3.x
-Additional libraries used: Colorama.
-Web deployment with Heroku.
+Flowcharts created with [Lucidchart](https://www.lucidchart.com/pages/).
+
+Web deployment with [*Heroku*](https://www.heroku.com/about)
+
+Python version 3.8
+
+Additional Python libraries used:
+- **os** to clear terminal window
+- **time** to produce time delays to user inputs
+- **random** to simulate dice roll
+- **colorama** to beautify display
 
 ## Media and Content
 REVIEW
@@ -50,7 +59,7 @@ Error handling for empty and non integer values at the same time.
 - [Joshua Burns](https://stackoverflow.com/a/4994509)
 
 To clear the terminal window
-- Tim Nelson via his Slack channel
+- [poke](https://stackoverflow.com/a/2084628)
 
 ### Content
 [Emojis](https://emojipedia.org/) from emojipedia.
