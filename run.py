@@ -223,33 +223,6 @@ def snl_game(players):
             # board()  # think args to pass into board()
 
 
-def view_board():
-    '''
-    Build a 10 * 10 board and
-    display a board for the user after each dice roll
-    '''
-    # create board - is just a list of 10 nested lists.
-    board = []
-    # for i in range(0, 10):
-    # the quick way
-    # board.append(["⬜"]*10)
-    # give each square a number
-    # limitation in method. cannot display like proper board below
-    # as working within nested list structures
-    board.append(['📏', '02', '03', '📏', '05', '06', '07', '08', '📏', '10'])
-    board.append(['11', '12', '13', '14', '15', '🐍', '17', '18', '19', '20'])
-    board.append(['📏', '22', '23', '24', '25', '26', '27', '📏', '29', '30'])
-    board.append(['31', '32', '33', '34', '35', '📏', '37', '38', '39', '40'])
-    board.append(['41', '42', '43', '44', '45', '46', '47', '🐍', '49', '50'])
-    board.append(['📏', '52', '53', '54', '55', '56', '57', '58', '59', '60'])
-    board.append(['61', '62', '63', '🐍', '65', '66', '67', '68', '69', '70'])
-    board.append(['📏', '72', '73', '74', '75', '76', '77', '78', '79', '📏'])
-    board.append(['81', '82', '83', '84', '85', '86', '87', '88', '89', '90'])
-    board.append(['91', '92', '🐍', '94', '🐍', '96', '🐍', '🐍', '99', '🏁'])
-
-    print(board)
-
-
 def view_rules():
     # print("View Rules TEST")  # testing
     # Use multiline comments as cleaner than using multiple print statements
@@ -288,8 +261,34 @@ def view_rules():
 
 
 def view_board():
-    print("View Board TEST")  # testing
+    # print("View Board TEST")  # testing
+    '''
+    Build a 10 * 10 board and
+    display a board for the user after each dice roll
+    '''
+    # create board - is just a list of 10 nested lists.
+    board = []
+    # for i in range(0, 10):
+    # the quick way
+    # board.append(["⬜"]*10)
+    # give each square a number
+    # limitation in method. cannot display like proper board below
+    # as working within nested list structures
+    board.append(['📏', '02', '03', '📏', '05', '06', '07', '08', '📏', '10'])
+    board.append(['11', '12', '13', '14', '15', '🐍', '17', '18', '19', '20'])
+    board.append(['📏', '22', '23', '24', '25', '26', '27', '📏', '29', '30'])
+    board.append(['31', '32', '33', '34', '35', '📏', '37', '38', '39', '40'])
+    board.append(['41', '42', '43', '44', '45', '46', '47', '🐍', '49', '50'])
+    board.append(['📏', '52', '53', '54', '55', '56', '57', '58', '59', '60'])
+    board.append(['61', '62', '63', '🐍', '65', '66', '67', '68', '69', '70'])
+    board.append(['📏', '72', '73', '74', '75', '76', '77', '78', '79', '📏'])
+    board.append(['81', '82', '83', '84', '85', '86', '87', '88', '89', '90'])
+    board.append(['91', '92', '🐍', '94', '🐍', '96', '🐍', '🐍', '99', '🏁'])
 
+    # print(board)
+    # stack lists on top of each other
+    for i in board:
+        print(" ".join(i))  # use join method from list with one space in beautify board.
 
 def game_setup():
     print("Game Setup TEST")  # testing
@@ -376,4 +375,4 @@ def pre_game():
     # snl_game(players)  # pass 'players' dictionary to the game
 
 
-pre_game() # program start
+pre_game()  # program start
