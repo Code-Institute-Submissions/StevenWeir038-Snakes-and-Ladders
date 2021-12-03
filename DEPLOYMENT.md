@@ -34,3 +34,38 @@ Give your app a name, set where you reside and then select *Create app*. For exa
 In the menu of your newly created project select *Settings*.
 
 ![Personal-menu](docs/readme/heroku-deployment/heroku-personal-menu.png "Personal menu")
+
+
+
+
+Select *Reveal Config Vars*.
+
+![Reveal-config-vars](docs/readme/heroku-deployment/heroku-personal-reveal-config-vars.png "Reveal config vars")
+
+In the *Config Vars* section of the *Settings* page, expose the necessary port by setting the value of KEY to `PORT` and the value to `8000`.  
+
+![Config vars](docs/readme/heroku-deployment/heroku-config-vars.png "Config vars")
+
+To install/support dependancies select *Add buildpack*.
+The order of the buildpacks is important, select `Python` first then `Node.js` second. If they are not in this order, you can click and drag them in the buildpacks section to rearrange.
+
+Make sure to save your changes once each pack is selected.
+
+![Buildpack-2](docs/readme/heroku-deployment/heroku-buildpack-2.png "Buildpack-2")
+![Buildpack-1](docs/readme/heroku-deployment/heroku-buildpack-1.png "Buildpack-1")
+
+
+
+To deploy, scroll to the top menu and select *Deploy*.
+
+In the *Deployment method* section of the *Deploy* page look for the *GitHub* icon and select *Connect to GitHub*.
+
+![Deployment-method](docs/readme/heroku-deployment/heroku-deployment-method-github.png "Deployment method")
+
+In the *Connect to GitHub* section of the *Deploy* page type a unique repository name.  For example the name is `snakes-and-ladders-sw` as set in the Create app page.
+
+Select *Search*.  If the repository is found select *Connect*.
+
+![Deployment-method](docs/readme/heroku-deployment/heroku-deployment-method-github-name.png "Deployment method")
+
+![Confirm-deployment](docs/readme/heroku-deployment/heroku-deployment-github-confirm.png "Confirm deployment")
