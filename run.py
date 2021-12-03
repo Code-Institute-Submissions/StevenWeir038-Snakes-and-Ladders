@@ -42,6 +42,12 @@ def clear_terminal():
     """
     os.system("cls" if os.name == "nt" else "clear")
 
+def sleep():
+    '''
+    Display returned input for 2 seconds to be human readible
+    '''
+    time.sleep(2)
+
 
 def board():
     '''
@@ -293,7 +299,7 @@ def welcome_screen():
 
     except ValueError as e:
         # except - if an exception thrown, clear terminal and restart
-        time.sleep(2)
+        sleep()
         clear_terminal()  # clear terminal
         pre_game()  # restart program
 
