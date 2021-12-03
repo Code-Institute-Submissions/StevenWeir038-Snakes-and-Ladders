@@ -271,8 +271,8 @@ def welcome_screen():
     2. Ask user to begin game or quit application
     """
     # display title
-    title = " SNAKES AND LADDERS \n"
-    print(f"{Fore.GREEN}{Back.BLACK}{title}")
+    title = "SNAKES AND LADDERS\n"
+    print(f"{Fore.GREEN}{Back.BLACK}{Style.BRIGHT}{title}")
     # Ask user to begin game or quit application
 
     print(f"{Back.BLACK}Select an option: \n")
