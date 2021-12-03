@@ -1,23 +1,11 @@
 # **Snakes and Ladders**
 ![Image of game board](docs/readme/game-image.png "Image of game board") 
 
+Welcome to **Snakes and Ladders**, a classic boardgame enjoyed by children and adults throughout the world.
 
-## Game Rules
-**Game Requirements**
+It's a game of simple logic and chance making it well suited to being a first application to develop when learning Python. 
 
-- Number of players: 2-4
-
-**Pre-game**
-- Each player has a different color pawn and gets one throw per turn.
-
-**Game**
-- The first player throws the dice and moves their pawn according to the number shown on the dice.
-- If a player's pawn lands on an empty square there is no effect.
-- If a player's pawn ends its move at the foot of a ladder, the pawn must move immediately to the square at the top of that ladder.
-- If a player's pawn ends it move at the head of a snake, the pawn must immediately move to the tail of that snake.
-
-**Victory Condition**
-- Be the first player to reach square *100*. 
+I do hope you enjoy this take on the original.
 
 ## Wireframes
 The game's logic was mapped out before coding began using a free version of [Lucidchart](https://www.lucidchart.com/pages/).
