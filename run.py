@@ -1,5 +1,5 @@
 import random
-from os import system, name
+import os
 import time
 import colorama
 from colorama import Fore, Back, Style
@@ -70,42 +70,6 @@ def board():
     print(board)
 
 
-def game_instructions():
-    """
-    Print game requirements, rules and victory condition to console
-    for player to view
-    """
-
-    # Use multiline comments as cleaner than using multiple print statements
-    # and/or using Implicit concatenation to keep strings < 80 chars long
-    # https://stackoverflow.com/a/1874679
-    game_about = """
-    GAME REQUIREMENTS
-    🎲 Number of players: 2-4
-    🎲 Required: 1 dice (six sided), pawns (1 for each player), playing board
-
-    PRE-GAME
-    🎲 Each player takes a different color pawn and throws the dice.
-
-    GAME RULES
-    🎲 The first player throws the dice and moves their pawn according to the
-    number shown on the dice.
-    🎲 If a player's pawn lands on an empty square there is no effect.
-    🎲 If a player's pawn ends its move at the foot of a ladder, the pawn must
-    move immediately to the square at the top of that ladder.
-    🎲 If a player's pawn ends its move at the head of a snake, the pawn must
-    immediately move to the square at the tail of that snake.
-    🎲 Each time a player throws a 6, they are entitled to roll the dice and
-    move again.
-
-    VICTORY CONDITIONS
-    🎲  Be the first player to reach square 100.
-
-    ==========================================================================
-    """
-    print(game_about)
-
-
 class Player:
     """
     Player class
@@ -158,18 +122,18 @@ def game_setup():
 
                 for p in range(1, player_count + 1):
                     if p == 1:
-                        print("player one")  # testing
+                        # print("player one")  # testing
                         player_list.append("P1 red")
                     elif p == 2:
-                        print("player two")  # testing
+                        # print("player two")  # testing
                         player_list.append("P2 green")
                     elif p == 3:
-                        print("player three")  # testing
+                        # print("player three")  # testing
                         player_list.append("P3 blue")
                     else:
-                        print("player four")  # testing
+                        # print("player four")  # testing
                         player_list.append("P4 yellow")
-                print(player_list)  # testing
+                # print(player_list)  # testing
                 """
                 https://stackoverflow.com/a/17662224
                 build dictionary by looping over the player_list.
@@ -190,7 +154,7 @@ def game_setup():
             time.sleep(2)
             clear_terminal()  # clear terminal
             main()  # restart program
-    print(player_dict)
+    # print(player_dict)  # testing
     return player_dict
 
 
@@ -265,8 +229,8 @@ def snl_game(players):
     Iterate players, loop through each until win condition met
     """
     # infinite loop needed to keep game live until victory condition met
-    for i in range(50):  # testing for 50 turns
-    # while True:
+    # for i in range(50):  # testing for 50 turns
+    while True:
 
         for player_id, player_inst in players.items():
             # key is the player iterable, value is the Player object instance
@@ -294,20 +258,72 @@ def snl_game(players):
             # board()  # think args to pass into board()
 
 
-def main():
+
+
+
+
+
+
+
+def welcome_screen():
     """
-    Run all program functions
+    1. Display title
+    2. Ask user to begin game or quit application
     """
-    # game title
-    title = "SNAKES AND LADDERS"
-    print(f"{Fore.GREEN}{title}")
-    # provides the user the game instructions
-    game_instructions()
+    # display title
+    title = " SNAKES AND LADDERS \n"
+    print(f"{Fore.GREEN}{Back.BLACK}{title}")
+    # Ask user to begin game or quit application
+
+    print(f"{Back.BLACK}Select an option: \n")
+    print(f"{Fore.RED}{Back.WHITE} 1 {Fore.WHITE}{Back.BLACK} View Rules    \n")
+    print(f"{Fore.GREEN}{Back.WHITE} 2 {Fore.WHITE}{Back.BLACK} Our Board     \n")
+    print(f"{Fore.BLUE}{Back.WHITE} 3 {Fore.WHITE}{Back.BLACK} Play Game     \n")
+
+
+
+    # Use multiline comments as cleaner than using multiple print statements
+    # and/or using Implicit concatenation to keep strings < 80 chars long
+    # https://stackoverflow.com/a/1874679
+    game_about = """
+    GAME REQUIREMENTS
+    🎲 Number of players: 2-4
+    🎲 Required: 1 dice (six sided), pawns (1 for each player), playing board
+
+    PRE-GAME
+    🎲 Each player takes a different color pawn and throws the dice.
+
+    GAME RULES
+    🎲 The first player throws the dice and moves their pawn according to the
+    number shown on the dice.
+    🎲 If a player's pawn lands on an empty square there is no effect.
+    🎲 If a player's pawn ends its move at the foot of a ladder, the pawn must
+    move immediately to the square at the top of that ladder.
+    🎲 If a player's pawn ends its move at the head of a snake, the pawn must
+    immediately move to the square at the tail of that snake.
+    🎲 Each time a player throws a 6, they are entitled to roll the dice and
+    move again.
+
+    VICTORY CONDITIONS
+    🎲  Be the first player to reach square 100.
+
+    ==========================================================================
+    """
+    # print(game_about)
+
+
+
+def pre_game():
+    """
+    Start of the program
+    """
+    welcome_screen()
+
+
     # game setup returns validated number for players input by user
-    players = game_setup()  # players = dict of players rtnd from game_setup()
+    # players = game_setup()  # players = dict of players rtnd from game_setup()
     # print(f"{players}\n")  # testing - shows diff mem allocs
-    snl_game(players)  # pass 'players' dictionary to the game
+    # snl_game(players)  # pass 'players' dictionary to the game
 
 
-main()
-# board()  # testing building a game_board
+pre_game() # program start
