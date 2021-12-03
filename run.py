@@ -42,11 +42,12 @@ def clear_terminal():
     """
     os.system("cls" if os.name == "nt" else "clear")
 
+
 def sleep():
     '''
     Display returned input for 2 seconds to be human readible
     '''
-    time.sleep(2)
+    time.sleep(20)
 
 
 def board():
@@ -266,8 +267,14 @@ def snl_game(players):
 
 
 
-
-
+def incorrect_value():
+    '''
+    If value enter is outside of a numerical range
+    '''
+    print(f'{Fore.RED}{Back.BLACK}Oops! Incorrect value submitted. Restarting application')
+    sleep()
+    clear_terminal()  # clear terminal
+    pre_game()  # restart program
 
 
 
@@ -296,52 +303,23 @@ def welcome_screen():
         pre_game_choice = int(input(f"Select from options {Fore.RED}1{Fore.WHITE}, {Fore.GREEN}2 {Fore.WHITE}or {Fore.BLUE}3{Fore.WHITE}.\n"))
         if not input:
             raise ValueError
+        elif pre_game_choice == 1:
+            print("1")
+        elif pre_game_choice == 2:
+            print("2")
+        elif pre_game_choice == 3:
+             print("3")
+        else:
+            incorrect_value()
+
 
     except ValueError as e:
         # except - if exception thrown, clear terminal and restart application
         # capture nums out of range or text input
-        print(f'{Fore.RED}{Back.BLACK}Oops! Incorrect value submitted')
+        print(f'{Fore.RED}{Back.BLACK}Oops! Incorrect value submitted. Restarting application')
         sleep()
         clear_terminal()  # clear terminal
         pre_game()  # restart program
-
-
-
-
-        # try:
-        #     # code to run regardless, it may throw an exception...
-        #     player_count = int(input(
-        #         "Enter number of players between 2 and 4:\n"))
-        #     if not input:
-        #         raise ValueError
-
-        #     if validate_player_count(player_count):
-        #         print("\nValid input. Creating players...\n")
-        #         time.sleep(1)
-        #         # create list of players - use pawn color
-        #         player_list = []
-
-        #         # loop - create a list of a unique for each player.
-
-        #         for p in range(1, player_count + 1):
-        #             if p == 1:
-        #                 # print("player one")  # testing
-        #                 player_list.append("P1 red")
-        #             elif p == 2:
-        #                 # print("player two")  # testing
-        #                 player_list.append("P2 green")
-        #             elif p == 3:
-        #                 # print("player three")  # testing
-        #                 player_list.append("P3 blue")
-        #             else:
-        #                 # print("player four")  # testing
-        #                 player_list.append("P4 yellow")
-        #         # print(player_list)  # testing
-
-
-
-
-
 
 
 

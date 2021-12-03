@@ -287,11 +287,16 @@ Early development was useful.  Similar code constructs to capture errors can be 
         pre_game()  # restart program
 ```
 
+
+
+#### Error handling
+
 *Terminal output*
+
+If an inputted value is anything but the *integer* value *1*,*2* *3*,  the program resets after displaying feedback for two seconds.
+The *red* text color conveys a warning message to the user.
 
 ![testing-incorrect-value-welcome](docs/readme/testing-incorrect-value-welcome.png "testing-incorrect-value-welcome")
 
-If an inputted value is anything but the *integer* value *1*,*2* *3*,  the program resets after displaying feedback to the user for two seconds.
-The *red* text color conveys a warning message to the user.
 
 [Return to README.md](README.md)
