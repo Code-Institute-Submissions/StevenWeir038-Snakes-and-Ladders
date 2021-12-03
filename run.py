@@ -258,7 +258,7 @@ def view_rules():
     
     # print(f"{Fore.GREEN}VIEW RULES")
     
-    game_about = """
+    view_rules = """
     ==========================================================================
 
     🎲 Number of players: 2-4
@@ -280,7 +280,7 @@ def view_rules():
 
     ==========================================================================
     """
-    print(game_about)
+    print(view_rules)
 
 
 def view_board():
