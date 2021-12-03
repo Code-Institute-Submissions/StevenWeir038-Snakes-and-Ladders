@@ -263,9 +263,11 @@ def view_rules():
 def view_board():
     # print("View Board TEST")  # testing
     '''
+    Clear Terminal
     Build a 10 * 10 board and
     display a board for the user after each dice roll
     '''
+    clear_terminal()  # clear terminal
     # create board - is just a list of 10 nested lists.
     board = []
     # for i in range(0, 10):
@@ -289,6 +291,7 @@ def view_board():
     # stack lists on top of each other
     for i in board:
         print(" ".join(i))  # use join method from list with one space in beautify board.
+
 
 def game_setup():
     print("Game Setup TEST")  # testing
