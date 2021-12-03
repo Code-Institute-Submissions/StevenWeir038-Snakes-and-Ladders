@@ -267,6 +267,7 @@ def view_board():
     Build a 10 * 10 board and
     display a board for the user after each dice roll
     '''
+    sleep()
     clear_terminal()  # clear terminal
     # create board - is just a list of 10 nested lists.
     board = []
@@ -362,7 +363,7 @@ def sleep():
     '''
     Display returned input for 2 seconds to be human readible
     '''
-    time.sleep(5)
+    time.sleep(2)
 
 
 def pre_game():
