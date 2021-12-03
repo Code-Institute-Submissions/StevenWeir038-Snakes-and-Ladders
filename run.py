@@ -260,12 +260,16 @@ def view_rules():
     
     view_rules = """
     ==========================================================================
+    
+    VIEW RULES
 
-    🎲 Number of players: 2-4
-    🎲 Required: 1 six sided dice
+    TO PLAY:
+    🎲 2-4 players
+    🎲 1 six sided dice
     🎲 Pawns (1 color for each player) - P1 red, P2 green, P3 blue, P4 yellow
     🎲 Playing board
 
+    FOR EACH PLAYER:
     🎲 Each player throws the dice and moves their pawn according to the
     number shown on the dice.
     🎲 If a player's pawn lands on an empty square there is no effect.
@@ -275,7 +279,7 @@ def view_rules():
     🎲 If a player's pawn ends its move at the head of a snake, the pawn must
     immediately move to the square at the tail of that snake.
 
-    VICTORY CONDITION
+    VICTORY CONDITION:
     🎲  Be the first player to reach square 100.
 
     ==========================================================================
