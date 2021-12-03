@@ -298,7 +298,9 @@ def welcome_screen():
             raise ValueError
 
     except ValueError as e:
-        # except - if an exception thrown, clear terminal and restart
+        # except - if exception thrown, clear terminal and restart application
+        # capture nums out of range or text input
+        print(f'{Fore.RED}{Back.BLACK}Oops! Incorrect value submitted')
         sleep()
         clear_terminal()  # clear terminal
         pre_game()  # restart program
