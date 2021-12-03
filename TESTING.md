@@ -10,9 +10,16 @@ This was consulted every after writing several lines of code and was especially 
 
 ![problems-code-issues](docs/readme/problems-code-issues.png "problems-code-issues")
 
+## Code Validation
+Code readability and consistency was routinely checked by directly pasting into a [PEP8](http://pep8online.com/) linter.
+
+Issues identified like those below could then be addressed using a clean as your go approach.
+
+![pep8-check](docs/readme/pep8-check.png "pep-8-check")
+
 ## Game setup
 ### Casting
-Care was taken when accepting inputs from the user.  As these defaulted to a *string* format they required converting to an *integer* format as they were to be used in a loop to create the validated number of players.
+Care was taken when accepting inputs from the user.  These default to a *string* so required converting to an *integer* format as they were to be used in a loop to create the validated number of players.
 
 ``` python
 # Immediately convert string input from user to an integer
@@ -26,9 +33,10 @@ for p in range(1, player_count + 1):
         player_list.append("P1 red")
     elif p == 2:
 ```
+In early development an issue was found when the user didn't enter a value and just keyed *return*.
 
-An issue was found when the user doesn't enter a number and just keys *return*.  No value is passed to the application.
-The application crashes as it bypasses the `validate_player_count()` function therefore preventing input from being validated.
+As *no* value was passed to the application it crashed as it bypassed the `validate_player_count()` function.
+
 
 *Terminal output*
 
@@ -36,23 +44,28 @@ The application crashes as it bypasses the `validate_player_count()` function th
 
 This was resolved by placing the `input()` inside a `try` statement and using truth value testing.
 
+An added advantage to doing this was to raise/handle an error should the user enter a number as text.  E.g. *four* instead *4*. 
+
 ``` python
 try:
     # code to run regardless, it may throw an exception...
     player_count = int(input(
         "Enter number of players between 2 and 4:\n"))
+        raise ValueError
 
     if not input:
         print(f"You entered {player_count} player(s). Try again...\n")
         ...
 except ValueError as e:
 # except - if an exception thrown, clear terminal and restart program
+    print('No value or text value submitted')
     # print(e)  # testing
     clear()    # clear terminal
     main()  # restart program
 ```
 
 The associated `except` clears the terminal then restarts the program.
+
 Note the `import` from the `os` module to build the clear_terminal function.
 
 ``` python
@@ -65,7 +78,9 @@ def clear_terminal():
     os.system("cls") if name == "nt" else system("clear")
 ```
 
-All the user now sees when submiting no input is an instruction to enter a value that isn't text.  It's a confidence building experience as they don't see an application crash caused by an error.
+At this stage, all the user now sees when submiting no or invalid input is a warning `No value or text value submitted`. The program resets itself after a brief period of time by employing the `sleep(2)` method from the imported `time` module set to 2 seconds.  This is necessary to give the users an oppurtunity to review and understand the message.  
+
+It's a confidence building experience as they don't see an application crash caused by an error or update too quiclkly..
 
 ### Validating player counts
 Print statements using f strings provide human readible feedback from the terminal.  This is demonstrated when the user enters a value outside the *range* of players needed for the game.
@@ -91,8 +106,10 @@ def validate_player_count(player_count):
 My current understanding of Python is that it is built from list, dictionary and class structures.  As such, my challenge for this project was to:
 - build a list of players based on a validated number of players entered by the user
 - populate that list with predetermined player/pawn color values. (This could easily have been an inputted name)
-- using dictionary comprehension, build a dictionary based of the above list.  Each key is the same as each list value. As I wanted to follow an OOP paradigm the corresponding *values* were to be *instances* of the *Player* class.
-- each instance can be accessed by their respective key *iterable*. Multiple methods and attributes can be added to the class instance for improved versatility/future development.  Initially only the `pawn_color` and `curr_position` attributes are present.  These were added to by need, even within the first version on game development.
+- using dictionary comprehension, build a dictionary based of the above list.  Each key corresponds to a list value. As I wanted to follow an OOP paradigm the corresponding dictionary *values* were to be *instances* of the *Player* class.
+- each instance can be accessed by their respective *key iterable*.
+
+NB. Multiple methods and attributes can be added to the class instance for improved versatility/future development.  For an MVP, only the `pawn_color` and `curr_position` attributes are present.  These can added to at need.
 
 ### The **Player** class
 ``` python
@@ -177,7 +194,9 @@ If ladder and snake functionality is working correctly, then movements on the bo
 
 ![movement-ladder-foot-proof](docs/readme/movement-ladder-foot-proof.png "movement-ladder-foot-proof")
 
-As you can see, the snake and ladder functionality overrides the basic move as the code lines are after `new_position = curr_position + roll_num`.  The trick being employed here revolves around *in*.  If the current player's position value equals the *in* *'key'* value, then the current position value becomes the *value* of the key in SNAKE_HEAD or LADDER_FOOT dictionary.
+The snake and ladder functionality overrides the basic move as the code lines are after `new_position = curr_position + roll_num`.  
+
+If the current player's position value is checked against the SNAKE_HEAD or LADDER_FOOT dictionary.  If that value is equal to one already *in* the dictionary *'key'*, then the current position value becomes the *value* of the found key.
 
 ### Testing for first player reaching square 100
 With the above game mechanics working, we now need to end the game when the first player sucessfully reaches square 100.
