@@ -251,7 +251,16 @@ def snl_game(players):
 
 
 
+def view_rules():
+    print("View Rules TEST")
 
+
+def view_board():
+    print("View Board TEST")
+
+
+def game_setup():
+    print("Game Setup TEST")
 
 
 def incorrect_value():
@@ -290,11 +299,11 @@ def welcome_screen():
         if not input:
             raise ValueError
         elif pre_game_choice == 1:
-            print("1")
+            view_rules()
         elif pre_game_choice == 2:
-            print("2")
+            view_board()
         elif pre_game_choice == 3:
-             print("3")
+             game_setup()
         else:
             incorrect_value()
 
