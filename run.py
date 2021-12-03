@@ -56,14 +56,14 @@ def board():
     # give each square a number
     # limitation in method. cannot display like proper board below
     # as working within nested list structures
-    board.append(['🧗', '02', '03', '🧗', '05', '06', '07', '08', '🧗', '10'])
+    board.append(['📏', '02', '03', '📏', '05', '06', '07', '08', '📏', '10'])
     board.append(['11', '12', '13', '14', '15', '🐍', '17', '18', '19', '20'])
-    board.append(['🧗', '22', '23', '24', '25', '26', '27', '🧗', '29', '30'])
-    board.append(['31', '32', '33', '34', '35', '🧗', '37', '38', '39', '40'])
+    board.append(['📏', '22', '23', '24', '25', '26', '27', '📏', '29', '30'])
+    board.append(['31', '32', '33', '34', '35', '📏', '37', '38', '39', '40'])
     board.append(['41', '42', '43', '44', '45', '46', '47', '🐍', '49', '50'])
-    board.append(['🧗', '52', '53', '54', '55', '56', '57', '58', '59', '60'])
+    board.append(['📏', '52', '53', '54', '55', '56', '57', '58', '59', '60'])
     board.append(['61', '62', '63', '🐍', '65', '66', '67', '68', '69', '70'])
-    board.append(['🧗', '72', '73', '74', '75', '76', '77', '78', '79', '🧗'])
+    board.append(['📏', '72', '73', '74', '75', '76', '77', '78', '79', '📏'])
     board.append(['81', '82', '83', '84', '85', '86', '87', '88', '89', '90'])
     board.append(['91', '92', '🐍', '94', '🐍', '96', '🐍', '🐍', '99', '🏁'])
 
@@ -218,10 +218,6 @@ def validate_player_count(player_count):
 
 def roll_dice(player_inst):
     roll = random.randint(1, 6)
-    # ternary expression to evaluate True or False
-    another_turn = True if roll == 6 else False
-    # assign bool value of another_turn variable to player_inst attribute
-    player_inst.extra_roll = another_turn
     return roll
 
 
