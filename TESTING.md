@@ -38,7 +38,6 @@ In early development an issue was found when the user didn't enter a value and j
 
 As *no* value was passed to the application it crashed as it bypassed the `validate_player_count()` function.
 
-
 *Terminal output*
 
 ![no-player-input-error](docs/readme/no-player-input-error.png "no-player-input-error")
@@ -174,7 +173,6 @@ for i in range(1, 11):  # testing for 10 turns
 
 ![verify-forever-player-loop-terminal](docs/readme/verify-forever-player-loop.png "verify-forever-player-loop-terminal")
 
-
 ### Testing for a player landing on a SNAKE_HEAD or a LADDER_FOOT
 If ladder and snake functionality is working correctly, then movements on the board are greater than a six as per each dice roll.  This is evidenced using terminal output.
 
@@ -264,8 +262,6 @@ It further conceptualised how the application should execute. It informed the de
 Note how this ties in with the legend in the diagram below.
 The color palette and shapes make particular development tasks more obvious.
 
-
-
 ## User Centric Development Stage
 
 ### Welcome Screen
@@ -296,11 +292,11 @@ The *red* text color conveys a warning message to the user prior to reset.
 
 ![testing-incorrect-value-welcome](docs/readme/testing-incorrect-value-welcome.png "testing-incorrect-value-welcome")
 
-Checking that branching works for our options within the IDE.
+*Terminal output*
+
+Confirming program branching works.
 
 ![pre-game-branching-test](docs/readme/pre-game-branching-test.png "pre-game-branching-test")
-
-
 
 
 

@@ -223,6 +223,10 @@ def snl_game(players):
             # board()  # think args to pass into board()
 
 
+def back_to_welcome():
+    welcome_screen()
+
+
 def view_rules():
     # print("View Rules TEST")  # testing
     # Use multiline comments as cleaner than using multiple print statements
@@ -258,7 +262,7 @@ def view_rules():
     ==========================================================================
     """
     print(view_rules)
-
+    back_to_welcome()
 
 def view_board():
     # print("View Board TEST")  # testing
@@ -288,11 +292,10 @@ def view_board():
     board.append(['81', '82', '83', '84', '85', '86', '87', '88', '89', '90'])
     board.append(['91', '92', '🐍', '94', '🐍', '96', '🐍', '🐍', '99', '🏁'])
 
-    # print(board)
-    # stack lists on top of each other
+    # stack lists on top of each other & print
     for i in board:
         print(" ".join(i))  # use join method from list with one space in beautify board.
-
+    back_to_welcome()
 
 def game_setup():
     print("Game Setup TEST")  # testing
