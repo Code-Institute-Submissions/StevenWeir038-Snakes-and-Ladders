@@ -33,8 +33,7 @@ class Player:
 
 
 SNAKE_HEAD = {
-    98: 78, 97: 76, 95: 24,
-    93: 68, 64: 60, 48: 30, 16: 6
+    98: 78, 97: 76, 95: 24, 93: 68, 64: 60, 48: 30, 16: 6
 }
 
 LADDER_FOOT = {
@@ -81,30 +80,20 @@ def view_board():
     '''
     clear_terminal()
 
-    # create board - is just a list of 10 nested lists.
-    board = []
-    # for i in range(0, 10):
-    # the quick way
-    # board.append(["⬜"]*10)
-    # give each square a number
-    # limitation in method. cannot display like proper board below
-    # as working within nested list structures
-    board.append(['📏', '02', '03', '📏', '05', '06', '07', '08', '📏', '10'])
-    board.append(['11', '12', '13', '14', '15', '🐍', '17', '18', '19', '20'])
-    board.append(['📏', '22', '23', '24', '25', '26', '27', '📏', '29', '30'])
-    board.append(['31', '32', '33', '34', '35', '📏', '37', '38', '39', '40'])
-    board.append(['41', '42', '43', '44', '45', '46', '47', '🐍', '49', '50'])
-    board.append(['📏', '52', '53', '54', '55', '56', '57', '58', '59', '60'])
-    board.append(['61', '62', '63', '🐍', '65', '66', '67', '68', '69', '70'])
-    board.append(['📏', '72', '73', '74', '75', '76', '77', '78', '79', '📏'])
-    board.append(['81', '82', '83', '84', '85', '86', '87', '88', '89', '90'])
-    board.append(['91', '92', '🐍', '94', '🐍', '96', '🐍', '🐍', '99', '🏁'])
+    # Credit to Manish V. Panchmatia (https://stackoverflow.com/a/55241525)
+    for i in range(99, -1, -1):
+        if (i // 10) % 2 == 0:
+            print("{0:4d}".format(i - 10 + 2 * (10 - (i % 10))), end=" ")
+        else:
+            print("{0:4d}".format(i + 1), end=" ")
+        if i % 10 == 0:
+            print("\r")
+
+
 
     # REVIEW BOARD - WANT ONE MORE TRADITIONAL LOOKING
+    # 🐍📏
 
-    # stack lists on top of each other & print
-    for i in board:
-        print(" ".join(i))  # use join method from list with one space in beautify board.
     while True:
         try:
             # code to run regardless, it may throw an exception...
@@ -338,4 +327,5 @@ def pre_game():
     welcome_screen()
 
 
-pre_game()  # program start
+# pre_game()  # program start
+view_board()
