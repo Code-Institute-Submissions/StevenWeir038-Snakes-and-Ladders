@@ -317,4 +317,28 @@ Confirming program branching works.
 ![testing-incorrect-value-game-setup](docs/readme/testing-incorrect-value-game-setup.png "testing-incorrect-value-game-setup")
 
 
+## Separation of concern
+**View Rules**
+
+Moved rules out of run.py into its own file to improve readability and maintainability of code.
+These can be accessed as follows:
+
+``` python
+from rules import game_instructions
+...
+
+def view_rules():
+    '''
+    Clear terminal
+    View Rules (import from rules.py)
+    Back to welcome screen
+    '''
+    clear_terminal()
+    print(game_instructions())
+```
+
+*Terminal output*
+
+![separation-of-concern-rules](docs/readme/separation-of-concern-rules.png "separation-of-concern-rules")
+
 [Return to README.md](README.md)

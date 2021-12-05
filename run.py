@@ -3,6 +3,7 @@
 import random
 import os
 import time
+from rules import game_instructions
 import colorama
 from colorama import Fore, Back, Style
 colorama.init(autoreset=True)  # so each new line defaults to white text
@@ -55,42 +56,12 @@ class Player:
 
 def view_rules():
     '''
-    Clear screen
-    View Rules
+    Clear terminal
+    View Rules (import from rules.py)
     Back to welcome screen
     '''
-    # print("View Rules TEST")  # testing
-    # Use multiline comments as cleaner than using multiple print statements
-    # and/or using Implicit concatenation to keep strings < 80 chars long
-    # https://stackoverflow.com/a/1874679
-
-    view_rules = """
-    ==========================================================================
-
-    HOW TO PLAY
-
-    NEEDED:
-    🎲 2-4 players
-    🎲 1 six sided dice
-    🎲 Pawns (1 color for each player) - Red, Green, Blue, Yellow
-    🎲 Playing board
-
-    FOR EACH PLAYER:
-    🎲 Each player throws the dice and moves their pawn according to the
-    number shown on the dice.
-    🎲 If a player's pawn lands on an empty square there is no effect.
-    🎲 If a player's pawn ends its move at the foot of a ladder, the pawn must
-    move immediately to the square at the top of that ladder.
-    🎲 If a player's pawn ends its move at the head of a snake, the pawn must
-    immediately move to the square at the tail of that snake.
-
-    TO WIN:
-    🎲  Be the first player to reach or pass square 100.
-
-    ==========================================================================
-    """
     clear_terminal()
-    print(view_rules)
+    print(game_instructions())
     while True:
         try:
             # code to run regardless, it may throw an exception...
@@ -115,7 +86,6 @@ def view_rules():
 
 
 def view_board():
-    # print("View Board TEST")  # testing
     '''
     Clear Terminal
     Build a 10 * 10 board and
