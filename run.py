@@ -203,6 +203,8 @@ def snl_game(players):
             player_inst.curr_square = new_position  # testing
             print(f"Player '{player_id}' new location is square '{player_inst.curr_square}'.\n")  # testing
 
+            # DISPLAY PLAYER'S POSTION ON BOARD HERE
+
             # check if win condition met
             check_win(player_id, player_inst)
 
@@ -322,5 +324,4 @@ def pre_game():
     welcome_screen()
 
 
-# pre_game()  # program start
-view_board()
+pre_game()  # program start
