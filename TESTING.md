@@ -310,5 +310,11 @@ Confirming program branching works.
 
 ![testing-incorrect-value-view-board](docs/readme/testing-incorrect-value-view-board.png "testing-incorrect-value-view-board")
 
+**Game Setup**
+
+*Terminal output*
+
+![testing-incorrect-value-game-setup](docs/readme/testing-incorrect-value-game-setup.png "testing-incorrect-value-game-setup")
+
 
 [Return to README.md](README.md)
