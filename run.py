@@ -228,16 +228,19 @@ def back_to_welcome():
 
 
 def view_rules():
+    '''
+    Clear screen
+    View Rules
+    Back to welcome screen
+    '''
     # print("View Rules TEST")  # testing
     # Use multiline comments as cleaner than using multiple print statements
     # and/or using Implicit concatenation to keep strings < 80 chars long
     # https://stackoverflow.com/a/1874679
-    
-    # print(f"{Fore.GREEN}VIEW RULES")
-    
+
     view_rules = """
     ==========================================================================
-    
+
     VIEW RULES
 
     TO PLAY:
@@ -261,8 +264,31 @@ def view_rules():
 
     ==========================================================================
     """
+    sleep()
+    clear_terminal()
     print(view_rules)
-    back_to_welcome()
+    while True:
+        try:
+            # code to run regardless, it may throw an exception...
+            go_back_choice = int(
+                input(f"{Fore.RED}{Back.WHITE} 1 {Fore.WHITE}{Back.BLACK} Go back\n"))
+            if not input:
+                raise ValueError
+            elif go_back_choice == 1:
+                sleep()  # short time delay
+                clear_terminal()  # clear terminal
+                welcome_screen()  # go back to welcome screen
+
+        except ValueError:
+            # capture no input or text input
+            sleep()
+            print(f"{Fore.RED}No input or text entered.  Key 1 to return.")
+
+        else:
+            # tell user if out of range number entered
+            sleep()
+            print(f"{Fore.RED}Incorrect number keyed. Key 1 to return.")
+
 
 def view_board():
     # print("View Board TEST")  # testing
@@ -272,7 +298,7 @@ def view_board():
     display a board for the user after each dice roll
     '''
     sleep()
-    clear_terminal()  # clear terminal
+    clear_terminal()
     # create board - is just a list of 10 nested lists.
     board = []
     # for i in range(0, 10):
@@ -295,25 +321,16 @@ def view_board():
     # stack lists on top of each other & print
     for i in board:
         print(" ".join(i))  # use join method from list with one space in beautify board.
-    back_to_welcome()
 
 def game_setup():
     print("Game Setup TEST")  # testing
 
 
-def incorrect_value():
-    '''
-    If value entered isn't a number from 1 to 3 throw an error
-    '''
-    print(f'{Fore.RED}{Back.BLACK}Oops! Incorrect value submitted. Restarting application')
-    sleep()
-    clear_terminal()  # clear terminal
-    pre_game()  # restart program
-
 def welcome_screen():
     """
     1. Display title
-    2. Ask user to begin game or quit application
+    2. Options
+    3. Ask user to begin game or quit application
     """
     # display title
     title = "SNAKES AND LADDERS\n"
@@ -322,9 +339,8 @@ def welcome_screen():
 
     print(f"{Back.BLACK}Select an option: \n")
     print(f"{Fore.RED}{Back.WHITE} 1 {Fore.WHITE}{Back.BLACK} View Rules    \n")
-    print(f"{Fore.GREEN}{Back.WHITE} 2 {Fore.WHITE}{Back.BLACK} The Board     \n")
+    print(f"{Fore.GREEN}{Back.WHITE} 2 {Fore.WHITE}{Back.BLACK} View Board    \n")
     print(f"{Fore.BLUE}{Back.WHITE} 3 {Fore.WHITE}{Back.BLACK} Play Game     \n")
-
     '''
     Branch program using if/elif/else structures
     Capture errors
@@ -332,7 +348,7 @@ def welcome_screen():
     '''
     try:
         # code to run regardless, it may throw an exception...
-        pre_game_choice = int(input(f"{Back.BLACK}Select from options {Fore.RED}{Back.BLACK}1{Fore.WHITE}, {Fore.GREEN}2 {Fore.WHITE}{Back.BLACK}or {Fore.BLUE}3{Fore.WHITE}.\n"))
+        pre_game_choice = int(input(f"{Back.BLACK}Select from options {Fore.RED}{Back.BLACK}1{Fore.WHITE}, {Fore.GREEN}2 {Fore.WHITE}{Back.BLACK}or {Fore.BLUE}3{Fore.WHITE}\n"))
         if not input:
             raise ValueError
         elif pre_game_choice == 1:
@@ -345,13 +361,23 @@ def welcome_screen():
             incorrect_value()
 
 
-    except ValueError as e:
+    except ValueError:
         # except - if exception thrown, clear terminal and restart application
         # capture nums out of range or text input
-        print(f'{Fore.RED}{Back.BLACK}Oops! Incorrect value submitted. Restarting application')
-        sleep()
+        print(f'{Fore.RED}{Back.BLACK}Oops! Incorrect value submitted.')
+        sleep()  # short time delay
         clear_terminal()  # clear terminal
         pre_game()  # restart program
+
+
+def incorrect_value():
+    '''
+    If value entered isn't a number from 1 to 3 throw an error
+    '''
+    print(f'{Fore.RED}{Back.BLACK}Oops! Incorrect value submitted. Restarting application')
+    sleep()
+    clear_terminal()  # clear terminal
+    pre_game()  # restart program
 
 
 def clear_terminal():
@@ -366,7 +392,7 @@ def sleep():
     '''
     Display returned input for 2 seconds to be human readible
     '''
-    time.sleep(2)
+    time.sleep(1)
 
 
 def pre_game():
