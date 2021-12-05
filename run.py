@@ -89,11 +89,6 @@ def view_board():
         if i % 10 == 0:
             print("\r")
 
-
-
-    # REVIEW BOARD - WANT ONE MORE TRADITIONAL LOOKING
-    # 🐍📏
-
     while True:
         try:
             # code to run regardless, it may throw an exception...

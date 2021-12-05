@@ -342,12 +342,15 @@ def view_rules():
 ![separation-of-concern-rules](docs/readme/separation-of-concern-rules.png "separation-of-concern-rules")
 
 ### Game Board
-My initial thoughts to develop the game board was to create several nested lists.
-The square number landed on after completion of a player's turn was to be displayed.
+My initial thoughts to develop the game board was to use several nested lists.
+The square number landed on after completion of a player's turn was to be highlighted.
 
 This could be achieved by targeting the relevant index (bearing in mind indexes start at 0).
+Whilst doable, would it not be easier to target an integer rather than parse strings etc.
 
-I was unhappy with having to display the board as below to get this method to work.
+Also I was wished to display the board in a classical format.
+
+*Old Board code snippet*
 
 ``` python
 # create board - list of 10 nested lists.
@@ -371,15 +374,36 @@ board.append(['91', '92', '🐍', '94', '🐍', '96', '🐍', '🐍', '99', '�
 
 # stack lists on top of each other & print
 for i in board:
-    print(" ".join(i))  # use join method from list with one space in beautify board.
+    print(" ".join(i))  # use join method from list with one space to beautify board.
 ```
 
 *Old Board on Terminal*
 
 ![old-board](docs/readme/old-board.png "old-board")
 
+A search of [Stackoverflow](https://stackoverflow.com/a/55241525) yielded the following to achieve the classic layout:
 
-To achieve the classic layout I adopted the following approach:
+*New Board code snippet 1*
+
+``` python
+# Credit to Manish V. Panchmatia(https://stackoverflow.com/a/55241525)
+for i in range(99, -1, -1):
+    if (i // 10) % 2 == 0:
+        print("{0:4d}".format(i - 10 + 2 * (10 - (i % 10))), end=" ")
+    else:
+        print("{0:4d}".format(i + 1), end=" ")
+    if i % 10 == 0:
+        print("\r")
+```
+
+*New Board 1 on Terminal*
+
+![new-board-1](docs/readme/new-board-1.png "new-board-1")
+
+Manish's solution is excellent.  Future embelishments could include displaying:
+- every odd square to be a white background/black foreground.
+- every even square to be a pink background/white foreground (so not to clash with player pawn colours).
+- emojis to represent snake heads and ladder feet. 
 
 
 [Return to README.md](README.md)

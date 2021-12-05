@@ -61,6 +61,9 @@ Error handling for empty and non integer values at the same time.
 To clear the terminal window
 - [poke](https://stackoverflow.com/a/2084628)
 
+To display a more traditional game board layout
+- [Manish V. Panchmatia](https://stackoverflow.com/a/55241525)
+
 ### Content
 [Emojis](https://emojipedia.org/) from emojipedia.
 
