@@ -341,4 +341,45 @@ def view_rules():
 
 ![separation-of-concern-rules](docs/readme/separation-of-concern-rules.png "separation-of-concern-rules")
 
+### Game Board
+My initial thoughts to develop the game board was to create several nested lists.
+The square number landed on after completion of a player's turn was to be displayed.
+
+This could be achieved by targeting the relevant index (bearing in mind indexes start at 0).
+
+I was unhappy with having to display the board as below to get this method to work.
+
+``` python
+# create board - list of 10 nested lists.
+board = []
+# for i in range(0, 10):
+# the quick way
+# board.append(["⬜"]*10)
+# give each square a number
+# limitation in method. cannot display like proper board below
+# as working within nested list structures
+board.append(['📏', '02', '03', '📏', '05', '06', '07', '08', '📏', '10'])
+board.append(['11', '12', '13', '14', '15', '🐍', '17', '18', '19', '20'])
+board.append(['📏', '22', '23', '24', '25', '26', '27', '📏', '29', '30'])
+board.append(['31', '32', '33', '34', '35', '📏', '37', '38', '39', '40'])
+board.append(['41', '42', '43', '44', '45', '46', '47', '🐍', '49', '50'])
+board.append(['📏', '52', '53', '54', '55', '56', '57', '58', '59', '60'])
+board.append(['61', '62', '63', '🐍', '65', '66', '67', '68', '69', '70'])
+board.append(['📏', '72', '73', '74', '75', '76', '77', '78', '79', '📏'])
+board.append(['81', '82', '83', '84', '85', '86', '87', '88', '89', '90'])
+board.append(['91', '92', '🐍', '94', '🐍', '96', '🐍', '🐍', '99', '🏁'])
+
+# stack lists on top of each other & print
+for i in board:
+    print(" ".join(i))  # use join method from list with one space in beautify board.
+```
+
+*Old Board on Terminal*
+
+![old-board](docs/readme/old-board.png "old-board")
+
+
+To achieve the classic layout I adopted the following approach:
+
+
 [Return to README.md](README.md)
