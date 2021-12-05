@@ -58,8 +58,6 @@ class Player:
         return player_location
 
 
-
-
 def view_rules():
     '''
     Clear screen
@@ -277,7 +275,9 @@ def snl_game(players):
             print(f"Player '{player_id}' new location is square '{player_inst.curr_square}'.\n")  # testing
 
             # check if win condition met
-            winner = check_win(player_id, player_inst)
+            check_win(player_id, player_inst)
+
+
 def roll_dice(player_inst):
     roll = random.randint(1, 6)
     return roll
@@ -369,7 +369,7 @@ def incorrect_value():
     '''
     If value entered isn't a number from 1 to 3 throw an error
     '''
-    print(f'{Fore.RED}{Back.BLACK}Oops! Incorrect value submitted. Restarting application')
+    print(f'{Fore.RED}{Back.BLACK}\nOops! Incorrect value submitted. Restarting application')
     clear_terminal()  # clear terminal
     pre_game()  # restart program
 
@@ -395,7 +395,6 @@ def pre_game():
     Start of the program
     """
     welcome_screen()
-    # snl_game(players)  # pass 'players' dictionary to the game
 
 
 pre_game()  # program start
