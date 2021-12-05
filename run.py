@@ -8,28 +8,6 @@ import colorama
 from colorama import Fore, Back, Style
 colorama.init(autoreset=True)  # so each new line defaults to white text
 
-SNAKE_HEAD = {
-    98: 78,
-    97: 76,
-    95: 24,
-    93: 68,
-    64: 60,
-    48: 30,
-    16: 6
-}
-
-LADDER_FOOT = {
-    1: 38,
-    4: 14,
-    9: 31,
-    21: 42,
-    28: 84,
-    36: 44,
-    51: 67,
-    71: 91,
-    80: 100
-}
-
 
 class Player:
     """
@@ -52,6 +30,16 @@ class Player:
         {self.curr_square} "}
 
         return player_location
+
+
+SNAKE_HEAD = {
+    98: 78, 97: 76, 95: 24,
+    93: 68, 64: 60, 48: 30, 16: 6
+}
+
+LADDER_FOOT = {
+    1: 38, 4: 14, 9: 31, 21: 42, 28: 84, 36: 44, 51: 67, 71: 91, 80: 100
+}
 
 
 def view_rules():
