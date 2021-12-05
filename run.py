@@ -58,88 +58,6 @@ class Player:
         return player_location
 
 
-def roll_dice(player_inst):
-    roll = random.randint(1, 6)
-    return roll
-
-
-def turn(player_id, player_inst, curr_position):
-    """
-    For each player turn:
-    1. Simulate dice roll - move to roll_dice()
-    2. Move pawn based on value rolled.
-    3. Evaluate if pawn landed on ladder foot or snake head,
-    and move to other end.
-    4. Check if pawn lands on square 100 to win - move to snl_game()
-    5. Check of player rolled a six - move to snl_game()
-    if so give them another roll - move to snl_game()
-    6. By default, move to next player.
-    """
-    roll_num = roll_dice(player_inst)
-    new_position = curr_position + roll_num
-    print(f"Player '{player_id}' rolled a '{roll_num}' and moves from square '{curr_position}' to square '{new_position}'.")
-    # evaluate if pawn has landed on a special square.
-    # If so player moves from key to value in Snake/Ladder dict,
-    # reassign value for current player object instance curr_position attribute
-    # if player position matches key in SNAKE_HEAD, its value becomes the
-    # snake tail which equals the SNAKE_HEAD value
-    if new_position in SNAKE_HEAD:
-        new_position = SNAKE_HEAD[new_position]
-        print(f"Player '{player_id}' landed on a SNAKE_HEAD and moves to square '{new_position}'.")
-    elif new_position in LADDER_FOOT:
-        new_position = LADDER_FOOT[new_position]
-        print(f"Player '{player_id}' landed on a LADDER_FOOT and moves to square '{new_position}'.")
-    return new_position
-
-
-def check_win(player_id, player_inst):
-    '''
-    check if player has reached or passed 100
-    if they have exit the program
-    '''
-    if player_inst.curr_square >= 100:
-        print(f"Player '{player_id}' wins!\n")
-        exit()
-
-
-def snl_game(players):
-    """
-    Iterate players, loop through each until win condition met
-    """
-    # infinite loop needed to keep game live until victory condition met
-    # for i in range(50):  # testing for 50 turns
-    while True:
-
-        for player_id, player_inst in players.items():
-            # key is the player iterable, value is the Player object instance
-            # check if player rolled a six, repeat same iteration
-            # https://stackoverflow.com/a/7293992
-            # Default is True to get loop started for 1st iteration only
-
-            print(f"Player '{player_id}' turn")
-            # print(f"Confirming six_rolled '{player_inst.extra_roll}' for current player '{player_id}' on previous roll.")
-            # establish current player's location on board and
-            # assign the object attr to 'curr_position' using .notation
-            curr_position = player_inst.curr_square
-            print(f"Player '{player_id}' current location is square '{curr_position}'.")  # testing
-            # now pass curr_position variable to turn() function to process
-            # the players new location based off their next dice roll
-            new_position = turn(player_id, player_inst, curr_position)
-            # print(f"player '{player_id}' rolled a six value is '{player_inst.extra_roll}'.")
-            # update player instance attr with returned value from turn()
-            player_inst.curr_square = new_position  # testing
-            print(f"Player '{player_id}' new location is square '{player_inst.curr_square}'.\n")  # testing
-
-            # check if win condition met
-            winner = check_win(player_id, player_inst)
-            # display board, only print after all attributes set
-            # board()  # think args to pass into board()
-
-
-
-
-
-
 
 
 def view_rules():
@@ -281,12 +199,10 @@ def game_setup():
 
             if validate_player_count(player_count):
                 print(f"{Fore.GREEN}{Back.BLACK}\nValid input. Creating players...\n")
-                time.sleep(1)
                 # create list of players - use pawn color
                 player_list = []
 
                 # loop - create a list of a unique for each player.
-
                 for p in range(1, player_count + 1):
                     if p == 1:
                         player_list.append("Red")
@@ -313,8 +229,7 @@ def game_setup():
             # except - if an exception thrown, clear terminal and restart
             print(f"{Fore.RED}{Back.BLACK}\nNo value or text value submitted...\n")
 
-    print(players)  # testing
-    return players
+    return snl_game(players)
 
 
 def validate_player_count(player_count):
@@ -332,6 +247,79 @@ def validate_player_count(player_count):
     # return True if validation finds errors to ask user to re enter \
     # number of players to continue while loop
     return True
+
+
+def snl_game(players):
+    """
+    Iterate players
+    Loop through each until win condition met
+    """
+    while True:
+
+        for player_id, player_inst in players.items():
+            # key is the player iterable, value is the Player object instance
+            # check if player rolled a six, repeat same iteration
+            # https://stackoverflow.com/a/7293992
+            # Default is True to get loop started for 1st iteration only
+
+            print(f"Player '{player_id}' turn")
+            # print(f"Confirming six_rolled '{player_inst.extra_roll}' for current player '{player_id}' on previous roll.")
+            # establish current player's location on board and
+            # assign the object attr to 'curr_position' using .notation
+            curr_position = player_inst.curr_square
+            print(f"Player '{player_id}' current location is square '{curr_position}'.")  # testing
+            # now pass curr_position variable to turn() function to process
+            # the players new location based off their next dice roll
+            new_position = turn(player_id, player_inst, curr_position)
+            # print(f"player '{player_id}' rolled a six value is '{player_inst.extra_roll}'.")
+            # update player instance attr with returned value from turn()
+            player_inst.curr_square = new_position  # testing
+            print(f"Player '{player_id}' new location is square '{player_inst.curr_square}'.\n")  # testing
+
+            # check if win condition met
+            winner = check_win(player_id, player_inst)
+def roll_dice(player_inst):
+    roll = random.randint(1, 6)
+    return roll
+
+
+def turn(player_id, player_inst, curr_position):
+    """
+    For each player turn:
+    1. Simulate dice roll - move to roll_dice()
+    2. Move pawn based on value rolled.
+    3. Evaluate if pawn landed on ladder foot or snake head,
+    and move to other end.
+    4. Check if pawn lands on square 100 to win - move to snl_game()
+    5. Check of player rolled a six - move to snl_game()
+    if so give them another roll - move to snl_game()
+    6. By default, move to next player.
+    """
+    roll_num = roll_dice(player_inst)
+    new_position = curr_position + roll_num
+    print(f"Player '{player_id}' rolled a '{roll_num}' and moves from square '{curr_position}' to square '{new_position}'.")
+    # evaluate if pawn has landed on a special square.
+    # If so player moves from key to value in Snake/Ladder dict,
+    # reassign value for current player object instance curr_position attribute
+    # if player position matches key in SNAKE_HEAD, its value becomes the
+    # snake tail which equals the SNAKE_HEAD value
+    if new_position in SNAKE_HEAD:
+        new_position = SNAKE_HEAD[new_position]
+        print(f"Player '{player_id}' landed on a SNAKE_HEAD and moves to square '{new_position}'.")
+    elif new_position in LADDER_FOOT:
+        new_position = LADDER_FOOT[new_position]
+        print(f"Player '{player_id}' landed on a LADDER_FOOT and moves to square '{new_position}'.")
+    return new_position
+
+
+def check_win(player_id, player_inst):
+    '''
+    check if player has reached or passed 100
+    if they have exit the program
+    '''
+    if player_inst.curr_square >= 100:
+        print(f"Player '{player_id}' wins!\n")
+        exit()
 
 
 def welcome_screen():
@@ -364,10 +352,9 @@ def welcome_screen():
         elif pre_game_choice == 2:
             view_board()
         elif pre_game_choice == 3:
-             game_setup()
+            game_setup()
         else:
             incorrect_value()
-
 
     except ValueError:
         # except - if exception thrown, clear terminal and restart application
