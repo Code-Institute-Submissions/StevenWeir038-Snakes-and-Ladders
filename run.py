@@ -1,3 +1,5 @@
+# SNAKES AND LADDERS
+
 import random
 import os
 import time
@@ -5,13 +7,6 @@ import colorama
 from colorama import Fore, Back, Style
 colorama.init(autoreset=True)  # so each new line defaults to white text
 
-"""
-Create dictionary to simulate snake and ladder movements.
-Ladder goes up, snake moves down.  Can be represented in the same
-dictionary as they perform similar function.  Just invert the values.
-UPDATE - As I want to test snake and ladder rules separately, it is better to
-separate SNAKE_HEAD & LADDER_FOOT dictionaries.
-"""
 SNAKE_HEAD = {
     98: 78,
     97: 76,
@@ -210,15 +205,7 @@ def game_setup():
                         player_list.append("Blue")
                     else:
                         player_list.append("Yellow")
-                """
-                https://stackoverflow.com/a/17662224
-                build dictionary by looping over the player_list.
-                The KEY takes the iteration value in the list, in this case
-                the players pawn color. The associated value for each key will
-                be the instantiated Player class object.
-                In game, each instances attributes/methods can be accessed
-                using it's key.  For example: player_list['P1 red']
-                """
+
                 players = {pawn_color: Player(
                     pawn_color=pawn_color) for pawn_color in player_list}
                 break
@@ -337,11 +324,7 @@ def welcome_screen():
     print(f"{Fore.RED}{Back.WHITE} 1 {Fore.WHITE}{Back.BLACK} View Rules    \n")
     print(f"{Fore.GREEN}{Back.WHITE} 2 {Fore.WHITE}{Back.BLACK} View Board    \n")
     print(f"{Fore.BLUE}{Back.WHITE} 3 {Fore.WHITE}{Back.BLACK} Play Game     \n")
-    '''
-    Branch program using if/elif/else structures
-    Capture errors
-    Direct user's choice to new function.
-    '''
+
     try:
         # code to run regardless, it may throw an exception...
         pre_game_choice = int(input(f"{Back.BLACK}Select from options {Fore.RED}{Back.BLACK}1{Fore.WHITE}, {Fore.GREEN}2 {Fore.WHITE}{Back.BLACK}or {Fore.BLUE}3{Fore.WHITE} \n"))
