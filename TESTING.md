@@ -264,30 +264,30 @@ The color palette and shapes make particular development tasks more obvious.
 
 ## User Centric Development Stage
 
-### Welcome Screen
+### Error handling
 Early development was useful.  Similar code constructs to capture errors can be used to handle decision areas of the project and prevent crashing. 
 
 ``` python
-    try:
-        # code to run regardless, it may throw an exception...
-        pre_game_choice = int(input(f"Select from options {Fore.RED}1{Fore.WHITE}, {Fore.GREEN}2 {Fore.WHITE}or {Fore.BLUE}3{Fore.WHITE}.\n"))
-        if not input:
-            raise ValueError
+try:
+    # code to run regardless, it may throw an exception...
+    pre_game_choice = int(input(f"Select from options {Fore.RED}1{Fore.WHITE}, {Fore.GREEN}2 {Fore.WHITE}or {Fore.BLUE}3{Fore.WHITE}.\n"))
+    if not input:
+        raise ValueError
 
-    except ValueError as e:
-        # except - if exception thrown, clear terminal and restart application
-        # capture nums out of range or text input
-        print(f'{Fore.RED}{Back.BLACK}Oops! Incorrect value submitted')
-        sleep()
-        clear_terminal()  # clear terminal
-        pre_game()  # restart program
+except ValueError as e:
+    # except - if exception thrown, clear terminal and restart application
+    # capture nums out of range or text input
+    print(f'{Fore.RED}{Back.BLACK}Oops! Incorrect value submitted')
+    sleep()
+    clear_terminal()  # clear terminal
+    pre_game()  # restart program
 ```
 
-#### Error handling
+**Welcome Screen**
 
 *Terminal output*
 
-If an inputted value is not an *integer* value of *1*,*2* or *3*,  the program resets after displaying feedback for two seconds.
+If an inputted value is not an *integer* value of *1*,*2* or *3*,  the program resets after displaying feedback after preset delay.
 The *red* text color conveys a warning message to the user prior to reset.
 
 ![testing-incorrect-value-welcome](docs/readme/testing-incorrect-value-welcome.png "testing-incorrect-value-welcome")
@@ -298,6 +298,17 @@ Confirming program branching works.
 
 ![pre-game-branching-test](docs/readme/pre-game-branching-test.png "pre-game-branching-test")
 
+**View Rules**
+
+*Terminal output*
+
+![testing-incorrect-value-view-rules](docs/readme/testing-incorrect-value-view-rules.png "testing-incorrect-value-view-rules")
+
+**View Board**
+
+*Terminal output*
+
+![testing-incorrect-value-view-board](docs/readme/testing-incorrect-value-view-board.png "testing-incorrect-value-view-board")
 
 
 [Return to README.md](README.md)
