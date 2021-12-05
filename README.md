@@ -71,4 +71,6 @@ To display a more traditional game board layout
 
 Browser background from [Wallpaper Cave](https://wallpapercave.com/w/wp9142232).
 
+Snake favicon from [Webalys](https://www.flaticon.com/premium-icon/snake_1476356?term=snake&page=1&position=76&page=1&position=76&related_id=1476356&origin=tag#)
+
 [SNAKE_HEAD and LADDER_FOOT dictionaries ](docs/readme/own-gameboard.png "Own Gameboard") based of a game purchased from [Ambassador Games](http://www.ambassadorgames.com/craftsman-deluxe-game-house.htm).

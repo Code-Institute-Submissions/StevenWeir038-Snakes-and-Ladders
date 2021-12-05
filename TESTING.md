@@ -405,5 +405,9 @@ Manish's solution is excellent.  Future embelishments could include displaying:
 - every even square to be a pink background/white foreground (so not to clash with player pawn colours).
 - emojis to represent snake heads and ladder feet. 
 
+It is not necessary to have an iterable structure to find a player's position on the board before changing its display.
+
+Instead, *find* and *replace* the part of that string that equals the new position.
+
 
 [Return to README.md](README.md)
