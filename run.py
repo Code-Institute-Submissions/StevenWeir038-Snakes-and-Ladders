@@ -58,93 +58,6 @@ class Player:
         return player_location
 
 
-def game_setup():
-    """
-    Ask user for number of players between 2 - 4
-    Call function to validate user input
-    Apply pawn color to each player,
-    P1 = red, P2 = green, P3 = blue, P4 = yellow
-    """
-    while True:
-
-        # Immediately convert string input from user to an integer
-        # errorhandle both for an empty string and non int value
-        # https://stackoverflow.com/a/4994509
-        try:
-            # code to run regardless, it may throw an exception...
-            player_count = int(input(
-                "Enter number of players between 2 and 4:\n"))
-            if not input:
-                raise ValueError
-
-            if validate_player_count(player_count):
-                print("\nValid input. Creating players...\n")
-                time.sleep(1)
-                # create list of players - use pawn color
-                player_list = []
-
-                # loop - create a list of a unique for each player.
-
-                for p in range(1, player_count + 1):
-                    if p == 1:
-                        # print("player one")  # testing
-                        player_list.append("P1 red")
-                    elif p == 2:
-                        # print("player two")  # testing
-                        player_list.append("P2 green")
-                    elif p == 3:
-                        # print("player three")  # testing
-                        player_list.append("P3 blue")
-                    else:
-                        # print("player four")  # testing
-                        player_list.append("P4 yellow")
-                # print(player_list)  # testing
-                """
-                https://stackoverflow.com/a/17662224
-                build dictionary by looping over the player_list.
-                The KEY takes the iteration value in the list, in this case
-                the players pawn color. The associated value for each key will
-                be the instantiated Player class object.
-                In game, each instances attributes/methods can be accessed
-                using it's key.  For example: player_list['P1 red']
-                """
-                player_dict = {pawn_color: Player(
-                    pawn_color=pawn_color) for pawn_color in player_list}
-                break
-
-        except ValueError as e:
-            # except - if an exception thrown, clear terminal and restart
-            # print(e)  # testing
-            print('No value or text value submitted')
-            time.sleep(2)
-            clear_terminal()  # clear terminal
-            main()  # restart program
-    # print(player_dict)  # testing
-    return player_dict
-
-
-def validate_player_count(player_count):
-    """
-    Check number of players supplied from game_setup() function
-    is an integer >= 2 and <= 4
-    """
-    try:
-        if player_count < 2 or player_count > 4:
-            raise ValueError
-    except ValueError:
-        print(f"You entered {player_count} player(s). Try again...\n")
-        time.sleep(2)
-        clear_terminal()  # clear terminal
-        main()  # restart program
-        # return False to game_setup() if validation finds no error \
-        # in data to end the while loop
-        return False
-
-    # return True if validation finds errors to ask user to re enter \
-    # number of players to continue while loop
-    return True
-
-
 def roll_dice(player_inst):
     roll = random.randint(1, 6)
     return roll
@@ -223,8 +136,10 @@ def snl_game(players):
             # board()  # think args to pass into board()
 
 
-def back_to_welcome():
-    welcome_screen()
+
+
+
+
 
 
 def view_rules():
@@ -280,12 +195,12 @@ def view_rules():
         except ValueError:
             # capture no input or text input
             sleep()
-            print(f"{Fore.RED}No input or text entered.  Key 1 to return.")
+            print(f"{Fore.RED}No input or text entered.  Key 1 to return.\n")
 
         else:
             # tell user if out of range number entered
             sleep()
-            print(f"{Fore.RED}Incorrect number keyed. Key 1 to return.")
+            print(f"{Fore.RED}Incorrect number keyed. Key 1 to return.\n")
 
 
 def view_board():
@@ -316,15 +231,16 @@ def view_board():
     board.append(['81', '82', '83', '84', '85', '86', '87', '88', '89', '90'])
     board.append(['91', '92', '🐍', '94', '🐍', '96', '🐍', '🐍', '99', '🏁'])
 
+    # REVIEW BOARD - WANT ONE MORE TRADITIONAL LOOKING
+
     # stack lists on top of each other & print
     for i in board:
         print(" ".join(i))  # use join method from list with one space in beautify board.
-
     while True:
         try:
             # code to run regardless, it may throw an exception...
             go_back_choice = int(
-                input(f"{Fore.RED}{Back.WHITE} 1 {Fore.WHITE}{Back.BLACK} Go back\n"))
+                input(f"{Fore.RED}{Back.WHITE}\n 1 {Fore.WHITE}{Back.BLACK} Go back\n"))
             if not input:
                 raise ValueError
             elif go_back_choice == 1:
@@ -334,23 +250,88 @@ def view_board():
         except ValueError:
             # capture no input or text input
             sleep()
-            print(f"{Fore.RED}No input or text entered.  Key 1 to return.")
+            print(f"{Fore.RED}{Back.BLACK}No input or text entered.  Key 1 to return.\n")
 
         else:
             # tell user if out of range number entered
             sleep()
-            print(f"{Fore.RED}Incorrect number keyed. Key 1 to return.")
-
-
-
-
-
-
-
+            print(f"{Fore.RED}{Back.BLACK}Incorrect number keyed. Key 1 to return.\n")
 
 
 def game_setup():
-    print("Game Setup TEST")  # testing
+    """
+    Ask user for number of players between 2 - 4
+    Call function to validate user input
+    Apply pawn color to each player,
+    P1 = red, P2 = green, P3 = blue, P4 = yellow
+    """
+    clear_terminal()
+
+    while True:
+
+        # Immediately convert string input from user to an integer
+        # errorhandle both for an empty string and non int value
+        # https://stackoverflow.com/a/4994509
+        try:
+            # code to run regardless, it may throw an exception...
+            player_count = int(input(
+                f"{Back.BLACK}Enter number of players between 2 and 4:\n"))
+            if not input:
+                raise ValueError
+
+            if validate_player_count(player_count):
+                print(f"{Fore.GREEN}{Back.BLACK}\nValid input. Creating players...\n")
+                time.sleep(1)
+                # create list of players - use pawn color
+                player_list = []
+
+                # loop - create a list of a unique for each player.
+
+                for p in range(1, player_count + 1):
+                    if p == 1:
+                        player_list.append("Red")
+                    elif p == 2:
+                        player_list.append("Green")
+                    elif p == 3:
+                        player_list.append("Blue")
+                    else:
+                        player_list.append("Yellow")
+                """
+                https://stackoverflow.com/a/17662224
+                build dictionary by looping over the player_list.
+                The KEY takes the iteration value in the list, in this case
+                the players pawn color. The associated value for each key will
+                be the instantiated Player class object.
+                In game, each instances attributes/methods can be accessed
+                using it's key.  For example: player_list['P1 red']
+                """
+                players = {pawn_color: Player(
+                    pawn_color=pawn_color) for pawn_color in player_list}
+                break
+
+        except ValueError:
+            # except - if an exception thrown, clear terminal and restart
+            print(f"{Fore.RED}{Back.BLACK}\nNo value or text value submitted...\n")
+
+    print(players)  # testing
+    return players
+
+
+def validate_player_count(player_count):
+    """
+    Check number of players supplied from game_setup() function
+    is an integer >= 2 and <= 4
+    """
+    try:
+        if player_count < 2 or player_count > 4:
+            raise ValueError
+    except ValueError:
+        print(f"{Fore.RED}{Back.BLACK}You entered {player_count} player(s). Try again...\n")
+        return False
+
+    # return True if validation finds errors to ask user to re enter \
+    # number of players to continue while loop
+    return True
 
 
 def welcome_screen():
@@ -375,7 +356,7 @@ def welcome_screen():
     '''
     try:
         # code to run regardless, it may throw an exception...
-        pre_game_choice = int(input(f"{Back.BLACK}Select from options {Fore.RED}{Back.BLACK}1{Fore.WHITE}, {Fore.GREEN}2 {Fore.WHITE}{Back.BLACK}or {Fore.BLUE}3{Fore.WHITE}\n"))
+        pre_game_choice = int(input(f"{Back.BLACK}Select from options {Fore.RED}{Back.BLACK}1{Fore.WHITE}, {Fore.GREEN}2 {Fore.WHITE}{Back.BLACK}or {Fore.BLUE}3{Fore.WHITE} \n"))
         if not input:
             raise ValueError
         elif pre_game_choice == 1:
@@ -427,11 +408,6 @@ def pre_game():
     Start of the program
     """
     welcome_screen()
-
-
-    # game setup returns validated number for players input by user
-    # players = game_setup()  # players = dict of players rtnd from game_setup()
-    # print(f"{players}\n")  # testing - shows diff mem allocs
     # snl_game(players)  # pass 'players' dictionary to the game
 
 
