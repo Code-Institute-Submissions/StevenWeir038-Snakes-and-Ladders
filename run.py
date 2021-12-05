@@ -241,12 +241,12 @@ def view_rules():
     view_rules = """
     ==========================================================================
 
-    VIEW RULES
+    HOW TO PLAY
 
-    TO PLAY:
+    NEEDED:
     🎲 2-4 players
     🎲 1 six sided dice
-    🎲 Pawns (1 color for each player) - P1 red, P2 green, P3 blue, P4 yellow
+    🎲 Pawns (1 color for each player) - Red, Green, Blue, Yellow
     🎲 Playing board
 
     FOR EACH PLAYER:
@@ -255,16 +255,14 @@ def view_rules():
     🎲 If a player's pawn lands on an empty square there is no effect.
     🎲 If a player's pawn ends its move at the foot of a ladder, the pawn must
     move immediately to the square at the top of that ladder.
-
     🎲 If a player's pawn ends its move at the head of a snake, the pawn must
     immediately move to the square at the tail of that snake.
 
-    VICTORY CONDITION:
-    🎲  Be the first player to reach square 100.
+    TO WIN:
+    🎲  Be the first player to reach or pass square 100.
 
     ==========================================================================
     """
-    sleep()
     clear_terminal()
     print(view_rules)
     while True:
@@ -295,10 +293,10 @@ def view_board():
     '''
     Clear Terminal
     Build a 10 * 10 board and
-    display a board for the user after each dice roll
+    (Display the board for the user after each dice roll)
     '''
-    sleep()
     clear_terminal()
+
     # create board - is just a list of 10 nested lists.
     board = []
     # for i in range(0, 10):
@@ -321,6 +319,35 @@ def view_board():
     # stack lists on top of each other & print
     for i in board:
         print(" ".join(i))  # use join method from list with one space in beautify board.
+
+    while True:
+        try:
+            # code to run regardless, it may throw an exception...
+            go_back_choice = int(
+                input(f"{Fore.RED}{Back.WHITE} 1 {Fore.WHITE}{Back.BLACK} Go back\n"))
+            if not input:
+                raise ValueError
+            elif go_back_choice == 1:
+                clear_terminal()  # clear terminal
+                welcome_screen()  # go back to welcome screen
+
+        except ValueError:
+            # capture no input or text input
+            sleep()
+            print(f"{Fore.RED}No input or text entered.  Key 1 to return.")
+
+        else:
+            # tell user if out of range number entered
+            sleep()
+            print(f"{Fore.RED}Incorrect number keyed. Key 1 to return.")
+
+
+
+
+
+
+
+
 
 def game_setup():
     print("Game Setup TEST")  # testing
@@ -375,7 +402,6 @@ def incorrect_value():
     If value entered isn't a number from 1 to 3 throw an error
     '''
     print(f'{Fore.RED}{Back.BLACK}Oops! Incorrect value submitted. Restarting application')
-    sleep()
     clear_terminal()  # clear terminal
     pre_game()  # restart program
 
@@ -385,6 +411,7 @@ def clear_terminal():
     clear the terminal.
     Credit Tim Nelson & [poke](https://stackoverflow.com/a/2084628)
     """
+    sleep()
     os.system("cls" if os.name == "nt" else "clear")
 
 
