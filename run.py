@@ -85,8 +85,18 @@ def draw_board():
             print("\r")
 
 
+def turn_board(position, board):
+    """
+
+    return:
+    """
+    print(f"Player is on square {position}")  # testing
+    # print(board)  # testing
+
+
 def view_board():
     """
+    for use in the menu to show player the board output
     clear terminal
     draw board
     menu option to go back to welcome screen
@@ -133,7 +143,8 @@ def game_setup():
         # error handle both for an empty string and non int value
         # https://stackoverflow.com/a/4994509
         try:
-            player_count = int(input("Enter number of players between 2 and 4:\n"))
+            player_count = int(input(
+                "Enter number of players between 2 and 4:\n"))
             if not input:
                 raise ValueError
 
@@ -173,7 +184,7 @@ def validate_player_count(player_count):
         if player_count < 2 or player_count > 4:
             raise ValueError
     except ValueError:
-        print(f"{Fore.RED}You entered {player_count} player(s). Try again...\n")
+        print(f"{Fore.RED}You entered {player_count} player(s). Try again.\n")
         return False
 
     return True
@@ -188,26 +199,24 @@ def snl_game(players):
 
         for player_id, player_inst in players.items():
             # key is the player iterable, value is the Player object instance
-            # check if player rolled a six, repeat same iteration
-            # https://stackoverflow.com/a/7293992
-            # Default is True to get loop started for 1st iteration only
 
-            print(f"Player '{player_id}' turn")
-            # print(f"Confirming six_rolled '{player_inst.extra_roll}' for current player '{player_id}' on previous roll.")
+            print(f"\nTURN - '{player_id}'")
+
             # establish current player's location on board and
             # assign the object attr to 'curr_position' using .notation
             curr_position = player_inst.curr_square
-            print(f"Player '{player_id}' current location is square '{curr_position}'.")  # testing
+            print(f"'{player_id}' is on square '{curr_position}'.")  # testing
+
             # now pass curr_position variable to turn() function to process
             # the players new location based off their next dice roll
             new_position = turn(player_id, curr_position)
-            # print(f"player '{player_id}' rolled a six value is '{player_inst.extra_roll}'.")
+
             # update player instance attr with returned value from turn()
             player_inst.curr_square = new_position  # testing
-            print(f"Player '{player_id}' new location is square '{player_inst.curr_square}'.\n")  # testing
+            print(f"'{player_id}' moves to square '{player_inst.curr_square}'.\n")  # testing
 
-            # DISPLAY PLAYER'S POSTION ON NEW BOARD INSTANCE HERE
-            
+            # display player position on board
+            turn_board(new_position, draw_board())
 
             # check if win condition met
             check_win(player_id, player_inst)
@@ -234,7 +243,7 @@ def turn(player_id, curr_position):
     """
     roll_num = roll_dice()
     new_position = curr_position + roll_num
-    print(f"Player '{player_id}' rolled a '{roll_num}' and moves from square '{curr_position}' to square '{new_position}'.")
+    print(f"'{player_id}' rolled a '{roll_num}'")
     # evaluate if pawn has landed on a special square.
     # If so player moves from key to value in Snake/Ladder dict,
     # reassign value for current player object instance curr_position attribute
@@ -242,10 +251,10 @@ def turn(player_id, curr_position):
     # snake tail which equals the SNAKE_HEAD value
     if new_position in SNAKE_HEAD:
         new_position = SNAKE_HEAD[new_position]
-        print(f"Player '{player_id}' landed on a SNAKE_HEAD and moves to square '{new_position}'.")
+        print(f"'{player_id}' landed on a 🐍")
     elif new_position in LADDER_FOOT:
         new_position = LADDER_FOOT[new_position]
-        print(f"Player '{player_id}' landed on a LADDER_FOOT and moves to square '{new_position}'.")
+        print(f"'{player_id}' landed on a 🖇️")
     return new_position
 
 
@@ -274,7 +283,8 @@ def welcome_screen():
     print(f"{Fore.BLUE}3 {Fore.WHITE}Play Game\n")
 
     try:
-        pre_game_choice = int(input(f"Select from options {Fore.RED}1{Fore.WHITE}, {Fore.GREEN}2{Fore.WHITE} or {Fore.BLUE}3{Fore.WHITE}\n"))
+        pre_game_choice = int(input(
+            f"Select from options {Fore.RED}1{Fore.WHITE}, {Fore.GREEN}2{Fore.WHITE} or {Fore.BLUE}3{Fore.WHITE}\n"))
         if not input:
             raise ValueError
         elif pre_game_choice == 1:

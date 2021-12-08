@@ -3,9 +3,8 @@
 
 Welcome to **Snakes and Ladders**, a classic boardgame enjoyed by children and adults throughout the world.
 
-It's a game of simple logic and chance, therefore is well suited to being a first application to develop when learning Python. 
-
-I do hope you enjoy this take on the original.
+It's a game of simple logic and chance making it a suitable project to learn Python. 
+I do hope you enjoy this take on the original!
 
 ## Wireframes
 The game's logic was mapped out before coding began using a free version of [Lucidchart](https://www.lucidchart.com/pages/).
@@ -30,7 +29,7 @@ Go to [TESTING.md](TESTING.md) to view known bugs and fixes.
 ## Technologies Used
 Flowcharts created with [Lucidchart](https://www.lucidchart.com/pages/).
 
-Web deployment with [*Heroku*](https://www.heroku.com/about)
+Web deployment using [Heroku](https://www.heroku.com/about).
 
 Python version 3.8
 
@@ -65,7 +64,9 @@ To display a more traditional game board layout
 - [Manish V. Panchmatia](https://stackoverflow.com/a/55241525)
 
 ### Content
-[Emojis](https://emojipedia.org/) from emojipedia.
+[Snake](https://emojipedia.org/snake/) emoji from emojipedia.
+
+No [Ladder](https://emojipedia.org/linked-paperclips/) emoji was available so an analogue was used.
 
 [Board image](https://www.istockphoto.com/vector/snakes-and-ladders-black-and-white-gm1066160462-285104267 "Board image") courtesy of iStock.
 
