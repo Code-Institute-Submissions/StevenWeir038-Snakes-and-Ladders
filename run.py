@@ -14,7 +14,7 @@ class Board():
     Board class
     """
     def __init__(self):
-    # build list of 100 items and convert from integer to string
+        # build list of 100 items and convert from integer to string
         board = []
         row = []
         for square in range(100, 0, -1):
@@ -102,8 +102,10 @@ def view_rules():
 
 
 def draw_board():
-    """ make board list of 10 nested lists 
-        returns: nested lists  """
+    """
+    make board list of 10 nested lists
+    returns: nested lists
+    """
 # build list of 100 items and convert from integer to string
     board = []
     row = []
@@ -127,15 +129,26 @@ def draw_board():
 
 def turn_board(position, board):
     """
-
-    return: board showing player position to snl_game()
+    convert player position integer to string
+    evaluate that value against board list items
+    if value > 100, format square 100
+    format the matching list value
+    return: None
     """
     # TEST INSIDE TURN BOARD
     print(f"TURN BOARD - Player is on square {position}")  # testing
+
+    str_pos = str(position)
+    print(str_pos)  # testing
+    print(type(str_pos))  # testing
+
+    # INSERT EVAL FOR MATCHING VALUES HERE, LOOP THROUGH BOARD LIST
+    # MOVE TO SEPARATE FUNCTION FOR SOC
+
     print(f"TURN BOARD - board list\n{board}\n")  # testing
 
     # format for terminal output
-    print(f"TURN BOARD - display to terminal")  # testing
+    print("TURN BOARD - display to terminal")  # testing
     for square in board:
         print(" | ".join(square))
 
@@ -148,7 +161,7 @@ def view_board():
     menu option to go back to welcome screen
     """
     clear_terminal()
-    menu_board = Board()
+    Board()
 
     while True:
         try:
@@ -237,6 +250,7 @@ def snl_game(players):
     """
     iterate players
     loop through each until win condition met
+    return: None
     """
     while True:
 
@@ -248,7 +262,7 @@ def snl_game(players):
             # establish current player's location on board and
             # assign the object attr to 'curr_position' using .notation
             curr_position = player_inst.curr_square
-            print(f"'{player_id}' is on square '{curr_position}'.")  # testing
+            print(f"'{player_id}' is on square '{curr_position}'.")
 
             # now pass curr_position variable to turn() function to process
             # the players new location based off their next dice roll
@@ -256,7 +270,7 @@ def snl_game(players):
 
             # update player instance attr with returned value from turn()
             player_inst.curr_square = new_position  # testing
-            print(f"'{player_id}' moves to square '{player_inst.curr_square}'.\n")  # testing
+            print(f"'{player_id}' moves to square '{new_position}'.\n")
 
             # display player position on board
             turn_board(new_position, draw_board())
@@ -269,7 +283,7 @@ def roll_dice():
     """
     generate number from 1-6 using imported randint function
     and save in a variable
-    return: roll to turn()
+    return: roll_num in move()
     """
     roll = random.randint(1, 6)
     return roll
@@ -277,7 +291,7 @@ def roll_dice():
 
 def move(player_id, curr_position):
     """
-    For each player turn:
+    For each player move:
     1. get roll value from roll_dice()
     2. move x squares based on roll value.
     3. evaluate if pawn landed on snake, read dict key move to dict value
@@ -306,7 +320,7 @@ def check_win(player_id, player_inst):
     if they have exit the program
     '''
     if player_inst.curr_square >= 100:
-        print(f"\n🎉🎈'{player_id}' wins! 🎈🎉\n")
+        print(f"\n🎉 🎈'{player_id}' wins! 🎈 🎉\n")
         exit()
 
 
