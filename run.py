@@ -142,10 +142,20 @@ def turn_board(position, board):
     print(str_pos)  # testing
     print(type(str_pos))  # testing
 
-    # INSERT EVAL FOR MATCHING VALUES HERE, LOOP THROUGH BOARD LIST
-    # MOVE TO SEPARATE FUNCTION FOR SOC
+    print(board)  # testing
+    print(type(board))  # testing
 
-    print(f"TURN BOARD - board list\n{board}\n")  # testing
+    # INSERT EVAL FOR MATCHING VALUES HERE, LOOP THROUGH BOARD LIST
+    # MOVE TO SEPARATE FUNCTION FOR SOC.
+
+    if position >= 100:
+        board[0],[0] == f"{Fore.RED}X📌"
+
+    # else:
+        # for square in board:
+            # str(square) == str_pos
+
+        # print(f"TURN BOARD - board list\n{board}\n")  # testing
 
     # format for terminal output
     print("TURN BOARD - display to terminal")  # testing
