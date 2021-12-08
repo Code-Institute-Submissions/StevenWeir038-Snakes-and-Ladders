@@ -403,11 +403,22 @@ for i in range(99, -1, -1):
 Manish's solution is excellent.  Future embelishments could include displaying:
 - every odd square to be a white background/black foreground.
 - every even square to be a pink background/white foreground (so not to clash with player pawn colours).
-- emojis to represent snake heads and ladder feet. 
 
 It is not necessary to have an iterable structure to find a player's position on the board before changing its display.
 
-Instead, *find* and *replace* the part of that string that equals the new position.
+Instead, *find* and *replace* the part of that string that equals the new position with an emoji.
+
+**NB. I also played around with creating a board class**.
+
+Only issue was that player moves were marked on the board and saved.  As the game progressed, previous moves marked with a `XX` obscured the square numbers as the grid was being updated.
+It has been a good learning exercise for what shouldn't be done.
+
+To display a board wih the players latest position, it is easiest to use two functions with every player turn.  
+1. Draw a new board
+2. Method to change a value on that board showing player position.
+
+
+update_board(position, draw_board())
 
 
 [Return to README.md](README.md)

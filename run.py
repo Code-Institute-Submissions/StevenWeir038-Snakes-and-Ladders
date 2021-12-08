@@ -5,7 +5,7 @@ import os
 import time
 from rules import game_instructions
 import colorama
-from colorama import Fore, Back, Style
+from colorama import Fore
 colorama.init(autoreset=True)  # so each new line defaults to white text
 
 
@@ -13,7 +13,6 @@ class Player:
     """
     Player class
     """
-
     def __init__(self, pawn_color, curr_position=0):
         # instance properties
         self.pawn_color = pawn_color
@@ -53,7 +52,7 @@ def view_rules():
         try:
             # code to run regardless, it may throw an exception...
             go_back_choice = int(
-                input(f"{Fore.RED}{Back.WHITE} 1 {Fore.WHITE}{Back.BLACK} Go back\n"))
+                input(f"{Fore.RED} 1 {Fore.WHITE}Go back\n"))
             if not input:
                 raise ValueError
             elif go_back_choice == 1:
@@ -72,15 +71,11 @@ def view_rules():
             print(f"{Fore.RED}Incorrect number keyed. Key 1 to return.\n")
 
 
-def view_board():
+def draw_board():
     '''
-    Clear Terminal
-    Build a 10 * 10 board and
-    (Display the board for the user after each dice roll)
+    draw a board with classic layout
     '''
-    clear_terminal()
-
-    # Credit to Manish V. Panchmatia (https://stackoverflow.com/a/55241525)
+    # Credit to Manish V. Panchmatia(https://stackoverflow.com/a/55241525)
     for i in range(99, -1, -1):
         if (i // 10) % 2 == 0:
             print("{0:4d}".format(i - 10 + 2 * (10 - (i % 10))), end=" ")
@@ -89,11 +84,21 @@ def view_board():
         if i % 10 == 0:
             print("\r")
 
+
+def view_board():
+    """
+    clear terminal
+    draw board
+    menu option to go back to welcome screen
+    """
+    clear_terminal()
+    draw_board()
+
     while True:
         try:
             # code to run regardless, it may throw an exception...
             go_back_choice = int(
-                input(f"{Fore.RED}{Back.WHITE}\n 1 {Fore.WHITE}{Back.BLACK} Go back\n"))
+                input(f"{Fore.RED}\n 1 {Fore.WHITE}Go back\n"))
             if not input:
                 raise ValueError
             elif go_back_choice == 1:
@@ -103,37 +108,37 @@ def view_board():
         except ValueError:
             # capture no input or text input
             sleep()
-            print(f"{Fore.RED}{Back.BLACK}No input or text entered.  Key 1 to return.\n")
+            print(f"{Fore.RED}No input or text entered.  Key 1 to return.\n")
 
         else:
             # tell user if out of range number entered
             sleep()
-            print(f"{Fore.RED}{Back.BLACK}Incorrect number keyed. Key 1 to return.\n")
+            print(f"{Fore.RED}Incorrect number keyed. Key 1 to return.\n")
 
 
 def game_setup():
     """
-    Ask user for number of players between 2 - 4
-    Call function to validate user input
-    Apply pawn color to each player,
+    clear terminal
+    ask user for number of players between 2 - 4 (with error handling)
+    call function to validate user input
+    apply pawn color to each player,
     P1 = red, P2 = green, P3 = blue, P4 = yellow
+    return: dictionary of players to snl_game()
     """
     clear_terminal()
 
     while True:
 
         # Immediately convert string input from user to an integer
-        # errorhandle both for an empty string and non int value
+        # error handle both for an empty string and non int value
         # https://stackoverflow.com/a/4994509
         try:
-            # code to run regardless, it may throw an exception...
-            player_count = int(input(
-                f"{Back.BLACK}Enter number of players between 2 and 4:\n"))
+            player_count = int(input("Enter number of players between 2 and 4:\n")
             if not input:
                 raise ValueError
 
             if validate_player_count(player_count):
-                print(f"{Fore.GREEN}{Back.BLACK}\nValid input. Creating players...\n")
+                print(f"{Fore.GREEN}\nValid input. Creating players...\n")
                 # create list of players - use pawn color
                 player_list = []
 
@@ -153,33 +158,31 @@ def game_setup():
                 break
 
         except ValueError:
-            # except - if an exception thrown, clear terminal and restart
-            print(f"{Fore.RED}{Back.BLACK}\nNo value or text value submitted...\n")
+            print(f"{Fore.RED}\nNo value or text value submitted...\n")
 
     return snl_game(players)
 
 
 def validate_player_count(player_count):
     """
-    Check number of players supplied from game_setup() function
+    check the players list passed from game_setup()
     is an integer >= 2 and <= 4
+    return: True / False to game_setup()
     """
     try:
         if player_count < 2 or player_count > 4:
             raise ValueError
     except ValueError:
-        print(f"{Fore.RED}{Back.BLACK}You entered {player_count} player(s). Try again...\n")
+        print(f"{Fore.RED}You entered {player_count} player(s). Try again...\n")
         return False
 
-    # return True if validation finds errors to ask user to re enter \
-    # number of players to continue while loop
     return True
 
 
 def snl_game(players):
     """
-    Iterate players
-    Loop through each until win condition met
+    iterate players
+    loop through each until win condition met
     """
     while True:
 
@@ -197,24 +200,30 @@ def snl_game(players):
             print(f"Player '{player_id}' current location is square '{curr_position}'.")  # testing
             # now pass curr_position variable to turn() function to process
             # the players new location based off their next dice roll
-            new_position = turn(player_id, player_inst, curr_position)
+            new_position = turn(player_id, curr_position)
             # print(f"player '{player_id}' rolled a six value is '{player_inst.extra_roll}'.")
             # update player instance attr with returned value from turn()
             player_inst.curr_square = new_position  # testing
             print(f"Player '{player_id}' new location is square '{player_inst.curr_square}'.\n")  # testing
 
-            # DISPLAY PLAYER'S POSTION ON BOARD HERE
-            # **************************************
+            # DISPLAY PLAYER'S POSTION ON NEW BOARD INSTANCE HERE
+            
+
             # check if win condition met
             check_win(player_id, player_inst)
 
 
-def roll_dice(player_inst):
+def roll_dice():
+    """
+    generate number from 1-6 using imported randint function
+    and save in a variable
+    return: roll to turn()
+    """
     roll = random.randint(1, 6)
     return roll
 
 
-def turn(player_id, player_inst, curr_position):
+def turn(player_id, curr_position):
     """
     For each player turn:
     1. Simulate dice roll - move to roll_dice()
@@ -226,7 +235,7 @@ def turn(player_id, player_inst, curr_position):
     if so give them another roll - move to snl_game()
     6. By default, move to next player.
     """
-    roll_num = roll_dice(player_inst)
+    roll_num = roll_dice()
     new_position = curr_position + roll_num
     print(f"Player '{player_id}' rolled a '{roll_num}' and moves from square '{curr_position}' to square '{new_position}'.")
     # evaluate if pawn has landed on a special square.
@@ -259,18 +268,15 @@ def welcome_screen():
     2. Options
     3. Ask user to begin game or quit application
     """
-    # display title
     title = "SNAKES AND LADDERS\n"
-    print(f"{Fore.GREEN}{Back.BLACK}{Style.BRIGHT}{title}")
-    # Ask user to begin game or quit application
+    print(f"{Fore.GREEN}{title}")
 
-    print(f"{Back.BLACK}Select an option: \n")
-    print(f"{Fore.RED}{Back.WHITE} 1 {Fore.WHITE}{Back.BLACK} View Rules    \n")
-    print(f"{Fore.GREEN}{Back.WHITE} 2 {Fore.WHITE}{Back.BLACK} View Board    \n")
-    print(f"{Fore.BLUE}{Back.WHITE} 3 {Fore.WHITE}{Back.BLACK} Play Game     \n")
+    print(f"{Back.BLACK}Select an option:\n")
+    print(f"{Fore.RED}1 {Fore.WHITE}View Rules\n")
+    print(f"{Fore.GREEN}2 {Fore.WHITE}View Board\n")
+    print(f"{Fore.BLUE}3 {Fore.WHITE}Play Game\n")
 
     try:
-        # code to run regardless, it may throw an exception...
         pre_game_choice = int(input(f"{Back.BLACK}Select from options {Fore.RED}{Back.BLACK}1{Fore.WHITE}, {Fore.GREEN}2 {Fore.WHITE}{Back.BLACK}or {Fore.BLUE}3{Fore.WHITE} \n"))
         if not input:
             raise ValueError
@@ -284,35 +290,35 @@ def welcome_screen():
             incorrect_value()
 
     except ValueError:
-        # except - if exception thrown, clear terminal and restart application
-        # capture nums out of range or text input
-        print(f'{Fore.RED}{Back.BLACK}Oops! Incorrect value submitted.')
-        sleep()  # short time delay
-        clear_terminal()  # clear terminal
-        pre_game()  # restart program
+        print(f'{Fore.RED}Incorrect value submitted.')
+        sleep()
+        clear_terminal()
+        pre_game()
 
 
 def incorrect_value():
     '''
     If value entered isn't a number from 1 to 3 throw an error
     '''
-    print(f'{Fore.RED}{Back.BLACK}\nOops! Incorrect value submitted. Restarting application')
-    clear_terminal()  # clear terminal
-    pre_game()  # restart program
+    print(f'{Fore.RED}\nIncorrect value submitted. Restarting application')
+    clear_terminal()
+    pre_game()
 
 
 def clear_terminal():
     """
     clear the terminal.
-    Credit Tim Nelson & [poke](https://stackoverflow.com/a/2084628)
+    return: None
     """
+    # Credit Tim Nelson & [poke](https://stackoverflow.com/a/2084628)
     sleep()
     os.system("cls" if os.name == "nt" else "clear")
 
 
 def sleep():
     '''
-    Display returned input for 2 seconds to be human readible
+    display returned input for 2 seconds to be human readible
+    return: None
     '''
     time.sleep(1)
 
@@ -320,6 +326,7 @@ def sleep():
 def pre_game():
     """
     Start of the program
+    return: None
     """
     welcome_screen()
 
