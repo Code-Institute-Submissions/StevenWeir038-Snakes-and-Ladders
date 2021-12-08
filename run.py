@@ -9,6 +9,36 @@ from colorama import Fore
 colorama.init(autoreset=True)  # so each new line defaults to white text
 
 
+class Board():
+    """
+    Board class
+    """
+    def __init__(self):
+    # build list of 100 items and convert from integer to string
+        board = []
+        row = []
+        for square in range(100, 0, -1):
+            row.append(str(square).zfill(3))
+            # build 1 row of 10 squares at a time
+            # in inner loop, use modulo to find first number divisible by 10 = 0
+            if (square-1) % 10 == 0:
+                board.append(row)
+                # clearout row list to ready for next loop
+                row = []
+        # after 10 lists built, reverse order of every even row in inner loop
+        for column in range(10):  # 10 cols on board as 100 / 10 = 10   len(board)
+            # inner loop reverses order of list
+            # to approximate classic board layout
+            if column % 2:
+                board[column].reverse()
+
+        # format for terminal output
+        for square in board:
+            print(" | ".join(square))
+
+        return
+
+
 class Player:
     """
     Player class
@@ -77,11 +107,11 @@ def draw_board():
 # build list of 100 items and convert from integer to string
     board = []
     row = []
-    for square in range(100,0,-1):
+    for square in range(100, 0, -1):
         row.append(str(square).zfill(3))
         # build 1 row of 10 squares at a time
         # in inner loop, use modulo to find first number divisible by 10 = 0
-        if (square-1)%10 == 0:
+        if (square-1) % 10 == 0:
             board.append(row)
             # clearout row list to ready for next loop
             row = []
@@ -95,45 +125,17 @@ def draw_board():
     return board
 
 
-class Board():
-    """
-    Board class
-    """
-    def __init__(self):
-        board = []
-        row = []
-        for square in range(100,0,-1):
-            row.append(str(square).zfill(3))
-            # build 1 row of 10 squares at a time
-            # in inner loop, use modulo to find first number divisible by 10 = 0
-            if (square-1)%10 == 0:
-                board.append(row)
-                # clearout row list to ready for next loop
-                row = []
-        # after 10 lists built, reverse order of every even row in inner loop
-        for column in range(10):  # 10 cols on board as 100 / 10 = 10   len(board)
-            # inner loop reverses order of list
-            # to approximate classic board layout
-            if column % 2:
-                board[column].reverse()
-
-        # format for terminal output
-        for square in board:
-            print(" | ".join(square))
-
-        return
-
-
 def turn_board(position, board):
     """
 
     return: board showing player position to snl_game()
     """
     # TEST INSIDE TURN BOARD
-    print(f"ITB - Player is on square {position}")  # testing
-    print(f"ITB\n{board}\n")  # testing
+    print(f"TURN BOARD - Player is on square {position}")  # testing
+    print(f"TURN BOARD - board list\n{board}\n")  # testing
 
     # format for terminal output
+    print(f"TURN BOARD - display to terminal")  # testing
     for square in board:
         print(" | ".join(square))
 
@@ -250,7 +252,7 @@ def snl_game(players):
 
             # now pass curr_position variable to turn() function to process
             # the players new location based off their next dice roll
-            new_position = turn(player_id, curr_position)
+            new_position = move(player_id, curr_position)
 
             # update player instance attr with returned value from turn()
             player_inst.curr_square = new_position  # testing
@@ -273,7 +275,7 @@ def roll_dice():
     return roll
 
 
-def turn(player_id, curr_position):
+def move(player_id, curr_position):
     """
     For each player turn:
     1. get roll value from roll_dice()
@@ -285,7 +287,7 @@ def turn(player_id, curr_position):
     roll_num = roll_dice()
     new_position = curr_position + roll_num
     print(f"'{player_id}' rolled a '{roll_num}'")
-    
+
     # evaluate if pawn has landed on a special square.
     # If so player moves from key to value in Snake/Ladder dict,
     # reassign value for current player object instance curr_position attribute
@@ -304,7 +306,7 @@ def check_win(player_id, player_inst):
     if they have exit the program
     '''
     if player_inst.curr_square >= 100:
-        print(f"Player '{player_id}' wins!\n")
+        print(f"\n🎉🎈'{player_id}' wins! 🎈🎉\n")
         exit()
 
 
