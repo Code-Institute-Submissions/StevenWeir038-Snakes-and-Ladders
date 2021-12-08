@@ -226,14 +226,11 @@ def roll_dice():
 def turn(player_id, curr_position):
     """
     For each player turn:
-    1. Simulate dice roll - move to roll_dice()
-    2. Move pawn based on value rolled.
-    3. Evaluate if pawn landed on ladder foot or snake head,
-    and move to other end.
-    4. Check if pawn lands on square 100 to win - move to snl_game()
-    5. Check of player rolled a six - move to snl_game()
-    if so give them another roll - move to snl_game()
-    6. By default, move to next player.
+    1. get roll value from roll_dice()
+    2. move x squares based on roll value.
+    3. evaluate if pawn landed on snake, read dict key move to dict value
+    4. evaluate if pawn landed on ladder, read dict key move to dict value
+    return: player_id and current position to snl_game()
     """
     roll_num = roll_dice()
     new_position = curr_position + roll_num
@@ -277,7 +274,7 @@ def welcome_screen():
     print(f"{Fore.BLUE}3 {Fore.WHITE}Play Game\n")
 
     try:
-        pre_game_choice = int(input(f"Select from options {Fore.RED}1{Fore.WHITE},{Fore.GREEN}2{Fore.WHITE} or {Fore.BLUE}3{Fore.WHITE}\n"))
+        pre_game_choice = int(input(f"Select from options {Fore.RED}1{Fore.WHITE}, {Fore.GREEN}2{Fore.WHITE} or {Fore.BLUE}3{Fore.WHITE}\n"))
         if not input:
             raise ValueError
         elif pre_game_choice == 1:
