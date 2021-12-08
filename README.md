@@ -64,9 +64,11 @@ To display a more traditional game board layout
 - [Manish V. Panchmatia](https://stackoverflow.com/a/55241525)
 
 ### Content
-[Snake](https://emojipedia.org/snake/) emoji from emojipedia.
-
-No [Ladder](https://emojipedia.org/linked-paperclips/) emoji was available so an analogue was used.
+Emojis from Emojipedia.
+- [Party horn](https://emojipedia.org/party-popper/)
+- [Ballon](https://emojipedia.org/balloon/)
+- [Snake](https://emojipedia.org/snake/)
+- [Paperclip](https://emojipedia.org/linked-paperclips/) (analogue was used as ladder unavailable)
 
 [Board image](https://www.istockphoto.com/vector/snakes-and-ladders-black-and-white-gm1066160462-285104267 "Board image") courtesy of iStock.
 
