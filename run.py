@@ -52,7 +52,7 @@ def view_rules():
         try:
             # code to run regardless, it may throw an exception...
             go_back_choice = int(
-                input(f"{Fore.RED} 1 {Fore.WHITE}Go back\n"))
+                input(f"{Fore.RED}1 {Fore.WHITE}Go back\n"))
             if not input:
                 raise ValueError
             elif go_back_choice == 1:
@@ -98,7 +98,7 @@ def view_board():
         try:
             # code to run regardless, it may throw an exception...
             go_back_choice = int(
-                input(f"{Fore.RED}\n 1 {Fore.WHITE}Go back\n"))
+                input(f"{Fore.RED}\n1 {Fore.WHITE}Go back\n"))
             if not input:
                 raise ValueError
             elif go_back_choice == 1:
@@ -133,7 +133,7 @@ def game_setup():
         # error handle both for an empty string and non int value
         # https://stackoverflow.com/a/4994509
         try:
-            player_count = int(input("Enter number of players between 2 and 4:\n")
+            player_count = int(input("Enter number of players between 2 and 4:\n"))
             if not input:
                 raise ValueError
 
@@ -271,13 +271,13 @@ def welcome_screen():
     title = "SNAKES AND LADDERS\n"
     print(f"{Fore.GREEN}{title}")
 
-    print(f"{Back.BLACK}Select an option:\n")
+    print("MENU\n")
     print(f"{Fore.RED}1 {Fore.WHITE}View Rules\n")
     print(f"{Fore.GREEN}2 {Fore.WHITE}View Board\n")
     print(f"{Fore.BLUE}3 {Fore.WHITE}Play Game\n")
 
     try:
-        pre_game_choice = int(input(f"{Back.BLACK}Select from options {Fore.RED}{Back.BLACK}1{Fore.WHITE}, {Fore.GREEN}2 {Fore.WHITE}{Back.BLACK}or {Fore.BLUE}3{Fore.WHITE} \n"))
+        pre_game_choice = int(input(f"Select from options {Fore.RED}1{Fore.WHITE},{Fore.GREEN}2{Fore.WHITE} or {Fore.BLUE}3{Fore.WHITE}\n"))
         if not input:
             raise ValueError
         elif pre_game_choice == 1:
