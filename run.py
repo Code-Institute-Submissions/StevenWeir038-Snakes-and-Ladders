@@ -72,26 +72,70 @@ def view_rules():
 
 
 def draw_board():
-    '''
-    draw a board with classic layout
-    '''
-    # Credit to Manish V. Panchmatia(https://stackoverflow.com/a/55241525)
-    for i in range(99, -1, -1):
-        if (i // 10) % 2 == 0:
-            print("{0:4d}".format(i - 10 + 2 * (10 - (i % 10))), end=" ")
-        else:
-            print("{0:4d}".format(i + 1), end=" ")
-        if i % 10 == 0:
-            print("\r")
+    """ make board list of 10 nested lists 
+        returns: nested lists  """
+# build list of 100 items and convert from integer to string
+    board = []
+    row = []
+    for square in range(100,0,-1):
+        row.append(str(square).zfill(3))
+        # build 1 row of 10 squares at a time
+        # in inner loop, use modulo to find first number divisible by 10 = 0
+        if (square-1)%10 == 0:
+            board.append(row)
+            # clearout row list to ready for next loop
+            row = []
+    # after 10 lists built, reverse order of every even row in inner loop
+    for column in range(10):  # 10 cols on board as 100 / 10 = 10   len(board)
+        # inner loop reverses order of list
+        # to approximate classic board layout
+        if column % 2:
+            board[column].reverse()
+
+    return board
+
+
+class Board():
+    """
+    Board class
+    """
+    def __init__(self):
+        board = []
+        row = []
+        for square in range(100,0,-1):
+            row.append(str(square).zfill(3))
+            # build 1 row of 10 squares at a time
+            # in inner loop, use modulo to find first number divisible by 10 = 0
+            if (square-1)%10 == 0:
+                board.append(row)
+                # clearout row list to ready for next loop
+                row = []
+        # after 10 lists built, reverse order of every even row in inner loop
+        for column in range(10):  # 10 cols on board as 100 / 10 = 10   len(board)
+            # inner loop reverses order of list
+            # to approximate classic board layout
+            if column % 2:
+                board[column].reverse()
+
+        # format for terminal output
+        for square in board:
+            print(" | ".join(square))
+
+        return
 
 
 def turn_board(position, board):
     """
 
-    return:
+    return: board showing player position to snl_game()
     """
-    print(f"Player is on square {position}")  # testing
-    # print(board)  # testing
+    # TEST INSIDE TURN BOARD
+    print(f"ITB - Player is on square {position}")  # testing
+    print(f"ITB\n{board}\n")  # testing
+
+    # format for terminal output
+    for square in board:
+        print(" | ".join(square))
 
 
 def view_board():
@@ -102,26 +146,23 @@ def view_board():
     menu option to go back to welcome screen
     """
     clear_terminal()
-    draw_board()
+    menu_board = Board()
 
     while True:
         try:
-            # code to run regardless, it may throw an exception...
             go_back_choice = int(
                 input(f"{Fore.RED}\n1 {Fore.WHITE}Go back\n"))
             if not input:
                 raise ValueError
             elif go_back_choice == 1:
-                clear_terminal()  # clear terminal
-                welcome_screen()  # go back to welcome screen
+                clear_terminal()
+                welcome_screen()
 
         except ValueError:
-            # capture no input or text input
             sleep()
             print(f"{Fore.RED}No input or text entered.  Key 1 to return.\n")
 
         else:
-            # tell user if out of range number entered
             sleep()
             print(f"{Fore.RED}Incorrect number keyed. Key 1 to return.\n")
 
@@ -244,11 +285,10 @@ def turn(player_id, curr_position):
     roll_num = roll_dice()
     new_position = curr_position + roll_num
     print(f"'{player_id}' rolled a '{roll_num}'")
+    
     # evaluate if pawn has landed on a special square.
     # If so player moves from key to value in Snake/Ladder dict,
     # reassign value for current player object instance curr_position attribute
-    # if player position matches key in SNAKE_HEAD, its value becomes the
-    # snake tail which equals the SNAKE_HEAD value
     if new_position in SNAKE_HEAD:
         new_position = SNAKE_HEAD[new_position]
         print(f"'{player_id}' landed on a 🐍")
