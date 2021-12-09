@@ -21,7 +21,7 @@ Three additional game rules can be applied for extra complexity.
 3. An exact throw is required to reach square 100.  If the throw exceeds 100 the player must move backwards. Watch out for the snakes!
 
 ## Deployment
-[Go to DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions to deploy application to Heroku.
+Go to [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions to deploy application to Heroku.
 
 ## Testing
 Go to [TESTING.md](TESTING.md) to view known bugs and fixes.
@@ -66,7 +66,8 @@ To display a more traditional game board layout
 ### Content
 Emojis from Emojipedia.
 - [Party horn](https://emojipedia.org/party-popper/)
-- [Ballon](https://emojipedia.org/balloon/)
+- [Balloon](https://emojipedia.org/balloon/)
+- [Chequered Flag](https://emojipedia.org/chequered-flag/)
 - [Snake](https://emojipedia.org/snake/)
 - [Paperclip](https://emojipedia.org/linked-paperclips/) (analogue was used as ladder unavailable)
 
