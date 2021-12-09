@@ -22,10 +22,10 @@ def game_instructions():
 
 
     FOR EACH PLAYER:
-    
+
     🎲 Each player throws the dice and moves their pawn according to the
        number shown on the dice.
-       
+
     🎲 If a player's pawn lands on an empty square there is no effect.
 
     🎲 If a player's pawn ends its move at the foot of a ladder, the pawn
