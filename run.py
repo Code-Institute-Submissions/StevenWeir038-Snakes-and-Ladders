@@ -6,7 +6,7 @@ import time
 from rules import game_instructions
 import colorama
 from colorama import Fore
-colorama.init(autoreset=True)  # so each new line defaults to white text
+colorama.init(autoreset=True)  # defaults new line text = white
 
 
 class Board():
@@ -26,7 +26,7 @@ class Board():
                 # clearout row list to ready for next loop
                 row = []
         # after 10 lists built, reverse order of every even row in inner loop
-        for column in range(10):  # 10 cols on board as 100 / 10 = 10   len(board)
+        for column in range(10):  # 10 cols on board as 100 / 10 = 10
             # inner loop reverses order of list
             # to approximate classic board layout
             if column % 2:
@@ -72,8 +72,8 @@ LADDER_FOOT = {
 
 def view_rules():
     '''
-    Clear terminal
-    View Rules (import from rules.py)
+    clear terminal
+    view Rules (import from rules.py)
     Back to welcome screen
     '''
     clear_terminal()
@@ -118,7 +118,7 @@ def draw_board():
             # clearout row list to ready for next loop
             row = []
     # after 10 lists built, reverse order of every even row in inner loop
-    for column in range(10):  # 10 cols on board as 100 / 10 = 10   len(board)
+    for column in range(10):  # 10 cols on board as 100 / 10 = 10
         # inner loop reverses order of list
         # to approximate classic board layout
         if column % 2:
@@ -126,12 +126,12 @@ def draw_board():
 
     return board
 
-
+# 📌
 def turn_board(position, board):
     """
-    convert player position integer to string
-    evaluate that value against board list items
-    if value > 100, format square 100
+    if value player position integer > 100, format square 100
+    convert player position from integer to string
+    evaluate player position string by looping through board list items
     format the matching list value
     return: None
     """
@@ -145,11 +145,12 @@ def turn_board(position, board):
     print(board)  # testing
     print(type(board))  # testing
 
-    # INSERT EVAL FOR MATCHING VALUES HERE, LOOP THROUGH BOARD LIST
-    # MOVE TO SEPARATE FUNCTION FOR SOC.
-
+    
+    # first check if player is on or beyond square 100 to display flag
+    # on board
     if position >= 100:
-        board[0],[0] == f"{Fore.RED}X📌"
+        board[0][0] = " 🏁"
+
 
     # else:
         # for square in board:
@@ -167,7 +168,7 @@ def view_board():
     """
     for use in the menu to show player the board output
     clear terminal
-    draw board
+    draw board using Board class
     menu option to go back to welcome screen
     """
     clear_terminal()
@@ -199,7 +200,7 @@ def game_setup():
     call function to validate user input
     apply pawn color to each player,
     P1 = red, P2 = green, P3 = blue, P4 = yellow
-    return: dictionary of players to snl_game()
+    return: 'players' dictionary to snl_game()
     """
     clear_terminal()
 
@@ -242,6 +243,7 @@ def game_setup():
 
 def validate_player_count(player_count):
     """
+    parameters: number of players (integer) from game_setup()
     check the players list passed from game_setup()
     is an integer >= 2 and <= 4
     return: True / False to game_setup()
@@ -258,7 +260,8 @@ def validate_player_count(player_count):
 
 def snl_game(players):
     """
-    iterate players
+    parameters: 'players' dictionary from game_setup()
+    iterate player
     loop through each until win condition met
     return: None
     """
@@ -278,11 +281,11 @@ def snl_game(players):
             # the players new location based off their next dice roll
             new_position = move(player_id, curr_position)
 
-            # update player instance attr with returned value from turn()
+            # update player instance attribute with returned value from move()
             player_inst.curr_square = new_position  # testing
             print(f"'{player_id}' moves to square '{new_position}'.\n")
 
-            # display player position on board
+            # display player position on a board in the terminal
             turn_board(new_position, draw_board())
 
             # check if win condition met
@@ -291,8 +294,7 @@ def snl_game(players):
 
 def roll_dice():
     """
-    generate number from 1-6 using imported randint function
-    and save in a variable
+    generate number 1-6 using imported randint function and save to variable
     return: roll_num in move()
     """
     roll = random.randint(1, 6)
@@ -301,6 +303,7 @@ def roll_dice():
 
 def move(player_id, curr_position):
     """
+    parameters: 'player_ID' and 'curr_position'  from snl_game()
     For each player move:
     1. get roll value from roll_dice()
     2. move x squares based on roll value.
@@ -312,9 +315,6 @@ def move(player_id, curr_position):
     new_position = curr_position + roll_num
     print(f"'{player_id}' rolled a '{roll_num}'")
 
-    # evaluate if pawn has landed on a special square.
-    # If so player moves from key to value in Snake/Ladder dict,
-    # reassign value for current player object instance curr_position attribute
     if new_position in SNAKE_HEAD:
         new_position = SNAKE_HEAD[new_position]
         print(f"'{player_id}' landed on a 🐍")
@@ -326,8 +326,7 @@ def move(player_id, curr_position):
 
 def check_win(player_id, player_inst):
     '''
-    check if player has reached or passed 100
-    if they have exit the program
+    evaluiate if player has reached or passed 100 to terminate program
     '''
     if player_inst.curr_square >= 100:
         print(f"\n🎉 🎈'{player_id}' wins! 🎈 🎉\n")
@@ -363,7 +362,7 @@ def welcome_screen():
             incorrect_value()
 
     except ValueError:
-        print(f'{Fore.RED}Incorrect value submitted.')
+        print(f'{Fore.RED}Incorrect value submitted. Restarting application')
         sleep()
         clear_terminal()
         pre_game()
