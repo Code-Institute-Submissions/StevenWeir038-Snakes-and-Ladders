@@ -383,7 +383,7 @@ for i in board:
 
 A search of [Stackoverflow](https://stackoverflow.com/a/55241525) yielded the following to achieve the classic layout:
 
-*New Board code snippet 1*
+*New Board code snippet*
 
 ``` python
 # Credit to Manish V. Panchmatia(https://stackoverflow.com/a/55241525)
@@ -396,19 +396,43 @@ for i in range(99, -1, -1):
         print("\r")
 ```
 
-*New Board 1 on Terminal*
+*New Board on Terminal*
 
 ![new-board-1](docs/readme/new-board-1.png "new-board-1")
 
-Manish's solution is excellent.  Future embelishments could include displaying:
-- every odd square to be a white background/black foreground.
-- every even square to be a pink background/white foreground (so not to clash with player pawn colours).
+Manish's solution is excellent but it lacks an **iterable** structure to represent board squares.
+I approximated has layout and incorporated a list structure with the following:
 
-What it lacks is an **iterable** structure to represent board squares.
+``` python
+# build list of 100 items and convert from integer to string
+    board = []
+    row = []
+    for square in range(100, 0, -1):
+        row.append(str(square).zfill(3))
+        # build 1 row of 10 squares at a time
+        # in inner loop, use modulo to find first number divisible by 10 = 0
+        if (square-1) % 10 == 0:
+            board.append(row)
+            # clearout row list to ready for next loop
+            row = []
+    # after 10 lists built, reverse order of every even row in inner loop
+    for column in range(10):  # 10 cols on board as 100 / 10 = 10
+        # inner loop reverses order of list
+        # to approximate classic board layout
+        if column % 2:
+            board[column].reverse()
+    # for a neat terminal output
+    for square in board:
+        print(" | ".join(square))
+```
+
+*Final Board on Terminal*
+
+![final-board](docs/readme/final-board.png "final-board")
 
 **NB. I also played around with creating a board class**.
 
-Only issue was that player moves were marked on the board and saved.  As the game progressed, previous moves marked with a `XX` obscured the square numbers as the grid was being updated.
+An issue was that player moves were marked on the board and saved.  As the game progressed, previous moves marked with a `XX` obscured the square numbers as the grid was being updated.
 
 To display a clean board with only the players latest position, it is easiest to use two functions with every player turn.
 1. Draw a new board
@@ -432,7 +456,7 @@ board[0][0] = " 🏁"
 
 *Final Board 1 on Terminal*
 
-Note that I bypassed testing for a string value of 100 as the position my have been more than 100 and not evaluated to True.  The flag would be drawn into the above nested index as a result.
+Note that I bypassed testing for a string value of 100 as the position my have been more than 100 and not evaluated to True.  The flag would not have been drawn into the above nested index `[0][0]` as a result.
 
 ![testing-board-display-on-win](docs/readme/testing-board-display-on-win.png "testing-board-display-on-win")
 
