@@ -31,6 +31,8 @@ Flowcharts created with [Lucidchart](https://www.lucidchart.com/pages/).
 
 Web deployment using [Heroku](https://www.heroku.com/about).
 
+SVG background in browser generated using [Convertio](https://convertio.co/) and edited using [Boxy](https://boxy-svg.com/).  Both were free to use.
+
 Python version 3.8
 
 Additional Python libraries used:
@@ -57,11 +59,17 @@ To repeat the same iteration of a loop depending on a condition.
 Error handling for empty and non integer values at the same time.
 - [Joshua Burns](https://stackoverflow.com/a/4994509)
 
-To clear the terminal window
+To clear the terminal window.
 - [poke](https://stackoverflow.com/a/2084628)
 
-To display a more traditional game board layout
+To display a more traditional game board layout.
 - [Manish V. Panchmatia](https://stackoverflow.com/a/55241525)
+
+And to provide the board's text/alignment some uniformity.
+- [yucer](https://stackoverflow.com/q/40999973)
+
+Inspiration to use a SVG background in the browser.
+- [Matt Bodden](https://github.com/MattBCoding). A fellow student at the [Code Institute](https://codeinstitute.net/).  We have never met though I appreciate the quality of his content.
 
 ### Content
 Emojis from Emojipedia.
