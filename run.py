@@ -70,7 +70,7 @@ LADDER_FOOT = {
 }
 
 def menu_return():
-    input(f"\nPress{Fore.RED} Enter{Fore.WHITE} to return\n")
+    input(f"\nPress{Fore.RED} ENTER{Fore.WHITE} to return\n")
     clear_terminal()
     welcome_screen()
 
