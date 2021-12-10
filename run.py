@@ -20,7 +20,7 @@ class Board():
         for square in range(100, 0, -1):
             row.append(str(square).zfill(3))
             # build 1 row of 10 squares at a time
-            # in inner loop, use modulo to find first number divisible by 10 = 0
+            # in inner loop, use modulo to find 1st number divisible by 10 = 0
             if (square-1) % 10 == 0:
                 board.append(row)
                 # clearout row list to ready for next loop
@@ -69,6 +69,10 @@ LADDER_FOOT = {
     1: 38, 4: 14, 9: 31, 21: 42, 28: 84, 36: 44, 51: 67, 71: 91, 80: 100
 }
 
+def menu_return():
+    input(f"\nPress{Fore.RED} Enter{Fore.WHITE} to return\n")
+    clear_terminal()
+    welcome_screen()
 
 def view_rules():
     '''
@@ -78,27 +82,7 @@ def view_rules():
     '''
     clear_terminal()
     print(game_instructions())
-    while True:
-        try:
-            # code to run regardless, it may throw an exception...
-            go_back_choice = int(
-                input(f"{Fore.RED}1 {Fore.WHITE}Go back\n"))
-            if not input:
-                raise ValueError
-            elif go_back_choice == 1:
-                sleep()  # short time delay
-                clear_terminal()  # clear terminal
-                welcome_screen()  # go back to welcome screen
-
-        except ValueError:
-            # capture no input or text input
-            sleep()
-            print(f"{Fore.RED}No input or text entered.  Key 1 to return.\n")
-
-        else:
-            # tell user if out of range number entered
-            sleep()
-            print(f"{Fore.RED}Incorrect number keyed. Key 1 to return.\n")
+    menu_return()
 
 
 def draw_board():
@@ -126,7 +110,7 @@ def draw_board():
 
     return board
 
-# 📌
+
 def turn_board(position, board):
     """
     if value player position integer > 100, format square 100
@@ -138,26 +122,26 @@ def turn_board(position, board):
     # TEST INSIDE TURN BOARD
     print(f"TURN BOARD - Player is on square {position}")  # testing
 
-    str_pos = str(position)
-    print(str_pos)  # testing
-    print(type(str_pos))  # testing
-
-    print(board)  # testing
-    print(type(board))  # testing
-
-    
+    str_pos = str(position).zfill(3)
     # first check if player is on or beyond square 100 to display flag
-    # on board
+    # on square 100
     if position >= 100:
         board[0][0] = " 🏁"
 
+    # Get the index of the element which needs to be replaced and then
+    # reassign the element value.
+    # original values
+    print(str_pos)  # testing
 
-    # else:
-        # for square in board:
-            # str(square) == str_pos
-
-        # print(f"TURN BOARD - board list\n{board}\n")  # testing
-
+    # Indhumathy Chelliah
+    # Replace all occurrences of an element in a nested list?
+    # https://betterprogramming.pub/10-important-tips-for-using-nested-lists-in-python-38ceca68be35
+    # for x, row in enumerate(board):
+    #     for y, col in enumerate(row):
+    #         if col == str_pos:
+    #             board[x][y] = " 📌"
+    board_xy = [" 📌" for x, row in enumerate(board) for y, col in enumerate(row) if col == str_pos]
+    print(board)  # testing
     # format for terminal output
     print("TURN BOARD - display to terminal")  # testing
     for square in board:
@@ -173,25 +157,7 @@ def view_board():
     """
     clear_terminal()
     Board()
-
-    while True:
-        try:
-            go_back_choice = int(
-                input(f"{Fore.RED}\n1 {Fore.WHITE}Go back\n"))
-            if not input:
-                raise ValueError
-            elif go_back_choice == 1:
-                clear_terminal()
-                welcome_screen()
-
-        except ValueError:
-            sleep()
-            print(f"{Fore.RED}No input or text entered.  Key 1 to return.\n")
-
-        else:
-            sleep()
-            print(f"{Fore.RED}Incorrect number keyed. Key 1 to return.\n")
-
+    menu_return()
 
 def game_setup():
     """
@@ -326,7 +292,7 @@ def move(player_id, curr_position):
 
 def check_win(player_id, player_inst):
     '''
-    evaluiate if player has reached or passed 100 to terminate program
+    evaluate if player has reached or passed 100 to terminate program
     '''
     if player_inst.curr_square >= 100:
         print(f"\n🎉 🎈'{player_id}' wins! 🎈 🎉\n")
@@ -373,6 +339,7 @@ def incorrect_value():
     If value entered isn't a number from 1 to 3 throw an error
     '''
     print(f'{Fore.RED}\nIncorrect value submitted. Restarting application')
+    sleep()
     clear_terminal()
     pre_game()
 
@@ -400,6 +367,7 @@ def pre_game():
     Start of the program
     return: None
     """
+    clear_terminal()
     welcome_screen()
 
 
