@@ -55,7 +55,7 @@ class Player:
         (plan is to update the VALUE ingame with dice roll or landing on a \
         snake head/ladder foot to simulate player's current position)
         """
-        player_location = {f"{self.pawn_color} pawn is on square \
+        player_location = {f"{self.pawn_color} is on square \
         {self.curr_square} "}
 
         return player_location
@@ -87,6 +87,7 @@ def quit_application():
     # confirm if user still wants to quit application
     ans = input("\nAre you sure you want to quit? Y/N\n")
     if ans.lower() in ["y","yes"]:
+        clear_terminal()
         msg = "Thanks for playing!"
         print_center(msg)
         sleep(3)
@@ -212,7 +213,8 @@ def game_setup():
                 raise ValueError
 
             if validate_player_count(player_count):
-                print(f"{Fore.GREEN}\nValid input. Creating players...\n")
+                print(f"{Fore.GREEN}\nValid input. Creating game for {Fore.WHITE}{player_count}{Fore.GREEN} players...\n")
+                sleep(5)
                 # create list of players - use pawn color
                 player_list = []
 
@@ -277,10 +279,12 @@ def snl_game(players):
         for player_id, player_inst in players.items():
             # key is the player iterable, value is the Player object instance
 
-            # breakpoint - user intervention to roll dice
-            turn_prompt()
-
             print(f"\nTURN - '{player_id}'")
+
+            # breakpoint - user intervention to roll dice
+            # turn_prompt()
+            # clear_terminal()
+            input(f"\n{Fore.BLUE}ROLL DICE?{Fore.WHITE}...\n")
 
             # establish current player's location on board and
             # assign the object attr to 'curr_position' using .notation
@@ -340,7 +344,7 @@ def check_win(player_id, player_inst):
     '''
     if player_inst.curr_square >= 100:
         print(f"\n🎉 🎈'{player_id}' wins! 🎈 🎉\n")
-        exit()
+        menu_return()
 
     # code here to ask user to go back to menu
 
