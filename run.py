@@ -301,13 +301,8 @@ def check_win(player_id, player_inst):
 
 def menu_screen():
     """
-    1. Display title
-    2. Options
-    3. Offer user game options or to restart application
+    Menu
     """
-    title = "SNAKES AND LADDERS\n"
-    print(f"{Fore.GREEN}{title}")
-
     print("MENU\n")
     print(f"{Fore.RED}1 {Fore.WHITE}View Rules\n")
     print(f"{Fore.GREEN}2 {Fore.WHITE}View Board\n")
@@ -315,8 +310,7 @@ def menu_screen():
     print(f"{Fore.MAGENTA}4 {Fore.WHITE}Quit Application\n")
 
     try:
-        pre_game_choice = int(input(
-            f"Select from options {Fore.RED}1{Fore.WHITE}, {Fore.GREEN}2{Fore.WHITE}, {Fore.BLUE}3{Fore.WHITE}, {Fore.MAGENTA}4\n"))
+        pre_game_choice = int(input(f"Select from options {Fore.RED}1{Fore.WHITE}, {Fore.GREEN}2{Fore.WHITE}, {Fore.BLUE}3{Fore.WHITE}, {Fore.MAGENTA}4\n"))
         if not input:
             raise ValueError
         elif pre_game_choice == 1:
@@ -334,7 +328,7 @@ def menu_screen():
 
     except ValueError:
         print(f'{Fore.RED}Incorrect value submitted. Restarting application')
-        sleep()
+        sleep()  # To provide 1 extra second to view message
         clear_terminal()
         pre_game()
 
@@ -344,7 +338,7 @@ def incorrect_value():
     If value entered isn't a number from 1 to 3 throw an error
     '''
     print(f'{Fore.RED}\nIncorrect value submitted. Restarting application')
-    sleep()
+    sleep()  # To provide 1 extra second to view message
     clear_terminal()
     pre_game()
 
@@ -370,8 +364,15 @@ def sleep():
 def pre_game():
     """
     Start of the program
+    display title
+    ask user if they want to view menu screen
     return: None
     """
+    clear_terminal()
+    title = "\nSNAKES AND LADDERS\n"
+    print(f"{Fore.GREEN}{title}")
+
+    input(f"Press{Fore.BLUE} ENTER{Fore.WHITE}\n")
     clear_terminal()
     menu_screen()
 
