@@ -401,7 +401,7 @@ for i in range(99, -1, -1):
 ![new-board-1](docs/readme/new-board-1.png "new-board-1")
 
 Manish's solution is excellent but it lacks an **iterable** structure to represent board squares.
-I approximated has layout and incorporated a list structure with the following:
+I approximated his layout and incorporated a list structure with the following:
 
 ``` python
 # build list of 100 items and convert from integer to string
@@ -434,7 +434,7 @@ I approximated has layout and incorporated a list structure with the following:
 
 An issue was that player moves were marked on the board and saved.  As the game progressed, previous moves marked with a `XX` obscured the square numbers as the grid was being updated.
 
-To display a clean board with only the players latest position, it is easiest to use two functions with every player turn.
+To display a clean board with only the players latest position, I used two functions with every player turn.
 1. Draw a new board
 2. Loop through the displayed board showing player position.
 
@@ -450,15 +450,32 @@ turn_board(new_position, draw_board())
 *Board displayed on win code snippet 1*
 
 ``` python
+# first check if player is >= square 100 to display flag on square with string '100'
+# requires the integer of the position value passed into turn_board() function
 if position >= 100:
 board[0][0] = " 🏁"
 ```
 
-*Final Board 1 on Terminal*
+*Final Board 1 on Terminal - displaying victory*
 
-Note that I bypassed testing for a string value of 100 as the position my have been more than 100 and not evaluated to True.  The flag would not have been drawn into the above nested index `[0][0]` as a result.
+Note that I bypassed testing for a `string` value of `"100"` as the player position may have been *more than* an *integer* of `100`.
+The flag emoji would therefore not been drawn into the nested index at `[0][0]` due to a Falsy evaluation.
 
 ![testing-board-display-on-win](docs/readme/testing-board-display-on-win.png "testing-board-display-on-win")
+
+After a few false starts and further research, I found the best way to pinpoint a list items index based upon its value. Use `enumerate`.
+
+When looping through a list to check for matching values, the counter value in enumerate can be inserted into a variable which holds the index if the value we are searching.  In this case.  Do something to a list item if `str_pos` == `board_xy`.
+
+
+![testing-board-display-on-move](docs/readme/testing-board-display-on-move.png "testing-board-display-on-move")
+
+The code was refactored to the following list comprehension to achieve the same result.
+
+``` python
+board_xy = [" 📌" for x, row in enumerate(board) for y, col in enumerate(row) if col == str_pos]
+```
+
 
 
 [Return to README.md](README.md)
