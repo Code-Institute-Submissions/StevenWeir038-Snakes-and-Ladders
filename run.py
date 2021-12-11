@@ -80,12 +80,15 @@ def print_center(msg):
 
 def quit_application():
     """
+    confirm if user still wants to quit application
     display message and exit app after a short time
     """
     clear_terminal()
+    # confirm if user still wants to quit application
+
     msg = "Thanks for playing!"
     print_center(msg)
-    sleep()
+    sleep(3)
     clear_terminal()
     exit()
 
@@ -157,12 +160,11 @@ def turn_board(position, board):
     for x, row in enumerate(board):
         for y, col in enumerate(row):
             if col == str_pos:
-                board[x][y] = " 📌"
+                board[x][y] = " 📌 "
 
-    # board_xy = [" 📌" for x, row in enumerate(board) for y, col in enumerate(row) if col == str_pos]
+    # board_xy = [" 📌 " for x, row in enumerate(board) for y, col in enumerate(row) if col == str_pos]
 
     # format for terminal output
-    print("TURN BOARD - display to terminal")  # testing
     for square in board:
         print(" | ".join(square))
 
@@ -332,6 +334,9 @@ def check_win(player_id, player_inst):
         print(f"\n🎉 🎈'{player_id}' wins! 🎈 🎉\n")
         exit()
 
+    # code here to ask user to go back to menu
+
+
 
 def menu_screen():
     """
@@ -360,20 +365,20 @@ def menu_screen():
             incorrect_value()
 
     except ValueError:
-        print(f'{Fore.RED}Incorrect value submitted. Restarting application')
-        sleep()  # To provide 1 extra second to view message
+        print(f'{Fore.RED}Incorrect value submitted.')
+        sleep(2)
         clear_terminal()
-        pre_game()
+        menu_screen()
 
 
 def incorrect_value():
     '''
     If value entered isn't a number from 1 to 4 throw an error
     '''
-    print(f'{Fore.RED}\nIncorrect value submitted. Restarting application')
-    sleep()  # To provide 1 extra second to view message
+    print(f'{Fore.RED}\nIncorrect value submitted.')
+    sleep(2)
     clear_terminal()
-    pre_game()
+    menu_screen()
 
 
 def clear_terminal():
@@ -382,16 +387,16 @@ def clear_terminal():
     return: None
     """
     # Credit Tim Nelson & [poke](https://stackoverflow.com/a/2084628)
-    sleep()
     os.system("cls" if os.name == "nt" else "clear")
 
 
-def sleep():
+def sleep(secs):
     '''
-    display returned input for 2 seconds to be human readible
+    display returned input for defined number of seconds for information to
+    be useful to user
     return: None
     '''
-    time.sleep(1)
+    time.sleep(secs)
 
 
 def pre_game():
