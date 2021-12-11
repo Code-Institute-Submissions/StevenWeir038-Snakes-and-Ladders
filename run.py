@@ -418,7 +418,7 @@ def pre_game():
     """
     clear_terminal()
     title = Figlet(font='small')
-    print(colored(title.renderText("    Snakes & Ladders"), 'yellow'))
+    print(colored(title.renderText("   Snakes  & Ladders"), 'yellow'))
     input(f"\nPress{Fore.BLUE} Enter{Fore.WHITE}\n")
     clear_terminal()
     menu_screen()
