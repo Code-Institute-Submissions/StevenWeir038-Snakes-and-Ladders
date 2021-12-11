@@ -69,8 +69,15 @@ LADDER_FOOT = {
     1: 38, 4: 14, 9: 31, 21: 42, 28: 84, 36: 44, 51: 67, 71: 91, 80: 100
 }
 
+def quit_application():
+    clear_terminal()
+    msg = "Thanks for playing!"
+    print(msg)
+    clear_terminal()
+    exit()
+
 def menu_return():
-    input(f"\nPress{Fore.RED} ENTER{Fore.WHITE} to return\n")
+    input(f"\nPress{Fore.BLUE} ENTER{Fore.WHITE} to return\n")
     clear_terminal()
     menu_screen()
 
@@ -82,7 +89,7 @@ def view_rules():
     '''
     clear_terminal()
     print(game_instructions())
-    ()
+    menu_return()
 
 
 def draw_board():
@@ -310,7 +317,7 @@ def menu_screen():
     print(f"{Fore.MAGENTA}4 {Fore.WHITE}Quit Application\n")
 
     try:
-        pre_game_choice = int(input(f"Select from options {Fore.RED}1{Fore.WHITE}, {Fore.GREEN}2{Fore.WHITE}, {Fore.BLUE}3{Fore.WHITE}, {Fore.MAGENTA}4\n"))
+        pre_game_choice = int(input(f"Select from options {Fore.RED}1{Fore.WHITE}, {Fore.GREEN}2{Fore.WHITE}, {Fore.BLUE}3{Fore.WHITE}, {Fore.MAGENTA}4{Fore.WHITE}.\n"))
         if not input:
             raise ValueError
         elif pre_game_choice == 1:
@@ -320,8 +327,7 @@ def menu_screen():
         elif pre_game_choice == 3:
             game_setup()
         elif pre_game_choice == 4:
-            clear_terminal()
-            exit()
+            quit_application()
 
         else:
             incorrect_value()
@@ -335,7 +341,7 @@ def menu_screen():
 
 def incorrect_value():
     '''
-    If value entered isn't a number from 1 to 3 throw an error
+    If value entered isn't a number from 1 to 4 throw an error
     '''
     print(f'{Fore.RED}\nIncorrect value submitted. Restarting application')
     sleep()  # To provide 1 extra second to view message
