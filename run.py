@@ -7,6 +7,8 @@ from rules import game_instructions
 import colorama
 from colorama import Fore
 colorama.init(autoreset=True)  # defaults new line text = white
+from pyfiglet import Figlet
+from termcolor import colored
 
 
 class Board():
@@ -264,7 +266,7 @@ def turn_prompt():
     returns: ?
     """
 
-    input(f"\n{Fore.BLUE}ROLLING DICE{Fore.WHITE}...\n")
+    input(f"\n{Fore.BLUE}ROLL DICE{Fore.WHITE} for next player?\n")
 
 
 def snl_game(players):
@@ -415,8 +417,8 @@ def pre_game():
     return: None
     """
     clear_terminal()
-    title = "SNAKES AND LADDERS"  # replace with ascii art of pyfiglet
-    print_center(title)
+    title = Figlet(font='small')
+    print(colored(title.renderText("Snakes  & Ladders"), 'yellow'))
     input(f"\nPress{Fore.BLUE} Enter{Fore.WHITE}\n")
     clear_terminal()
     menu_screen()
