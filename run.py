@@ -69,17 +69,21 @@ LADDER_FOOT = {
     1: 38, 4: 14, 9: 31, 21: 42, 28: 84, 36: 44, 51: 67, 71: 91, 80: 100
 }
 
+
 def quit_application():
     clear_terminal()
     msg = "Thanks for playing!"
     print(msg)
+    sleep()
     clear_terminal()
     exit()
+
 
 def menu_return():
     input(f"\nPress{Fore.BLUE} ENTER{Fore.WHITE} to return\n")
     clear_terminal()
     menu_screen()
+
 
 def view_rules():
     '''
@@ -127,7 +131,7 @@ def turn_board(position, board):
     return: None
     """
     # TEST INSIDE TURN BOARD
-    print(f"TURN BOARD - Player is on square {position}")  # testing
+    # print(f"TURN BOARD - Player is on square {position}")  # testing
 
     str_pos = str(position).zfill(3)
     # first check if player is on or beyond square 100 to display flag
@@ -138,17 +142,20 @@ def turn_board(position, board):
     # Get the index of the element which needs to be replaced and then
     # reassign the element value.
     # original values
-    print(str_pos)  # testing
+    # print(str_pos)  # testing
 
     # Indhumathy Chelliah
     # Replace all occurrences of an element in a nested list?
     # https://betterprogramming.pub/10-important-tips-for-using-nested-lists-in-python-38ceca68be35
-    # for x, row in enumerate(board):
-    #     for y, col in enumerate(row):
-    #         if col == str_pos:
-    #             board[x][y] = " 📌"
-    board_xy = [" 📌" for x, row in enumerate(board) for y, col in enumerate(row) if col == str_pos]
-    print(board)  # testing
+    for x, row in enumerate(board):
+        for y, col in enumerate(row):
+            if col == str_pos:
+                board[x][y] = " 📌"
+
+    # board_xy = [" 📌" for x, row in enumerate(board) for y, col in enumerate(row) if col == str_pos]
+    
+    # print(board)  # testing
+
     # format for terminal output
     print("TURN BOARD - display to terminal")  # testing
     for square in board:
@@ -165,6 +172,7 @@ def view_board():
     clear_terminal()
     Board()
     menu_return()
+
 
 def game_setup():
     """
