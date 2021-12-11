@@ -153,22 +153,13 @@ def turn_board(position, board):
     if position >= 100:
         board[0][0] = " 🏁"
 
-    # Get the index of the element which needs to be replaced and then
-    # reassign the element value.
-    # original values
-    # print(str_pos)  # testing
-
-    # Indhumathy Chelliah
-    # Replace all occurrences of an element in a nested list?
-    # https://betterprogramming.pub/10-important-tips-for-using-nested-lists-in-python-38ceca68be35
+    # Replace all occurrences of an element in a nested list
     for x, row in enumerate(board):
         for y, col in enumerate(row):
             if col == str_pos:
                 board[x][y] = " 📌"
 
     # board_xy = [" 📌" for x, row in enumerate(board) for y, col in enumerate(row) if col == str_pos]
-    
-    # print(board)  # testing
 
     # format for terminal output
     print("TURN BOARD - display to terminal")  # testing
@@ -253,6 +244,17 @@ def validate_player_count(player_count):
     return True
 
 
+def turn_prompt():
+    """
+    clear terminal
+    breakpoint to stop game autorunning
+    this function can set it to autorun with a time delay between turns ie 5 seconds...
+    returns: ?
+    """
+    clear_terminal()
+    input(f"\n{Fore.BLUE}ROLL DICE?{Fore.WHITE}\n")
+
+
 def snl_game(players):
     """
     parameters: 'players' dictionary from game_setup()
@@ -264,6 +266,9 @@ def snl_game(players):
 
         for player_id, player_inst in players.items():
             # key is the player iterable, value is the Player object instance
+
+            # breakpoint - user intervention to roll dice
+            turn_prompt()
 
             print(f"\nTURN - '{player_id}'")
 
@@ -397,7 +402,7 @@ def pre_game():
     return: None
     """
     clear_terminal()
-    title = "SNAKES AND LADDERS"
+    title = "SNAKES AND LADDERS"  # replace with ascii art of pyfiglet
     print_center(title)
     input(f"\nPress{Fore.BLUE} ENTER{Fore.WHITE}\n")
     clear_terminal()
