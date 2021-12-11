@@ -86,7 +86,7 @@ def quit_application():
     clear_terminal()
     # confirm if user still wants to quit application
     ans = input("\nAre you sure you want to quit? Y/N\n")
-    if ans.lower() in ["y","yes"]:
+    if ans.lower() in ["y", "yes"]:
         clear_terminal()
         msg = "Thanks for playing!"
         print_center(msg)
@@ -94,12 +94,12 @@ def quit_application():
         clear_terminal()
         exit()
 
-    elif ans.lower() in ["n","no"]:
+    elif ans.lower() in ["n", "no"]:
         clear_terminal()
         menu_screen()
 
     else:
-       quit_application()
+        quit_application()
 
 
 def menu_return():
@@ -213,8 +213,9 @@ def game_setup():
                 raise ValueError
 
             if validate_player_count(player_count):
-                print(f"{Fore.GREEN}\nValid input. Creating game for {Fore.WHITE}{player_count}{Fore.GREEN} players...\n")
-                sleep(5)
+                print(f"{Fore.GREEN}\nValid input. Building game for {Fore.WHITE}{player_count}{Fore.GREEN} players...\n")
+                sleep(4)
+                clear_terminal()
                 # create list of players - use pawn color
                 player_list = []
 
@@ -258,13 +259,12 @@ def validate_player_count(player_count):
 
 def turn_prompt():
     """
-    clear terminal
     breakpoint to stop game autorunning
     this function can set it to autorun with a time delay between turns ie 5 seconds...
     returns: ?
     """
-    clear_terminal()
-    input(f"\n{Fore.BLUE}ROLL DICE?{Fore.WHITE}\n")
+
+    input(f"\n{Fore.BLUE}ROLLING DICE{Fore.WHITE}...\n")
 
 
 def snl_game(players):
@@ -278,13 +278,11 @@ def snl_game(players):
 
         for player_id, player_inst in players.items():
             # key is the player iterable, value is the Player object instance
-
+            turn_prompt()
+            clear_terminal()
             print(f"\nTURN - '{player_id}'")
 
             # breakpoint - user intervention to roll dice
-            # turn_prompt()
-            # clear_terminal()
-            input(f"\n{Fore.BLUE}ROLL DICE?{Fore.WHITE}...\n")
 
             # establish current player's location on board and
             # assign the object attr to 'curr_position' using .notation
@@ -344,10 +342,8 @@ def check_win(player_id, player_inst):
     '''
     if player_inst.curr_square >= 100:
         print(f"\n🎉 🎈'{player_id}' wins! 🎈 🎉\n")
+        print("GAME OVER. Return to main menu")
         menu_return()
-
-    # code here to ask user to go back to menu
-
 
 
 def menu_screen():
