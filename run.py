@@ -72,7 +72,7 @@ LADDER_FOOT = {
 def menu_return():
     input(f"\nPress{Fore.RED} ENTER{Fore.WHITE} to return\n")
     clear_terminal()
-    welcome_screen()
+    menu_screen()
 
 def view_rules():
     '''
@@ -82,7 +82,7 @@ def view_rules():
     '''
     clear_terminal()
     print(game_instructions())
-    menu_return()
+    ()
 
 
 def draw_board():
@@ -299,11 +299,11 @@ def check_win(player_id, player_inst):
         exit()
 
 
-def welcome_screen():
+def menu_screen():
     """
     1. Display title
     2. Options
-    3. Ask user to begin game or quit application
+    3. Offer user game options or to restart application
     """
     title = "SNAKES AND LADDERS\n"
     print(f"{Fore.GREEN}{title}")
@@ -312,10 +312,11 @@ def welcome_screen():
     print(f"{Fore.RED}1 {Fore.WHITE}View Rules\n")
     print(f"{Fore.GREEN}2 {Fore.WHITE}View Board\n")
     print(f"{Fore.BLUE}3 {Fore.WHITE}Play Game\n")
+    print(f"{Fore.MAGENTA}4 {Fore.WHITE}Quit Application\n")
 
     try:
         pre_game_choice = int(input(
-            f"Select from options {Fore.RED}1{Fore.WHITE}, {Fore.GREEN}2{Fore.WHITE} or {Fore.BLUE}3{Fore.WHITE}\n"))
+            f"Select from options {Fore.RED}1{Fore.WHITE}, {Fore.GREEN}2{Fore.WHITE}, {Fore.BLUE}3{Fore.WHITE}, {Fore.MAGENTA}4\n"))
         if not input:
             raise ValueError
         elif pre_game_choice == 1:
@@ -324,6 +325,10 @@ def welcome_screen():
             view_board()
         elif pre_game_choice == 3:
             game_setup()
+        elif pre_game_choice == 4:
+            clear_terminal()
+            exit()
+
         else:
             incorrect_value()
 
@@ -368,7 +373,7 @@ def pre_game():
     return: None
     """
     clear_terminal()
-    welcome_screen()
+    menu_screen()
 
 
 pre_game()  # program start
