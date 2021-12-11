@@ -70,16 +70,30 @@ LADDER_FOOT = {
 }
 
 
+def print_center(msg):
+    """
+    center content on console
+    """
+    # Joe Iddon https://stackoverflow.com/a/52138950
+    print(' ' * ((os.get_terminal_size().columns - len(msg))//2) + msg)
+
+
 def quit_application():
+    """
+    display message and exit app after a short time
+    """
     clear_terminal()
     msg = "Thanks for playing!"
-    print(msg)
+    print_center(msg)
     sleep()
     clear_terminal()
     exit()
 
 
 def menu_return():
+    """
+    back to main menu
+    """
     input(f"\nPress{Fore.BLUE} ENTER{Fore.WHITE} to return\n")
     clear_terminal()
     menu_screen()
@@ -383,10 +397,9 @@ def pre_game():
     return: None
     """
     clear_terminal()
-    title = "\nSNAKES AND LADDERS\n"
-    print(f"{Fore.GREEN}{title}")
-
-    input(f"Press{Fore.BLUE} ENTER{Fore.WHITE}\n")
+    title = "SNAKES AND LADDERS"
+    print_center(title)
+    input(f"\nPress{Fore.BLUE} ENTER{Fore.WHITE}\n")
     clear_terminal()
     menu_screen()
 
