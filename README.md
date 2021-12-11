@@ -62,6 +62,10 @@ To repeat the same iteration of a loop depending on a condition.
 Error handling for empty and non integer values at the same time.
 - [Joshua Burns](https://stackoverflow.com/a/4994509)
 
+    
+To replace all occurrences of an element in a nested list
+- [Indhumathy Chelliah](https://betterprogramming.pub/10-important-tips-for-using-nested-lists-in-python-38ceca68be35)
+
 To clear the terminal window.
 - [poke](https://stackoverflow.com/a/2084628)
 
