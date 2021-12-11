@@ -85,19 +85,27 @@ def quit_application():
     """
     clear_terminal()
     # confirm if user still wants to quit application
+    ans = input("\nAre you sure you want to quit? Y/N\n")
+    if ans.lower() in ["y","yes"]:
+        msg = "Thanks for playing!"
+        print_center(msg)
+        sleep(3)
+        clear_terminal()
+        exit()
 
-    msg = "Thanks for playing!"
-    print_center(msg)
-    sleep(3)
-    clear_terminal()
-    exit()
+    elif ans.lower() in ["n","no"]:
+        clear_terminal()
+        menu_screen()
+
+    else:
+       quit_application()
 
 
 def menu_return():
     """
     back to main menu
     """
-    input(f"\nPress{Fore.BLUE} ENTER{Fore.WHITE} to return\n")
+    input(f"\nPress{Fore.BLUE} Enter{Fore.WHITE} to return\n")
     clear_terminal()
     menu_screen()
 
@@ -154,7 +162,7 @@ def turn_board(position, board):
     # first check if player is on or beyond square 100 to display flag
     # on square 100
     if position >= 100:
-        board[0][0] = " 🏁"
+        board[0][0] = " 🏁 "
 
     # Replace all occurrences of an element in a nested list
     for x, row in enumerate(board):
@@ -346,10 +354,10 @@ def menu_screen():
     print(f"{Fore.RED}1 {Fore.WHITE}View Rules\n")
     print(f"{Fore.GREEN}2 {Fore.WHITE}View Board\n")
     print(f"{Fore.BLUE}3 {Fore.WHITE}Play Game\n")
-    print(f"{Fore.MAGENTA}4 {Fore.WHITE}Quit Application\n")
+    print(f"{Fore.YELLOW}4 {Fore.WHITE}Quit Application\n")
 
     try:
-        pre_game_choice = int(input(f"Select from options {Fore.RED}1{Fore.WHITE}, {Fore.GREEN}2{Fore.WHITE}, {Fore.BLUE}3{Fore.WHITE}, {Fore.MAGENTA}4{Fore.WHITE}.\n"))
+        pre_game_choice = int(input(f"Select from options {Fore.RED}1{Fore.WHITE}, {Fore.GREEN}2{Fore.WHITE}, {Fore.BLUE}3{Fore.WHITE}, {Fore.YELLOW}4{Fore.WHITE}\n"))
         if not input:
             raise ValueError
         elif pre_game_choice == 1:
@@ -409,7 +417,7 @@ def pre_game():
     clear_terminal()
     title = "SNAKES AND LADDERS"  # replace with ascii art of pyfiglet
     print_center(title)
-    input(f"\nPress{Fore.BLUE} ENTER{Fore.WHITE}\n")
+    input(f"\nPress{Fore.BLUE} Enter{Fore.WHITE}\n")
     clear_terminal()
     menu_screen()
 
