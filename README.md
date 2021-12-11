@@ -20,6 +20,9 @@ Three additional game rules can be applied for extra complexity.
 2. If a player's pawn lands on a square occupied by an opponents pawn, that pawn is removed from the board and they must start again. 
 3. An exact throw is required to reach square 100.  If the throw exceeds 100 the player must move backwards. Watch out for the snakes!
 
+## Features
+REVIEW - screenshots of menus 
+
 ## Deployment
 Go to [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions to deploy application to Heroku.
 
@@ -61,6 +64,9 @@ Error handling for empty and non integer values at the same time.
 
 To clear the terminal window.
 - [poke](https://stackoverflow.com/a/2084628)
+
+To center content on the terminal window
+- [Joe Iddon](https://stackoverflow.com/a/52138950)
 
 To display a more traditional game board layout.
 - [Manish V. Panchmatia](https://stackoverflow.com/a/55241525)
