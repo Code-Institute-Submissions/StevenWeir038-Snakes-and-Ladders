@@ -21,6 +21,7 @@ Three additional game rules can be applied for extra complexity.
 3. An exact throw is required to reach square 100.  If the throw exceeds 100 the player must move backwards. Watch out for the snakes!
 
 ## Features
+### Splash Screen
 The game is best viewed at 1024 X 768 pixels.  No real responsiveness has been built into the browser due to the backend nature of the project.
 
 Nonetheless, I wanted to provide a little humour to the user.
@@ -31,11 +32,17 @@ Secondly, the `button` element in the webpage has be given a bespoke title refer
 
 ![Splash](docs/readme/live-deployment/splash.png "Splash") 
 
+### Main Menu
+The menu is color coded to aid the user.  Options are designed to be intuitive to the user.
+
+![Main Menu](docs/readme/live-deployment/main-menu.png "Main Menu") 
+
 
 ## Deployment
 Go to [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions to deploy application to Heroku.
 
-## Testing
+## Testing & Error handling
+Extensive testing has been undertaken to provent program crashes or unintended actions.
 Go to [TESTING.md](TESTING.md) to view known bugs and fixes.
 
 ## Technologies Used
@@ -103,6 +110,6 @@ Emojis from Emojipedia.
 
 [Board image](https://www.istockphoto.com/vector/snakes-and-ladders-black-and-white-gm1066160462-285104267 "Board image") courtesy of iStock.
 
-Browser background from [Wallpaper Cave](https://wallpapercave.com/w/wp9142232). This was converted to an *svg* format to enable display.
+Browser background from [Wallpaper Cave](https://wallpapercave.com/w/wp9142232). This was converted to an *svg* format to enable browser display.
 
 [SNAKE_HEAD and LADDER_FOOT dictionaries ](docs/readme/own-gameboard.png "Own Gameboard") based of a game purchased from [Ambassador Games](http://www.ambassadorgames.com/craftsman-deluxe-game-house.htm).
