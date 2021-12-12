@@ -43,6 +43,7 @@ Additional Python libraries used:
 - **time** to produce time delays to user inputs
 - **random** to simulate dice roll
 - **colorama** to beautify display
+- **termcolor** to beautify title
 
 ## Media and Content
 REVIEW
@@ -77,6 +78,9 @@ To display a more traditional game board layout.
 
 And to provide the board's text/alignment some uniformity.
 - [yucer](https://stackoverflow.com/q/40999973)
+
+How to be PEP8 compliant when working with long *f-strings*
+- [Danny Bullis](https://stackoverflow.com/a/69908278)
 
 Inspiration to use a SVG background in the browser.
 - [Matt Bodden](https://github.com/MattBCoding). A fellow student at the [Code Institute](https://codeinstitute.net/).  We have never met though I appreciate the quality of his content.
