@@ -5,10 +5,10 @@ import os
 import time
 from rules import game_instructions
 import colorama
-from colorama import Fore
-colorama.init(autoreset=True)  # defaults new line text = white
 from pyfiglet import Figlet
 from termcolor import colored
+from colorama import Fore
+colorama.init(autoreset=True)  # defaults new line text = white
 
 
 class Board():
@@ -34,6 +34,7 @@ class Board():
             if column % 2:
                 board[column].reverse()
 
+    def printboard(self):
         # format for terminal output
         for square in board:
             print(" | ".join(square))
@@ -188,7 +189,8 @@ def view_board():
     menu option to go back to welcome screen
     """
     clear_terminal()
-    Board()
+    b = Board()
+    b.printboard()
     menu_return()
 
 
@@ -265,7 +267,12 @@ def turn_prompt():
     this function can set it to autorun with a time delay between turns ie 5 seconds...
     returns: ?
     """
+    print("I'm a program.  Do you want me to simulate a player turn every 5 seconds?")
 
+    # Y/N true/false
+    #if true:
+    
+    #else:
     input(f"\n{Fore.BLUE}ROLL DICE{Fore.WHITE} for next player?\n")
 
 
@@ -418,8 +425,9 @@ def pre_game():
     """
     clear_terminal()
     title = Figlet(font='small')
-    print(colored(title.renderText("   Snakes  & Ladders"), 'yellow'))
-    input(f"\nPress{Fore.BLUE} Enter{Fore.WHITE}\n")
+    print(colored(title.renderText("          Snakes  & Ladders"), 'yellow'))
+    print_center("PRESS ENTER TO PLAY")
+    input("")
     clear_terminal()
     menu_screen()
 
