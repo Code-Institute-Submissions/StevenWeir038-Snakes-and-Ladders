@@ -45,9 +45,30 @@ The user can review a version of the game's board accessed from the main menu.
 
 ![Menu Board](docs/readme/live-deployment/menu-board.png "Menu Board")
 
-The user is askewd if they want to quit the application.  If yes, it closed down, if no, the main menu is displayed.
+The user can select a validated number of players for the game between 2 and 4.
 
-![Quit App](docs/readme/live-deployment/quit-app.png "Quit app")
+![Play Game](docs/readme/live-deployment/play-game.png "Play Game")
+
+In game, a player can land on a normal square.
+
+![Game Move Standard](docs/readme/live-deployment/game-move-standard.png "Game Move Standard")
+
+Land on a snake and move to the bottom of that the snake.
+
+![Game Move Snake](docs/readme/live-deployment/game-move-snake.png "Game Move Snake")
+
+Land on a ladder and move to the top of that ladder.
+
+![Game Move Ladder](docs/readme/live-deployment/game-move-ladder.png "Game Move Ladder")
+
+Reach or move past 100 therefore win the game.
+If they win they are asked to return to the main menu.
+
+![Game Move Victory](docs/readme/live-deployment/game-move-victory.png "Game Move Victory")
+
+The user is asked if they want to quit the application.  If *yes*, the application closes down. If *no*, the main menu is displayed.
+
+![Quit App](docs/readme/live-deployment/quit-app.png "Quit App")
 
 
 ## Deployment
