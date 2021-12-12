@@ -73,6 +73,8 @@ The user is asked if they want to quit the application.  If *yes*, the applicati
 
 
 ## Deployment
+The live application can be viewed from this [link](https://snakes-and-ladders-sw.herokuapp.com/).
+
 Go to [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions to deploy application to Heroku.
 
 ## Testing & Debugging
