@@ -339,11 +339,11 @@ def menu_screen():
 
     try:
         pre_game_choice = int(input(
-            f" {Style.BRIGHT}Select from options "
-            f"{Fore.RED}1{Fore.WHITE}{Style.NORMAL}, "
-            f"{Fore.GREEN}2{Fore.WHITE}{Style.NORMAL}, "
-            f"{Fore.BLUE}3{Fore.WHITE}{Style.NORMAL} or "
-            f"{Fore.YELLOW}4{Fore.WHITE}{Style.NORMAL}\n"))
+            f"Select from options "
+            f"{Fore.RED}{Style.BRIGHT}1{Fore.WHITE}{Style.NORMAL}, "
+            f"{Fore.GREEN}{Style.BRIGHT}2{Fore.WHITE}{Style.NORMAL}, "
+            f"{Fore.BLUE}{Style.BRIGHT}3{Fore.WHITE}{Style.NORMAL} or "
+            f"{Fore.YELLOW}{Style.BRIGHT}4{Fore.WHITE}{Style.NORMAL}\n"))
 
         if not input:
             raise ValueError
