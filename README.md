@@ -35,6 +35,7 @@ Flowcharts created with [Lucidchart](https://www.lucidchart.com/pages/).
 Web deployment using [Heroku](https://www.heroku.com/about).
 
 SVG background in browser generated using [Convertio](https://convertio.co/) and edited using [Boxy](https://boxy-svg.com/).  Both were free to use.
+(Note, this was nothing more than a personal/fun touch but I hope it reinforces to the user as to what game they are playing)
 
 Python version 3.8
 
@@ -46,7 +47,6 @@ Additional Python libraries used:
 - **termcolor** to beautify title
 
 ## Media and Content
-REVIEW
 ### Credits
 Thank you to my mentor [Tim Nelson](https://tim.2bn.dev/) for his candor.  Fantastic as always.
 
@@ -63,7 +63,6 @@ To repeat the same iteration of a loop depending on a condition.
 Error handling for empty and non integer values at the same time.
 - [Joshua Burns](https://stackoverflow.com/a/4994509)
 
-    
 To replace all occurrences of an element in a nested list
 - [Indhumathy Chelliah](https://betterprogramming.pub/10-important-tips-for-using-nested-lists-in-python-38ceca68be35)
 
@@ -95,8 +94,6 @@ Emojis from Emojipedia.
 
 [Board image](https://www.istockphoto.com/vector/snakes-and-ladders-black-and-white-gm1066160462-285104267 "Board image") courtesy of iStock.
 
-Browser background from [Wallpaper Cave](https://wallpapercave.com/w/wp9142232).
-
-Snake favicon from [Webalys](https://www.flaticon.com/premium-icon/snake_1476356?term=snake&page=1&position=76&page=1&position=76&related_id=1476356&origin=tag#)
+Browser background from [Wallpaper Cave](https://wallpapercave.com/w/wp9142232). This was converted to an *svg* format to enable display.
 
 [SNAKE_HEAD and LADDER_FOOT dictionaries ](docs/readme/own-gameboard.png "Own Gameboard") based of a game purchased from [Ambassador Games](http://www.ambassadorgames.com/craftsman-deluxe-game-house.htm).
