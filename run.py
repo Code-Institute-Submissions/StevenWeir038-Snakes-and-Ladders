@@ -70,7 +70,7 @@ def quit_application():
     """
     clear_terminal()
     # confirm if user still wants to quit application
-    ans = input("\nAre you sure you want to quit? Y/N\n")
+    ans = input("\nAre you sure you want to quit? Y/N")
     if ans.lower() in ["y", "yes"]:
         clear_terminal()
         print_center("Thanks for playing!")
@@ -197,7 +197,8 @@ def game_setup():
                 raise ValueError
 
             if validate_player_count(player_count):
-                print(f"{Fore.GREEN}\nValid input. Building game for {Fore.WHITE}{player_count}{Fore.GREEN} players...")
+                print(f"{Fore.GREEN}\nValid input. Building game for "
+                      f"{Fore.WHITE}{player_count}{Fore.GREEN} players...")
                 sleep(4)
                 clear_terminal()
                 # create list of players - use pawn color
@@ -338,7 +339,11 @@ def menu_screen():
     print(f"{Fore.YELLOW}4 {Fore.WHITE}Quit Application\n")
 
     try:
-        pre_game_choice = int(input(f"Select from options {Fore.RED}1{Fore.WHITE}, {Fore.GREEN}2{Fore.WHITE}, {Fore.BLUE}3{Fore.WHITE}, {Fore.YELLOW}4{Fore.WHITE}\n"))
+        pre_game_choice = int(input(
+            f"Select from options {Fore.RED}1{Fore.WHITE}, {Fore.GREEN}2"
+            f"{Fore.WHITE}, {Fore.BLUE}3{Fore.WHITE}, {Fore.YELLOW}4"
+            f"{Fore.WHITE}\n"))
+
         if not input:
             raise ValueError
         elif pre_game_choice == 1:
