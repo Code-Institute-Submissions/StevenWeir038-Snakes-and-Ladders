@@ -32,7 +32,7 @@ class Board():
             if column % 2:
                 board[column].reverse()
 
-    def turn_board(self, position):  ## review this for week 51.  deadline friday 17th 12pm
+    def turn_board(self, position):
         """
         if value player position integer > 100, format square 100
         convert player position from integer to string
@@ -40,25 +40,20 @@ class Board():
         format the matching list value
         return: None
         """
-        # TEST INSIDE TURN BOARD
-        # print(f"TURN BOARD - Player is on square {position}")  # testing
-
         str_pos = str(position).zfill(3)
-        # first check if player is on or beyond square 100 to display flag
-        # on square 100
         if position >= 100:
-            board[0][0] = " 🏁 "
+            self.board[0][0] = " 🏁 "
 
-        # Replace all occurrences of an element in a nested list
-        for x, row in enumerate(board):
+        for x, row in enumerate(self.board):
             for y, col in enumerate(row):
                 if col == str_pos:
-                    board[x][y] = " 📌 "
+                    self.board[x][y] = " 📌 "
 
-    # board_xy = [" 📌" for x, row in enumerate(
-    # board) for y, col in enumerate(row) if col == str_pos]
+        # still to fix list comp refactor Ln #43-50
+        # board_xy = [" 📌" for x, row in enumerate(
+        # board) for y, col in enumerate(row) if col == str_pos]
 
-    def printboard(self):
+    def print_board(self):
         for square in self.board:
             print(" | ".join(square))
 
@@ -114,7 +109,7 @@ def menu_return():
     """
     back to main menu
     """
-    input(f"\n Press{Fore.BLUE} Enter{Fore.WHITE} to return\n")
+    input(f"\nPress{Fore.BLUE} Enter{Fore.WHITE} to return to menu\n")
     clear_terminal()
     menu_screen()
 
@@ -130,67 +125,6 @@ def view_rules():
     menu_return()
 
 
-# ============================================================================
-
-# def draw_board():  # remove once Board class working correctly
-#     """
-#     make board list of 10 nested lists
-#     returns: nested lists
-#     """
-# # build list of 100 items and convert from integer to string
-#     board = []
-#     row = []
-#     for square in range(100, 0, -1):
-#         row.append(str(square).zfill(3))
-#         # build 1 row of 10 squares at a time
-#         # in inner loop, use modulo to find first number divisible by 10 = 0
-#         if (square-1) % 10 == 0:
-#             board.append(row)
-#             # clearout row list to ready for next loop
-#             row = []
-#     # after 10 lists built, reverse order of every even row in inner loop
-#     for column in range(10):  # 10 cols on board as 100 / 10 = 10
-#         # inner loop reverses order of list
-#         # to approximate classic board layout
-#         if column % 2:
-#             board[column].reverse()
-
-#     return board
-
-
-# def turn_board(position, board):  # remove once Board class working correctly
-#     """
-#     if value player position integer > 100, format square 100
-#     convert player position from integer to string
-#     evaluate player position string by looping through board list items
-#     format the matching list value
-#     return: None
-#     """
-#     # TEST INSIDE TURN BOARD
-#     # print(f"TURN BOARD - Player is on square {position}")  # testing
-
-#     str_pos = str(position).zfill(3)
-#     # first check if player is on or beyond square 100 to display flag
-#     # on square 100
-#     if position >= 100:
-#         board[0][0] = " 🏁 "
-
-#     # Replace all occurrences of an element in a nested list
-#     for x, row in enumerate(board):
-#         for y, col in enumerate(row):
-#             if col == str_pos:
-#                 board[x][y] = " 📌 "
-
-#     # board_xy = [" 📌" for x, row in enumerate(
-#     # board) for y, col in enumerate(row) if col == str_pos]
-
-#     # format for terminal output
-#     for square in board:
-#         print(" | ".join(square))
-
-# ============================================================================
-
-
 def view_board():
     """
     for use in the menu to show player the board output
@@ -199,7 +133,7 @@ def view_board():
     menu option to go back to welcome screen
     """
     clear_terminal()
-    Board().printboard()
+    Board().print_board()
     menu_return()
 
 
@@ -306,7 +240,10 @@ def snl_game(players):
             print(f"'{player_id}' moves to square '{new_position}'.\n")
 
             # display player position on a board in the terminal
-            turn_board(new_position, draw_board())
+
+            b = Board()
+            b.turn_board(new_position)
+            b.print_board()
 
             # check if win condition met
             check_win(player_id, player_inst)
