@@ -1,9 +1,14 @@
-# SNAKES AND LADDERS
+"""
+SNAKES AND LADDERS
+Code Institute PP3 project
+StevenWeir038
+December 2021
+"""
 
+from rules import game_instructions
 import random
 import os
 import time
-from rules import game_instructions
 import colorama
 from pyfiglet import Figlet
 from termcolor import colored
@@ -16,30 +21,20 @@ class Board():
     Board class
     """
     def __init__(self):
-        # build list of 100 items and convert from integer to string
         self.board = board = []
         row = []
         for square in range(100, 0, -1):
             row.append(str(square).zfill(3))
-            # build 1 row of 10 squares at a time
-            # in inner loop, use modulo to find 1st number divisible by 10 = 0
             if (square-1) % 10 == 0:
                 board.append(row)
-                # clearout row list to ready for next loop
                 row = []
-        # after 10 lists built, reverse order of every even row in inner loop
-        for column in range(10):  # 10 cols on board as 100 / 10 = 10
-            # inner loop reverses order of list
-            # to approximate classic board layout
+        for column in range(10):
             if column % 2:
                 board[column].reverse()
 
     def printboard(self):
-        # format for terminal output
         for square in self.board:
             print(" | ".join(square))
-
-        return
 
 
 class Player:
@@ -47,21 +42,8 @@ class Player:
     Player class
     """
     def __init__(self, pawn_color, curr_position=0):
-        # instance properties
         self.pawn_color = pawn_color
         self.curr_square = curr_position
-
-    # instance methods
-    def location(self):
-        """
-        return a statement representing this object's current position:
-        (plan is to update the VALUE ingame with dice roll or landing on a \
-        snake head/ladder foot to simulate player's current position)
-        """
-        player_location = {f"{self.pawn_color} is on square \
-        {self.curr_square} "}
-
-        return player_location
 
 
 SNAKE_HEAD = {
@@ -188,9 +170,7 @@ def view_board():
     menu option to go back to welcome screen
     """
     clear_terminal()
-
-    menu_board = Board().printboard()
-    
+    Board().printboard()
     menu_return()
 
 
@@ -217,7 +197,7 @@ def game_setup():
                 raise ValueError
 
             if validate_player_count(player_count):
-                print(f"{Fore.GREEN}\nValid input. Building game for {Fore.WHITE}{player_count}{Fore.GREEN} players...\n")
+                print(f"{Fore.GREEN}\nValid input. Building game for {Fore.WHITE}{player_count}{Fore.GREEN} players...")
                 sleep(4)
                 clear_terminal()
                 # create list of players - use pawn color
@@ -264,15 +244,7 @@ def validate_player_count(player_count):
 def turn_prompt():
     """
     breakpoint to stop game autorunning
-    this function can set it to autorun with a time delay between turns ie 5 seconds...
-    returns: ?
     """
-    print("I'm a program.  Do you want me to simulate a player turn every 5 seconds?")
-
-    # Y/N true/false
-    #if true:
-    
-    #else:
     input(f"\n{Fore.BLUE}ROLL DICE{Fore.WHITE} for next player?\n")
 
 
