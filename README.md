@@ -35,7 +35,19 @@ Secondly, the `button` element in the webpage has be given a bespoke title refer
 ### Main Menu
 The menu is color coded to aid the user.  Options are designed to be intuitive to the user.
 
-![Main Menu](docs/readme/live-deployment/main-menu.png "Main Menu") 
+![Main Menu](docs/readme/live-deployment/main-menu.png "Main Menu")
+
+The user can review the game's rules in this area accessed from the main menu.
+
+![Rules](docs/readme/live-deployment/rules.png "Rules")
+
+The user can review a version of the game's board accessed from the main menu.
+
+![Menu Board](docs/readme/live-deployment/menu-board.png "Menu Board")
+
+The user is askewd if they want to quit the application.  If yes, it closed down, if no, the main menu is displayed.
+
+![Quit App](docs/readme/live-deployment/quit-app.png "Quit app")
 
 
 ## Deployment
