@@ -21,7 +21,16 @@ Three additional game rules can be applied for extra complexity.
 3. An exact throw is required to reach square 100.  If the throw exceeds 100 the player must move backwards. Watch out for the snakes!
 
 ## Features
-REVIEW - screenshots of menus 
+The game is best viewed at 1024 X 768 pixels.  No real responsiveness has been built into the browser due to the backend nature of the project.
+
+Nonetheless, I wanted to provide a little humour to the user.
+
+Firstly, an image conveys that the game is Snakes and Ladders.
+
+Secondly, the `button` element in the webpage has be given a bespoke title referencing the classic `CLICKME` convention.  Since we are programming and snakes do what they do, `bite` becomes `byte`. 
+
+![Splash](docs/readme/live-deployment/splash.png "Splash") 
+
 
 ## Deployment
 Go to [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions to deploy application to Heroku.
@@ -40,7 +49,7 @@ SVG background in browser generated using [Convertio](https://convertio.co/) and
 Python version 3.8
 
 Additional Python libraries used:
-- **os** to clear terminal window
+- **os** to clear terminal window & center display
 - **time** to produce time delays to user inputs
 - **random** to simulate dice roll
 - **colorama** to beautify display
