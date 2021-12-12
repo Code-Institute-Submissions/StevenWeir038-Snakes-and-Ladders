@@ -430,9 +430,13 @@ I approximated his layout and incorporated a list structure with the following:
 
 ![final-board](docs/readme/final-board.png "final-board")
 
-**NB. I also played around with creating a board class**.
+**NB. At this point, I also played around with creating a board class**.
 
 An issue was that player moves were marked on the board and saved.  As the game progressed, previous moves marked with a `XX` obscured the square numbers as the grid was being updated.
+
+I when wrong here by drawing a board which saved/included a players previous position.  Really I should have drawn the same generic board and used a separate `method` associated with the Board class to identify a players position.  Lesson learned.
+
+Prior to this revelation I did the following:
 
 To display a clean board with only the players latest position, I used two functions with every player turn.
 1. Draw a new board
@@ -470,12 +474,16 @@ When looping through a list to check for matching values, the counter value in e
 
 ![testing-board-display-on-move](docs/readme/testing-board-display-on-move.png "testing-board-display-on-move")
 
-The code was refactored to the following list comprehension to achieve the same result.
+The code can be refactored to the following list comprehension to achieve the same result.
 
 ``` python
 board_xy = [" 📌" for x, row in enumerate(board) for y, col in enumerate(row) if col == str_pos]
 ```
 
+**Revisiting the Board class**
 
+I struggled with classes early on in the project.  This prompted further research while I developed the application with a more familiar procedural methodology.  As some time remained before submission, the code was reviewed with an OOP paradigm in mind.
+
+Functions developed on their own were moved into the Board class.
 
 [Return to README.md](README.md)
