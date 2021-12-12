@@ -33,15 +33,15 @@ Secondly, the `button` element in the webpage has be given a bespoke title refer
 ![Splash](docs/readme/live-deployment/splash.png "Splash") 
 
 ### Main Menu
-The menu is color coded to aid the user.  Options are designed to be intuitive to the user.
+Menu options are color coded and given intuitive titles for the user.
 
 ![Main Menu](docs/readme/live-deployment/main-menu.png "Main Menu")
 
-The user can review the game's rules in this area accessed from the main menu.
+The game rules can be accessed from the main menu.
 
 ![Rules](docs/readme/live-deployment/rules.png "Rules")
 
-The user can review a version of the game's board accessed from the main menu.
+The user can view the game's board from the main menu.
 
 ![Menu Board](docs/readme/live-deployment/menu-board.png "Menu Board")
 
@@ -49,6 +49,7 @@ The user can select a validated number of players for the game between 2 and 4.
 
 ![Play Game](docs/readme/live-deployment/play-game.png "Play Game")
 
+### Game
 In game, a player can land on a normal square.
 
 ![Game Move Standard](docs/readme/live-deployment/game-move-standard.png "Game Move Standard")
@@ -74,8 +75,8 @@ The user is asked if they want to quit the application.  If *yes*, the applicati
 ## Deployment
 Go to [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions to deploy application to Heroku.
 
-## Testing & Error handling
-Extensive testing has been undertaken to provent program crashes or unintended actions.
+## Testing & Debugging
+Extensive testing has been undertaken to prevent program crashes or unintended actions.
 Go to [TESTING.md](TESTING.md) to view known bugs and fixes.
 
 ## Technologies Used
