@@ -432,9 +432,9 @@ I approximated his layout and incorporated a list structure with the following:
 
 **NB. At this point, I also played around with creating a board class**.
 
-An issue was that player moves were marked on the board and saved.  As the game progressed, previous moves marked with a `XX` obscured the square numbers as the grid was being updated.
+An issue was that player moves were marked on the board.  As the game progressed, previous moves marked with a `XX` obscured the square numbers as the grid was being updated.
 
-I when wrong here by drawing a board which saved/included a players previous position.  Really I should have drawn the same generic board and used a separate `method` associated with the Board class to identify a players position.  Lesson learned.
+I when wrong here by drawing a board which saved/included a players previous position.  Really I should have drawn the same generic board and used a separate `method` within the Board class to identify a players position.  Lesson learned.
 
 Prior to this revelation I did the following:
 
@@ -482,8 +482,24 @@ board_xy = [" 📌" for x, row in enumerate(board) for y, col in enumerate(row) 
 
 **Revisiting the Board class**
 
-I struggled with classes early on in the project.  This prompted further research while I developed the application with a more familiar procedural methodology.  As some time remained before submission, the code was reviewed with an OOP paradigm in mind.
+I struggled with understanding classes early on in the project.  I researched them while I developed the application with a more familiar procedural methodology due to percieved time constraints.
+Before submission, some time remained to rewrite the code to follow an OOP paradigm.
 
-Functions developed on their own were moved into the Board class.
+Functions developed on their own were moved into the Board class to become its methods.
+
+A new instance of `Board` was create for each new player turn.
+
+The `turn_board` method searched and replaced the item in the instantiated `Board` list whose value matched the passed argument.
+
+The printboard method formatted the instantiated `Board` for a neat terminal display.  Reading the list directly would be cumbersome.
+
+``` python
+b = Board()
+b.turn_board(new_position)
+b.printboard()
+```
+
+## A note to the reader
+Thankyou for making it this far.  I acknowledge this may not be a standard readme.  however as this was a learn by doing project I felt it was benefical to explain how it evolved as my understanding of Python improved.
 
 [Return to README.md](README.md)
