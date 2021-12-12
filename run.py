@@ -32,7 +32,7 @@ class Board():
             if column % 2:
                 board[column].reverse()
 
-    def turn_board(self):  ## review this for week 51.  deadline friday 17th 12pm
+    def turn_board(self, position):  ## review this for week 51.  deadline friday 17th 12pm
         """
         if value player position integer > 100, format square 100
         convert player position from integer to string
@@ -130,61 +130,65 @@ def view_rules():
     menu_return()
 
 
-def draw_board():  # remove once Board class working correctly
-    """
-    make board list of 10 nested lists
-    returns: nested lists
-    """
-# build list of 100 items and convert from integer to string
-    board = []
-    row = []
-    for square in range(100, 0, -1):
-        row.append(str(square).zfill(3))
-        # build 1 row of 10 squares at a time
-        # in inner loop, use modulo to find first number divisible by 10 = 0
-        if (square-1) % 10 == 0:
-            board.append(row)
-            # clearout row list to ready for next loop
-            row = []
-    # after 10 lists built, reverse order of every even row in inner loop
-    for column in range(10):  # 10 cols on board as 100 / 10 = 10
-        # inner loop reverses order of list
-        # to approximate classic board layout
-        if column % 2:
-            board[column].reverse()
+# ============================================================================
 
-    return board
+# def draw_board():  # remove once Board class working correctly
+#     """
+#     make board list of 10 nested lists
+#     returns: nested lists
+#     """
+# # build list of 100 items and convert from integer to string
+#     board = []
+#     row = []
+#     for square in range(100, 0, -1):
+#         row.append(str(square).zfill(3))
+#         # build 1 row of 10 squares at a time
+#         # in inner loop, use modulo to find first number divisible by 10 = 0
+#         if (square-1) % 10 == 0:
+#             board.append(row)
+#             # clearout row list to ready for next loop
+#             row = []
+#     # after 10 lists built, reverse order of every even row in inner loop
+#     for column in range(10):  # 10 cols on board as 100 / 10 = 10
+#         # inner loop reverses order of list
+#         # to approximate classic board layout
+#         if column % 2:
+#             board[column].reverse()
+
+#     return board
 
 
-def turn_board(position, board):  # remove once Board class working correctly
-    """
-    if value player position integer > 100, format square 100
-    convert player position from integer to string
-    evaluate player position string by looping through board list items
-    format the matching list value
-    return: None
-    """
-    # TEST INSIDE TURN BOARD
-    # print(f"TURN BOARD - Player is on square {position}")  # testing
+# def turn_board(position, board):  # remove once Board class working correctly
+#     """
+#     if value player position integer > 100, format square 100
+#     convert player position from integer to string
+#     evaluate player position string by looping through board list items
+#     format the matching list value
+#     return: None
+#     """
+#     # TEST INSIDE TURN BOARD
+#     # print(f"TURN BOARD - Player is on square {position}")  # testing
 
-    str_pos = str(position).zfill(3)
-    # first check if player is on or beyond square 100 to display flag
-    # on square 100
-    if position >= 100:
-        board[0][0] = " 🏁 "
+#     str_pos = str(position).zfill(3)
+#     # first check if player is on or beyond square 100 to display flag
+#     # on square 100
+#     if position >= 100:
+#         board[0][0] = " 🏁 "
 
-    # Replace all occurrences of an element in a nested list
-    for x, row in enumerate(board):
-        for y, col in enumerate(row):
-            if col == str_pos:
-                board[x][y] = " 📌 "
+#     # Replace all occurrences of an element in a nested list
+#     for x, row in enumerate(board):
+#         for y, col in enumerate(row):
+#             if col == str_pos:
+#                 board[x][y] = " 📌 "
 
-    # board_xy = [" 📌" for x, row in enumerate(
-    # board) for y, col in enumerate(row) if col == str_pos]
+#     # board_xy = [" 📌" for x, row in enumerate(
+#     # board) for y, col in enumerate(row) if col == str_pos]
 
-    # format for terminal output
-    for square in board:
-        print(" | ".join(square))
+#     # format for terminal output
+#     for square in board:
+#         print(" | ".join(square))
+
+# ============================================================================
 
 
 def view_board():
@@ -214,12 +218,12 @@ def game_setup():
 
         try:
             player_count = int(
-                input("\n Enter number of players between 2 and 4:\n"))
+                input("\nEnter number of players between 2 and 4:\n"))
             if not input:
                 raise ValueError
 
             if validate_player_count(player_count):
-                print(f"{Fore.GREEN}\n Valid input. Building game for "
+                print(f"{Fore.GREEN}\nValid input. Building game for "
                       f"{Fore.WHITE}{player_count}{Fore.GREEN} players...")
                 sleep(4)
                 clear_terminal()
@@ -242,7 +246,7 @@ def game_setup():
                 break
 
         except ValueError:
-            print(f"{Fore.RED}\n No value or text value submitted...\n")
+            print(f"{Fore.RED}\nNo value or text value submitted...\n")
 
     return snl_game(players)
 
@@ -258,7 +262,7 @@ def validate_player_count(player_count):
         if player_count < 2 or player_count > 4:
             raise ValueError
     except ValueError:
-        print(f"{Fore.RED} You entered {player_count} player(s). Try again.\n")
+        print(f"{Fore.RED}You entered {player_count} player(s). Try again.\n")
         return False
 
     return True
@@ -268,7 +272,7 @@ def turn_prompt():
     """
     breakpoint to stop game autorunning
     """
-    input(f"\n{Fore.BLUE} ROLL DICE{Fore.WHITE} for next player?\n")
+    input(f"\n{Fore.BLUE}ROLL DICE{Fore.WHITE} for next player?\n")
 
 
 def snl_game(players):
@@ -284,7 +288,7 @@ def snl_game(players):
             # key is the player iterable, value is the Player object instance
             turn_prompt()
             clear_terminal()
-            print(f"\n TURN - '{player_id}'")
+            print(f"\nTURN - '{player_id}'")
 
             # breakpoint - user intervention to roll dice
 
@@ -346,8 +350,8 @@ def check_win(player_id, player_inst):
     '''
     if player_inst.curr_square >= 100:
         clear_terminal()
-        print(f"\n 🎉 🎈'{player_id}' wins! 🎈 🎉\n")
-        print(" GAME OVER...")
+        print(f"\n🎉 🎈'{player_id}' wins! 🎈 🎉\n")
+        print("GAME OVER...")
         menu_return()
 
 
@@ -366,7 +370,7 @@ def menu_screen():
 
     try:
         pre_game_choice = int(input(
-            f" Select from options "
+            f"Select from options "
             f"{Fore.RED}{Style.BRIGHT}1{Fore.WHITE}{Style.NORMAL}, "
             f"{Fore.GREEN}{Style.BRIGHT}2{Fore.WHITE}{Style.NORMAL}, "
             f"{Fore.BLUE}{Style.BRIGHT}3{Fore.WHITE}{Style.NORMAL} or "
@@ -387,7 +391,7 @@ def menu_screen():
             incorrect_value()
 
     except ValueError:
-        print(f'{Fore.RED} Incorrect value submitted.')
+        print(f'{Fore.RED}Incorrect value submitted.')
         sleep(2)
         clear_terminal()
         menu_screen()
@@ -397,7 +401,7 @@ def incorrect_value():
     '''
     If value entered isn't a number from 1 to 4 throw an error
     '''
-    print(f'{Fore.RED}\n Incorrect value submitted.')
+    print(f'{Fore.RED}\nIncorrect value submitted.')
     sleep(2)
     clear_terminal()
     menu_screen()
