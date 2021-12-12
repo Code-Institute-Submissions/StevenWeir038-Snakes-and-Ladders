@@ -59,7 +59,6 @@ def print_center(msg):
     """
     center content on console
     """
-    # Joe Iddon https://stackoverflow.com/a/52138950
     print(' ' * ((os.get_terminal_size().columns - len(msg))//2) + msg)
 
 
@@ -69,8 +68,7 @@ def quit_application():
     display message and exit app after a short time
     """
     clear_terminal()
-    # confirm if user still wants to quit application
-    ans = input("\nAre you sure you want to quit? Y/N")
+    ans = input("\nAre you sure you want to quit? Y/N\n")
     if ans.lower() in ["y", "yes"]:
         clear_terminal()
         print_center("Thanks for playing!")
@@ -155,7 +153,8 @@ def turn_board(position, board):
             if col == str_pos:
                 board[x][y] = " 📌 "
 
-    # board_xy = [" 📌 " for x, row in enumerate(board) for y, col in enumerate(row) if col == str_pos]
+    # board_xy = [" 📌" for x, row in enumerate(
+    # board) for y, col in enumerate(row) if col == str_pos]
 
     # format for terminal output
     for square in board:
@@ -187,12 +186,9 @@ def game_setup():
 
     while True:
 
-        # Immediately convert string input from user to an integer
-        # error handle both for an empty string and non int value
-        # https://stackoverflow.com/a/4994509
         try:
-            player_count = int(input(
-                "Enter number of players between 2 and 4:\n"))
+            player_count = int(
+                input("Enter number of players between 2 and 4:\n"))
             if not input:
                 raise ValueError
 
@@ -332,17 +328,22 @@ def menu_screen():
     """
     Menu
     """
-    print("MENU\n")
-    print(f"{Fore.RED}{Style.BRIGHT} 1 {Fore.WHITE}View Rules\n")
-    print(f"{Fore.GREEN}{Style.BRIGHT} 2 {Fore.WHITE}View Board\n")
-    print(f"{Fore.BLUE}{Style.BRIGHT} 3 {Fore.WHITE}Play Game\n")
-    print(f"{Fore.YELLOW}{Style.BRIGHT} 4 {Fore.WHITE}Quit Application\n")
+    print(" MENU\n")
+    print(f"{Fore.RED}{Style.BRIGHT} 1 "
+          f"{Fore.WHITE}{Style.NORMAL}View Rules\n")
+    print(f"{Fore.GREEN}{Style.BRIGHT} 2 "
+          f"{Fore.WHITE}{Style.NORMAL}View Board\n")
+    print(f"{Fore.BLUE}{Style.BRIGHT} 3 {Fore.WHITE}{Style.NORMAL}Play Game\n")
+    print(f"{Fore.YELLOW}{Style.BRIGHT} 4 "
+          f"{Fore.WHITE}{Style.NORMAL}Quit Application\n")
 
     try:
         pre_game_choice = int(input(
-            f"Select from options {Fore.RED}1{Fore.WHITE}, {Fore.GREEN}2"
-            f"{Fore.WHITE}, {Fore.BLUE}3{Fore.WHITE}, {Fore.YELLOW}4"
-            f"{Fore.WHITE}\n"))
+            f" {Style.BRIGHT}Select from options "
+            f"{Fore.RED}1{Fore.WHITE}{Style.NORMAL}, "
+            f"{Fore.GREEN}2{Fore.WHITE}{Style.NORMAL}, "
+            f"{Fore.BLUE}3{Fore.WHITE}{Style.NORMAL} or "
+            f"{Fore.YELLOW}4{Fore.WHITE}{Style.NORMAL}\n"))
 
         if not input:
             raise ValueError
@@ -380,7 +381,6 @@ def clear_terminal():
     clear the terminal.
     return: None
     """
-    # Credit Tim Nelson & [poke](https://stackoverflow.com/a/2084628)
     os.system("cls" if os.name == "nt" else "clear")
 
 
@@ -409,4 +409,4 @@ def pre_game():
     menu_screen()
 
 
-pre_game()  # program start
+pre_game()
