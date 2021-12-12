@@ -17,7 +17,7 @@ class Board():
     """
     def __init__(self):
         # build list of 100 items and convert from integer to string
-        board = []
+        self.board = board = []
         row = []
         for square in range(100, 0, -1):
             row.append(str(square).zfill(3))
@@ -36,7 +36,7 @@ class Board():
 
     def printboard(self):
         # format for terminal output
-        for square in board:
+        for square in self.board:
             print(" | ".join(square))
 
         return
@@ -91,8 +91,7 @@ def quit_application():
     ans = input("\nAre you sure you want to quit? Y/N\n")
     if ans.lower() in ["y", "yes"]:
         clear_terminal()
-        msg = "Thanks for playing!"
-        print_center(msg)
+        print_center("Thanks for playing!")
         sleep(3)
         clear_terminal()
         exit()
@@ -189,8 +188,9 @@ def view_board():
     menu option to go back to welcome screen
     """
     clear_terminal()
-    b = Board()
-    b.printboard()
+
+    menu_board = Board().printboard()
+    
     menu_return()
 
 
