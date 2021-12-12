@@ -12,7 +12,7 @@ import time
 import colorama
 from pyfiglet import Figlet
 from termcolor import colored
-from colorama import Fore
+from colorama import Fore, Style
 colorama.init(autoreset=True)  # defaults new line text = white
 
 
@@ -333,10 +333,10 @@ def menu_screen():
     Menu
     """
     print("MENU\n")
-    print(f"{Fore.RED}1 {Fore.WHITE}View Rules\n")
-    print(f"{Fore.GREEN}2 {Fore.WHITE}View Board\n")
-    print(f"{Fore.BLUE}3 {Fore.WHITE}Play Game\n")
-    print(f"{Fore.YELLOW}4 {Fore.WHITE}Quit Application\n")
+    print(f"{Fore.RED}{Style.BRIGHT} 1 {Fore.WHITE}View Rules\n")
+    print(f"{Fore.GREEN}{Style.BRIGHT} 2 {Fore.WHITE}View Board\n")
+    print(f"{Fore.BLUE}{Style.BRIGHT} 3 {Fore.WHITE}Play Game\n")
+    print(f"{Fore.YELLOW}{Style.BRIGHT} 4 {Fore.WHITE}Quit Application\n")
 
     try:
         pre_game_choice = int(input(
@@ -402,7 +402,7 @@ def pre_game():
     """
     clear_terminal()
     title = Figlet(font='small')
-    print(colored(title.renderText("          Snakes  & Ladders"), 'yellow'))
+    print(colored(title.renderText("     Snakes  & Ladders"), 'yellow'))
     print_center("PRESS ENTER TO PLAY")
     input("")
     clear_terminal()
