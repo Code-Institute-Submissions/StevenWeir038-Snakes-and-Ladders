@@ -92,7 +92,8 @@ def quit_application():
     ans = input("\n Are you sure you want to quit? Y/N\n")
     if ans.lower() in ["y", "yes"]:
         clear_terminal()
-        print_center("\n Thanks for playing!\n")
+        print("\n\n\n\n\n\n\n\n\n\n\n\n")
+        print_center("Thanks for playing!")
         sleep(3)
         clear_terminal()
         exit()
@@ -371,6 +372,7 @@ def pre_game():
     clear_terminal()
     title = Figlet(font='small')
     print(colored(title.renderText("     Snakes  & Ladders"), 'yellow'))
+    print("\n\n\n\n\n")
     print_center("PRESS ENTER TO PLAY")
     input("")
     clear_terminal()
