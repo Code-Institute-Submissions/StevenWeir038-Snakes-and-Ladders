@@ -89,10 +89,10 @@ def quit_application():
     display message and exit app after a short time
     """
     clear_terminal()
-    ans = input("\n Are you sure you want to quit? Y/N\n")
+    ans = input("\nAre you sure you want to quit? Y/N\n")
     if ans.lower() in ["y", "yes"]:
         clear_terminal()
-        print("\n\n\n\n\n\n\n\n\n\n\n\n")
+        print("\n\n\n\n\n\n\n\n\n\n")
         print_center("Thanks for playing!")
         sleep(3)
         clear_terminal()
@@ -134,6 +134,7 @@ def view_board():
     menu option to go back to welcome screen
     """
     clear_terminal()
+    print(f"\n📌 shows your position at the end of each turn\n")
     Board().print_board()
     menu_return()
 
