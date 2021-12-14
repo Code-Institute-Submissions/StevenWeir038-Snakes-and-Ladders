@@ -482,10 +482,10 @@ board_xy = [" 📌" for x, row in enumerate(board) for y, col in enumerate(row) 
 
 **Revisiting the Board class**
 
-I struggled with understanding classes early on in the project.  I researched them while I developed the application with a more familiar procedural methodology due to percieved time constraints.
-Before submission, some time remained to rewrite the code to follow an OOP paradigm.
+I struggled with understanding classes early on in the project so researched them whilst I developing the application with a more familiar procedural methodology due to percieved time constraints.
+Before submission, some time did remain to refacto the code following an OOP paradigm.
 
-Functions developed on their own were moved into the Board class to become its methods.
+terminal board formating, a position updating functions developed on their own were moved into the Board class to become its methods.
 
 A new instance of `Board` was create for each new player turn.
 
@@ -500,6 +500,6 @@ b.printboard()
 ```
 
 ## A note to the reader
-Thankyou for making it this far.  I acknowledge this may not be a standard readme.  however as this was a learn by doing project I felt it was benefical to explain how it evolved as my understanding of Python improved.
+Thankyou for making it this far.  I acknowledge this may not be a standard readme.  However as this was a learn by doing project I felt it was benefical to explain how my understanding of Python has evolved in a short period of time.  It has been an enjoyable exercise which has helpied me realise, the more I learn the less I know.
 
 [Return to README.md](README.md)
