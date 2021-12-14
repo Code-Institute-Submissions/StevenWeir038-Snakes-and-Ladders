@@ -21,16 +21,23 @@ Three additional game rules can be applied for extra complexity.
 3. An exact throw is required to reach square 100.  If the throw exceeds 100 the player must move backwards. Watch out for the snakes!
 
 ## Features
-### Splash Screen
-The game is best viewed at 1024 X 768 pixels.  No real responsiveness has been built into the browser due to the backend nature of the project.
-
-Nonetheless, I wanted to provide a little humour to the user.
-
-Firstly, an image conveys that the game is Snakes and Ladders.
-
-Secondly, the `button` element in the webpage has be given a bespoke title referencing the classic `CLICKME` convention.  Since we are programming and snakes do what they do, `bite` becomes `byte`. 
+### Browser View
 
 ![Splash](docs/readme/live-deployment/splash.png "Splash") 
+
+The game was developed at 1920 X 1080 pixels.  No real responsiveness has been built into the browser due to the backend nature of the project.  That being said, I used*Dev Tools*  `F12` in *Google Chrome* to test and position the terminal element to `width:115%` and `height:85vh` within the css inline code in `layout.html`.  This ideally positioned the svg background against the terminal.
+
+Despite the frontend being a secondary concern I wanted to engage the user by:
+
+1. providing an image that conveys that the game is Snakes and Ladders.
+2. giving the `button` element in the webpage a bespoke title referencing the classic `CLICKME` convention.  Since we are programming and snakes do what they do, `bite` becomes `byte`.
+
+*(I know, I hope my code is better then my humor!)*
+
+### Splash Screen
+It is customary to give a game a start screen before entering it menus.  This was incorporated from a user expectation / UX prespective.
+
+![Splash-One](docs/readme/live-deployment/splash-one.png "Splash-One") 
 
 ### Main Menu
 Menu options are color coded and given intuitive titles for the user.
@@ -41,13 +48,17 @@ The game rules can be accessed from the main menu.
 
 ![Rules](docs/readme/live-deployment/rules.png "Rules")
 
-The user can view the game's board from the main menu.
+The user can view the game board from the main menu for an appreciation of how the game board displays at the end of each turn.
 
 ![Menu Board](docs/readme/live-deployment/menu-board.png "Menu Board")
 
-The user can select a validated number of players for the game between 2 and 4.
+The user can select a validated number of players for the game between 2 and 4 with full error handling capabilities.
 
 ![Play Game](docs/readme/live-deployment/play-game.png "Play Game")
+
+The user is asked if they want to quit the application.  If *yes*, the application closes down. If *no*, the main menu is displayed.
+
+![Quit App](docs/readme/live-deployment/quit-app.png "Quit App")
 
 ### Game
 In game, a player can land on a normal square.
@@ -66,10 +77,6 @@ Reach or move past 100 therefore win the game.
 If they win they are asked to return to the main menu.
 
 ![Game Move Victory](docs/readme/live-deployment/game-move-victory.png "Game Move Victory")
-
-The user is asked if they want to quit the application.  If *yes*, the application closes down. If *no*, the main menu is displayed.
-
-![Quit App](docs/readme/live-deployment/quit-app.png "Quit App")
 
 
 ## Deployment
