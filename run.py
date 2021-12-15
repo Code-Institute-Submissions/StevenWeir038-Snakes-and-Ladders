@@ -4,6 +4,7 @@ Code Institute PP3
 StevenWeir038
 December 2021
 """
+# Imports
 
 from rules import game_instructions
 import random
@@ -13,7 +14,7 @@ import colorama
 from pyfiglet import Figlet
 from termcolor import colored
 from colorama import Fore, Style
-colorama.init(autoreset=True)  # defaults new line text = white
+colorama.init(autoreset=True)
 
 
 # Classes
@@ -222,10 +223,7 @@ def game_setup():
                       f"{Fore.WHITE}{player_count}{Fore.GREEN} players...")
                 sleep(4)
                 clear_terminal()
-                # create list of players - use pawn color
                 player_list = []
-
-                # loop - create a list of a unique for each player.
                 for p in range(1, player_count + 1):
                     if p == 1:
                         player_list.append("Red")
@@ -298,8 +296,8 @@ def snl_game(players):
     while True:
 
         for player_id, player_inst in players.items():
-            # breakpoint - user intervention to roll dice
             turn_prompt()
+
             clear_terminal()
 
             player_inst.num_turns += 1
@@ -308,25 +306,15 @@ def snl_game(players):
             turn_msg = f"\n{player_id} TURN {turns}\n"
             print(turn_msg.upper())
 
-            # establish current player's location on board and
-            # assign the object attr to 'curr_position'
             curr_position = player_inst.curr_square
             print(f"You start the turn on square {curr_position}.\n")
-            # now pass curr_position variable to move() function to process
-            # the players new location based off their next dice roll
             new_position = move(player_id, curr_position)
-            # update player instance attribute with returned value from move()
             player_inst.curr_square = new_position
-
-            # display player turn events above the board in the terminal
             print(f"You end the turn on square {new_position}.\n")
 
-            # display player position on a board in the terminal
             b = Board()
             b.turn_board(new_position)
             b.print_board()
-
-            # check if win condition met
             check_win(player_id, player_inst)
 
 
@@ -335,7 +323,7 @@ def check_win(player_id, player_inst):
     evaluate if player has reached or passed 100 to terminate program
     '''
     if player_inst.curr_square >= 100:
-        print(f"\n🎈'{player_id}' wins! 🎈\n")
+        print(f"\n🎈 {player_id} wins! 🎈\n")
         print("GAME OVER...")
         menu_return()
 
