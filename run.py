@@ -42,17 +42,18 @@ class Board():
         format the matching list value
         return: None
         """
+        board = self.board
         str_pos = str(position).zfill(3)
         if position >= 100:
             self.board[0][0] = " 🏁 "
 
-        # for x, row in enumerate(self.board):
-        #     for y, col in enumerate(row):
-        #         if col == str_pos:
-        #             self.board[x][y] = " 📌 "
+        for x, row in enumerate(self.board):
+            for y, col in enumerate(row):
+                if col == str_pos:
+                    self.board[x][y] = " 📌 "
 
         # still to fix list comp refactor Ln #43-50
-        board_xy = [" 📌 " for x, row in enumerate(self.board) for y, col in enumerate(row) if col == str_pos]
+        # board_xy = [" 📌 " for x, row in enumerate(board) for y, col in enumerate(row) if col == str_pos]
 
     def print_board(self):
         for square in self.board:
@@ -67,7 +68,7 @@ class Player:
         self.pawn_color = pawn_color
         self.curr_square = curr_position
         self.num_turns = 0
-
+ 
 
 # Snake and Ladder dictionaries to be used in game
 
@@ -80,7 +81,7 @@ LADDER_FOOT = {
 }
 
 
-# Menu behaviours
+# Menu behaviors
 
 def clear_terminal():
     """
@@ -268,7 +269,7 @@ def quit_application():
     ans = input("\nAre you sure you want to quit? Y/N\n")
     if ans.lower() in ["y", "yes"]:
         clear_terminal()
-        print("\n\n\n\n\n\n\n\n")
+        print("\n\n\n\n\n\n\n\n\n\n")
         print_center("Thanks for playing!")
         sleep(3)
         clear_terminal()
@@ -305,25 +306,27 @@ def snl_game(players):
             turn_prompt()
             clear_terminal()
 
-            turns = player_inst.num_turns
-            turn_msg = f"\n{player_id} TURN {turns}"
             player_inst.num_turns += 1
 
+            turns = player_inst.num_turns
+            turn_msg = f"\n{player_id} TURN {turns}\n"
+            print(turn_msg.upper())
+
+
             # establish current player's location on board and
-            # assign the object attr to 'curr_position' using .notation
+            # assign the object attr to 'curr_position'
             curr_position = player_inst.curr_square
-            print(f"'{player_id}' is on square '{curr_position}'.")
 
             # now pass curr_position variable to move() function to process
             # the players new location based off their next dice roll
             new_position = move(player_id, curr_position)
-
             # update player instance attribute with returned value from move()
-            player_inst.curr_square = new_position  # testing
-            print(f"'{player_id}' moves to square '{new_position}'.\n")
+            player_inst.curr_square = new_position
+
+            # display player turn events above the board in the terminal
+            print(f"You end the turn on square {new_position}.\n")
 
             # display player position on a board in the terminal
-
             b = Board()
             b.turn_board(new_position)
             b.print_board()
@@ -364,14 +367,13 @@ def move(player_id, curr_position):
     """
     roll_num = roll_dice()
     new_position = curr_position + roll_num
-    print(f"'{player_id}' rolled a '{roll_num}'")
-
+    print(f"You rolled a {roll_num}.")
     if new_position in SNAKE_HEAD:
         new_position = SNAKE_HEAD[new_position]
-        print(f"'{player_id}' landed on a 🐍")
+        print("Meh, you landed on a 🐍.")
     elif new_position in LADDER_FOOT:
         new_position = LADDER_FOOT[new_position]
-        print(f"'{player_id}' landed on a 🖇️")
+        print("Ohh, you landed on a 🖇️.")
     return new_position
 
 
