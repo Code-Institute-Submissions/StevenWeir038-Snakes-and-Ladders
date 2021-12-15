@@ -51,9 +51,6 @@ class Board():
                 if col == str_pos:
                     self.board[x][y] = " 📌 "
 
-        # still to fix list comp refactor Ln #43-50
-        # board_xy = [" 📌 " for x, row in enumerate(board) for y, col in enumerate(row) if col == str_pos]
-
     def print_board(self):
         for square in self.board:
             print(" | ".join(square))
