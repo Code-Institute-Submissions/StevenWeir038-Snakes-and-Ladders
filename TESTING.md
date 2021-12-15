@@ -499,30 +499,33 @@ b.turn_board(new_position)
 b.printboard()
 ```
 
-## A note to the reader
-Thankyou for making it this far.  I acknowledge this may not be a standard readme.  However as this was a learn by doing project I felt it was benefical to explain how my understanding of Python has evolved in a short period of time.  It has been an enjoyable exercise which has helpied me realise, the more I learn the less I know.
-
 ## Player class revisited & Turn incrementation
 Due to the random nature of the game it can run for some time.  It would be useful to give the player a sense of how long they have been playing.
 
 An extra attribute was added to the Player class to store the incrementation value which was updated from within `snl_game` on each iteration.
 
-*Turns code snippet*
+*Number of turns* code snippet*
 
 ``` python
 # Added to Player class
 self.num_turns = 0
 
 # snl_game()
-turns = player_inst.num_turns
-turn_msg = f"\n{player_id} TURN {turns}"
 
+# increment count
 player_inst.num_turns += 1
+turns = player_inst.num_turns
+turn_msg = f"\n{player_id} TURN {turns}\n"
+print(turn_msg.upper())
 ```
 
 *Terminal Output showing incrementation works*
 
 ![turn-increment](docs/readme/turn-increment.png "turn-increment")
 
+## A note to the reader
+Thankyou for making it this far.  I acknowledge this may deviate from a standard testing subsection of a readme.
+
+However, as this was a learn by doing project, I felt it was benefical to explain how my understanding of Python has evolved in a short period of time.  It has been an enjoyable exercise which has helped me realise that the more I learn the less I know.
 
 [Return to README.md](README.md)
