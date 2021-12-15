@@ -78,6 +78,10 @@ If they win they are asked to return to the main menu.
 
 ![Game Move Victory](docs/readme/live-deployment/game-move-victory.png "Game Move Victory")
 
+An addendum was made to the game following user feedback.  They didn't know for how long the game was running.  A counter was added and displayed for each turn to facilitate their requests.
+
+![turn-addendum-user-feedback](docs/readme/turn-addendum-user-feedback.png "turn-addendum-user-feedback")
+
 
 ## Deployment
 The live application can be viewed from this [link](https://snakes-and-ladders-sw.herokuapp.com/).
@@ -87,6 +91,11 @@ Go to [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions to deploy applica
 ## Testing & Debugging
 Extensive testing has been undertaken to prevent program crashes or unintended actions.
 Go to [TESTING.md](TESTING.md) to view known bugs and fixes.
+
+### PEP8 Validation
+Code in `run.py` successfully meets pep8 standards using the linked [validation](http://pep8online.com/) tool.
+
+![pep8-validation-pass](docs/readme/pep8-validation-pass.png "pep8-validation-pass")
 
 ## Technologies Used
 Flowcharts created with [Lucidchart](https://www.lucidchart.com/pages/).
