@@ -193,7 +193,7 @@ def view_board():
     menu option to go back to welcome screen
     """
     clear_terminal()
-    print("\nThe '📌' shows your position at the end of each turn\n")
+    print("\nYour position at the end of each turn is shown by a 📌\n")
     Board().print_board()
     menu_return()
 
@@ -335,7 +335,7 @@ def check_win(player_id, player_inst):
     evaluate if player has reached or passed 100 to terminate program
     '''
     if player_inst.curr_square >= 100:
-        print(f"\n🎉 🎈'{player_id}' wins! 🎈 🎉\n")
+        print(f"\n🎈'{player_id}' wins! 🎈\n")
         print("GAME OVER...")
         menu_return()
 
