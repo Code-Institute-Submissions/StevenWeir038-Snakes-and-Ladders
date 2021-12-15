@@ -13,14 +13,14 @@ This was consulted every after writing several lines of code and was especially 
 ## Code Validation
 Code readability and consistency was routinely checked by directly pasting into a [PEP8](http://pep8online.com/) linter.
 
-Issues identified like those below could then be addressed using a clean as your go approach.
+Issues identified like those below could then be addressed using a clean as you go approach.
 
 ![pep8-check](docs/readme/pep8-check.png "pep-8-check")
 
 ## Game setup
 
 ### Casting
-Care was taken when accepting inputs from the user.  These default to a *string* so required converting to an *integer* format as they were to be used in a loop to create the validated number of players.
+Care was taken when accepting inputs from the user.  These default to a *string* so required converting to an *integer* format as they were to be used in a loop to create a validated number of players.
 
 ``` python
 # Immediately convert string input from user to an integer
@@ -78,12 +78,12 @@ def clear_terminal():
     os.system("cls") if name == "nt" else system("clear")
 ```
 
-At this stage, all the user now sees when submiting no or invalid input is a warning `No value or text value submitted`. The program resets itself after a brief period of time by employing the `sleep(2)` method from the imported `time` module set to 2 seconds.  This is necessary to give the users an oppurtunity to review and understand the message.  
+At this stage, all the user now sees when submiting no or invalid input is the warning `No value or text value submitted`. The program resets itself after a brief period of time by employing the `sleep()` method from the imported `time` module.  This is necessary to give the users an oppurtunity to review and understand the message.
 
-It's a confidence building experience as they don't see an application crash caused by an error or update too quiclkly..
+It's a confidence building experience. We don't want the application to crash caused by an error or update too quiclkly for users to get feedback.
 
 ### Validating player counts
-Print statements using f strings provide human readible feedback from the terminal.  This is demonstrated when the user enters a value outside the *range* of players needed for the game.
+Print statements using f strings provide human readible feedback from the terminal.  This is demonstrated when the user enters a value outside the *type* and *range* of players needed for the game.
 
 ``` python
 def validate_player_count(player_count):
@@ -109,7 +109,7 @@ My current understanding of Python is that it is built from list, dictionary and
 - using dictionary comprehension, build a dictionary based of the above list.  Each key corresponds to a list value. As I wanted to follow an OOP paradigm the corresponding dictionary *values* were to be *instances* of the *Player* class.
 - each instance can be accessed by their respective *key iterable*.
 
-NB. Multiple methods and attributes can be added to the class instance for improved versatility/future development.  For an MVP, only the `pawn_color` and `curr_position` attributes are present.  These can added to at need.
+NB. Multiple methods and attributes can be added to the class instance in future development.  For an MVP, only the `pawn_color` and `curr_position` attributes were initially present.  These were added to at need and show the versatility of OOP.
 
 ### The **Player** class
 ``` python
@@ -196,11 +196,11 @@ If ladder and snake functionality is working correctly, then movements on the bo
 
 The snake and ladder functionality overrides the basic move as the code lines are after `new_position = curr_position + roll_num`.  
 
-If the current player's position value is checked against the SNAKE_HEAD or LADDER_FOOT dictionary.  If that value is equal to one already *in* the dictionary *'key'*, then the current position value becomes the *value* of the found key.
+The current player's position value is checked against the SNAKE_HEAD or LADDER_FOOT dictionary.  If that value is equal to one already *in* the dictionary *'key'*, then the current position value becomes the *value* of the found key.
 
 ### Testing for first player reaching square 100
 With the above game mechanics working, we now need to end the game when the first player sucessfully reaches square 100.
-This is done by passing the current player object to the `check_win()` function in a inner loop for each player iteration.  If the win condition is met, the application terminates after declaring a winner. 
+This is done by passing an attribute of the current player object to the `check_win()` function in a inner loop for each player iteration.  If the win condition is met, the application terminates after declaring a winner. 
 
 Note there is no need to return `False` from `check_win` to keep the game running.
 
@@ -287,7 +287,7 @@ except ValueError as e:
 
 *Terminal output*
 
-If an inputted value is not an *integer* value of *1*,*2* or *3*,  the program resets after displaying feedback after preset delay.
+If an inputted value is not an *integer* value of *1*, *2* or *3*,  the program resets after displaying feedback after preset delay.
 The *red* text color conveys a warning message to the user prior to reset.
 
 ![testing-incorrect-value-welcome](docs/readme/testing-incorrect-value-welcome.png "testing-incorrect-value-welcome")
@@ -346,7 +346,7 @@ My initial thoughts to develop the game board was to use several nested lists.
 The square number landed on after completion of a player's turn was to be highlighted.
 
 This could be achieved by targeting the relevant index (bearing in mind indexes start at 0).
-Whilst doable, would it not be easier to target an integer rather than parse strings etc.
+Whilst doable, I considered if it was easier to target an integer rather than parse strings etc.
 
 Also I was wished to display the board in a classical format.
 
@@ -399,6 +399,8 @@ for i in range(99, -1, -1):
 *New Board on Terminal*
 
 ![new-board-1](docs/readme/new-board-1.png "new-board-1")
+
+First impressions, it is more `Pythonic`.
 
 Manish's solution is excellent but it lacks an **iterable** structure to represent board squares.
 I approximated his layout and incorporated a list structure with the following:
@@ -467,31 +469,33 @@ The flag emoji would therefore not been drawn into the nested index at `[0][0]` 
 
 ![testing-board-display-on-win](docs/readme/testing-board-display-on-win.png "testing-board-display-on-win")
 
-After a few false starts and further research, I found the best way to pinpoint a list items index based upon its value. Use `enumerate`.
+After a few false starts and further research, I found the best way to pinpoint a list item's index based upon its value was to use `enumerate`.
 
 When looping through a list to check for matching values, the counter value in enumerate can be inserted into a variable which holds the index if the value we are searching.  In this case.  Do something to a list item if `str_pos` == `board_xy`.
 
 
 ![testing-board-display-on-move](docs/readme/testing-board-display-on-move.png "testing-board-display-on-move")
 
-The code can be refactored to the following list comprehension to achieve the same result.
+The code can be condensed to the following list comprehension to achieve the same result.
 
 ``` python
 board_xy = [" 📌" for x, row in enumerate(board) for y, col in enumerate(row) if col == str_pos]
 ```
 
+I haven't quite solved this refactor yet.
+
 **Revisiting the Board class**
 
 I struggled with understanding classes early on in the project so researched them whilst I developing the application with a more familiar procedural methodology due to percieved time constraints.
-Before submission, some time did remain to refacto the code following an OOP paradigm.
+Before submission, some time did remain to refactor the code more inline with an OOP paradigm.
 
-terminal board formating, a position updating functions developed on their own were moved into the Board class to become its methods.
+Standalone terminal board formatting and position updating functions were moved into the Board class to become its methods.
 
 A new instance of `Board` was create for each new player turn.
 
 The `turn_board` method searched and replaced the item in the instantiated `Board` list whose value matched the passed argument.
 
-The printboard method formatted the instantiated `Board` for a neat terminal display.  Reading the list directly would be cumbersome.
+The printboard method formatted the instantiated `Board` for a neat terminal display.  Displaying the raw list directly would appear cumbersome.
 
 ``` python
 b = Board()
@@ -524,8 +528,8 @@ print(turn_msg.upper())
 ![turn-increment](docs/readme/turn-increment.png "turn-increment")
 
 ## A note to the reader
-Thankyou for making it this far.  I acknowledge this may deviate from a standard testing subsection of a readme.
+Thankyou for making it this far.  I acknowledge this lengthly testing subsection may deviate from a standard readme.
 
-However, as this was a learn by doing project, I felt it was benefical to explain how my understanding of Python has evolved in a short period of time.  It has been an enjoyable exercise which has helped me realise that the more I learn the less I know.
+However, as this was an educational project, I felt it was benefical to explain how my understanding of Python has evolved in a short period of time.  It has been an enjoyable exercise which has helped me realise that the more I learn the less I know.
 
 [Return to README.md](README.md)
