@@ -42,7 +42,6 @@ class Board():
         format the matching list value
         return: None
         """
-        board = self.board
         str_pos = str(position).zfill(3)
         if position >= 100:
             self.board[0][0] = " 🏁 "
@@ -68,7 +67,7 @@ class Player:
         self.pawn_color = pawn_color
         self.curr_square = curr_position
         self.num_turns = 0
- 
+
 
 # Snake and Ladder dictionaries to be used in game
 
@@ -197,7 +196,7 @@ def view_board():
     menu option to go back to welcome screen
     """
     clear_terminal()
-    print("\n📌 shows your position at the end of each turn\n")
+    print("\nThe '📌' shows your position at the end of each turn\n")
     Board().print_board()
     menu_return()
 
@@ -269,7 +268,7 @@ def quit_application():
     ans = input("\nAre you sure you want to quit? Y/N\n")
     if ans.lower() in ["y", "yes"]:
         clear_terminal()
-        print("\n\n\n\n\n\n\n\n\n\n")
+        print("\n\n\n\n\n\n\n\n\n")
         print_center("Thanks for playing!")
         sleep(3)
         clear_terminal()
@@ -312,11 +311,10 @@ def snl_game(players):
             turn_msg = f"\n{player_id} TURN {turns}\n"
             print(turn_msg.upper())
 
-
             # establish current player's location on board and
             # assign the object attr to 'curr_position'
             curr_position = player_inst.curr_square
-
+            print(f"You start the turn on square {curr_position}.\n")
             # now pass curr_position variable to move() function to process
             # the players new location based off their next dice roll
             new_position = move(player_id, curr_position)
@@ -340,7 +338,6 @@ def check_win(player_id, player_inst):
     evaluate if player has reached or passed 100 to terminate program
     '''
     if player_inst.curr_square >= 100:
-        clear_terminal()
         print(f"\n🎉 🎈'{player_id}' wins! 🎈 🎉\n")
         print("GAME OVER...")
         menu_return()
@@ -363,17 +360,17 @@ def move(player_id, curr_position):
     2. move x squares based on roll value.
     3. evaluate if pawn landed on snake, read dict key move to dict value
     4. evaluate if pawn landed on ladder, read dict key move to dict value
-    return: player_id and current position to snl_game()
+    return: None
     """
     roll_num = roll_dice()
     new_position = curr_position + roll_num
-    print(f"You rolled a {roll_num}.")
+    print(f"You rolled a {roll_num}.\n")
     if new_position in SNAKE_HEAD:
         new_position = SNAKE_HEAD[new_position]
-        print("Meh, you landed on a 🐍.")
+        print("Meh, you landed on a 🐍\n")
     elif new_position in LADDER_FOOT:
         new_position = LADDER_FOOT[new_position]
-        print("Ohh, you landed on a 🖇️.")
+        print("Yay, you landed on a 🖇️\n")
     return new_position
 
 
